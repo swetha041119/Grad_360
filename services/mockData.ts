@@ -160,9 +160,9 @@ export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
     lsrwType: 'LISTENING',
     subTopic: 'Listening',
     difficulty: 'Medium',
-    text: 'Based on the audio clip, what is the main objective of the proposed project?',
+    text: 'Based on the audio clip, what is the speaker\'s main message?',
     audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-    options: [{ text: 'Cost reduction', isCorrect: false }, { text: 'Market expansion', isCorrect: true }, { text: 'Team restructuring', isCorrect: false }, { text: 'Legal compliance', isCorrect: false }]
+    options: [{ text: 'The importance of punctuality', isCorrect: false }, { text: 'Effective teamwork leads to success', isCorrect: true }, { text: 'Time management skills', isCorrect: false }, { text: 'Meeting deadlines consistently', isCorrect: false }]
   },
   {
     id: 'comm-l2',
@@ -170,9 +170,9 @@ export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
     lsrwType: 'LISTENING',
     subTopic: 'Listening',
     difficulty: 'Easy',
-    text: 'What is the speaker\'s primary concern in the audio?',
+    text: 'What emotion does the speaker convey in the audio?',
     audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-    options: [{ text: 'Budget constraints', isCorrect: true }, { text: 'Timeline delays', isCorrect: false }, { text: 'Resource allocation', isCorrect: false }, { text: 'Quality assurance', isCorrect: false }]
+    options: [{ text: 'Enthusiasm', isCorrect: true }, { text: 'Frustration', isCorrect: false }, { text: 'Confusion', isCorrect: false }, { text: 'Disappointment', isCorrect: false }]
   },
   {
     id: 'comm-l3',
@@ -180,9 +180,9 @@ export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
     lsrwType: 'LISTENING',
     subTopic: 'Listening',
     difficulty: 'Hard',
-    text: 'According to the audio, which department will lead the initiative?',
+    text: 'According to the audio, what is the recommended approach to problem-solving?',
     audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-    options: [{ text: 'Marketing', isCorrect: false }, { text: 'Engineering', isCorrect: true }, { text: 'Sales', isCorrect: false }, { text: 'HR', isCorrect: false }]
+    options: [{ text: 'Working independently', isCorrect: false }, { text: 'Collaborative discussion', isCorrect: true }, { text: 'Seeking external help', isCorrect: false }, { text: 'Trial and error', isCorrect: false }]
   },
   {
     id: 'comm-l4',
@@ -190,9 +190,9 @@ export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
     lsrwType: 'LISTENING',
     subTopic: 'Listening',
     difficulty: 'Medium',
-    text: 'What is the expected completion timeline mentioned in the audio?',
+    text: 'What does the speaker suggest as the most important skill?',
     audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-    options: [{ text: '3 months', isCorrect: false }, { text: '6 months', isCorrect: true }, { text: '9 months', isCorrect: false }, { text: '12 months', isCorrect: false }]
+    options: [{ text: 'Technical knowledge', isCorrect: false }, { text: 'Communication skills', isCorrect: true }, { text: 'Leadership abilities', isCorrect: false }, { text: 'Decision-making', isCorrect: false }]
   },
   {
     id: 'comm-l5',
@@ -200,9 +200,9 @@ export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
     lsrwType: 'LISTENING',
     subTopic: 'Listening',
     difficulty: 'Easy',
-    text: 'What tone does the speaker use in the presentation?',
+    text: 'What is the overall tone of the presentation?',
     audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
-    options: [{ text: 'Aggressive', isCorrect: false }, { text: 'Professional', isCorrect: true }, { text: 'Casual', isCorrect: false }, { text: 'Defensive', isCorrect: false }]
+    options: [{ text: 'Formal and serious', isCorrect: false }, { text: 'Friendly and encouraging', isCorrect: true }, { text: 'Stern and critical', isCorrect: false }, { text: 'Neutral and detached', isCorrect: false }]
   },
 
   // Reading (5)
@@ -212,9 +212,9 @@ export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
     lsrwType: 'READING',
     subTopic: 'Reading',
     difficulty: 'Medium',
-    paragraph: 'Agile methodologies prioritize iterative development, where requirements and solutions evolve through the collaborative effort of self-organizing and cross-functional teams.',
-    text: 'What does Agile prioritize according to the text?',
-    options: [{ text: 'Iterative development', isCorrect: true }, { text: 'Linear planning', isCorrect: false }, { text: 'Individual silos', isCorrect: false }, { text: 'Rigid documentation', isCorrect: false }]
+    paragraph: 'Effective communication in the workplace involves active listening, clear expression of ideas, and understanding different perspectives. It helps build strong relationships and creates a positive work environment.',
+    text: 'What is a key component of workplace communication?',
+    options: [{ text: 'Active listening', isCorrect: true }, { text: 'Giving orders', isCorrect: false }, { text: 'Avoiding conflicts', isCorrect: false }, { text: 'Working alone', isCorrect: false }]
   },
   {
     id: 'comm-r2',
@@ -222,9 +222,9 @@ export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
     lsrwType: 'READING',
     subTopic: 'Reading',
     difficulty: 'Easy',
-    paragraph: 'DevOps is a set of practices that combines software development and IT operations. It aims to shorten the systems development life cycle and provide continuous delivery with high software quality.',
-    text: 'What is the main goal of DevOps?',
-    options: [{ text: 'Increase team size', isCorrect: false }, { text: 'Continuous delivery', isCorrect: true }, { text: 'Reduce costs', isCorrect: false }, { text: 'Eliminate testing', isCorrect: false }]
+    paragraph: 'Time management is the process of organizing and planning how to divide your time between different activities. Good time management enables you to work smarter, not harder, so that you get more done in less time.',
+    text: 'What is the main benefit of time management?',
+    options: [{ text: 'Working longer hours', isCorrect: false }, { text: 'Getting more done efficiently', isCorrect: true }, { text: 'Avoiding all tasks', isCorrect: false }, { text: 'Delegating everything', isCorrect: false }]
   },
   {
     id: 'comm-r3',
@@ -232,9 +232,9 @@ export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
     lsrwType: 'READING',
     subTopic: 'Reading',
     difficulty: 'Hard',
-    paragraph: 'Microservices architecture is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API.',
-    text: 'How do microservices typically communicate?',
-    options: [{ text: 'Shared database', isCorrect: false }, { text: 'HTTP API', isCorrect: true }, { text: 'File system', isCorrect: false }, { text: 'Direct memory access', isCorrect: false }]
+    paragraph: 'Professional networking is about building long-term relationships with people in your industry. It involves sharing knowledge, experiences, and opportunities. Networking can open doors to new job opportunities, partnerships, and valuable insights.',
+    text: 'What is the primary purpose of professional networking?',
+    options: [{ text: 'Collecting business cards', isCorrect: false }, { text: 'Building long-term relationships', isCorrect: true }, { text: 'Attending social events', isCorrect: false }, { text: 'Selling products', isCorrect: false }]
   },
   {
     id: 'comm-r4',
@@ -242,9 +242,9 @@ export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
     lsrwType: 'READING',
     subTopic: 'Reading',
     difficulty: 'Medium',
-    paragraph: 'Cloud computing provides on-demand availability of computer system resources, especially data storage and computing power, without direct active management by the user.',
-    text: 'What is a key characteristic of cloud computing?',
-    options: [{ text: 'Manual resource management', isCorrect: false }, { text: 'On-demand availability', isCorrect: true }, { text: 'Local storage only', isCorrect: false }, { text: 'Fixed capacity', isCorrect: false }]
+    paragraph: 'Adaptability in the workplace means being flexible and open to change. It involves adjusting to new situations, learning new skills, and embracing different ways of working. Employees who are adaptable tend to thrive in dynamic environments.',
+    text: 'What does adaptability in the workplace involve?',
+    options: [{ text: 'Resisting change', isCorrect: false }, { text: 'Being flexible and open to change', isCorrect: true }, { text: 'Following only old methods', isCorrect: false }, { text: 'Avoiding new challenges', isCorrect: false }]
   },
   {
     id: 'comm-r5',
@@ -252,9 +252,9 @@ export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
     lsrwType: 'READING',
     subTopic: 'Reading',
     difficulty: 'Easy',
-    paragraph: 'Version control systems track changes to files over time, allowing multiple developers to collaborate on the same codebase without conflicts.',
-    text: 'What is the primary benefit of version control?',
-    options: [{ text: 'Faster compilation', isCorrect: false }, { text: 'Collaboration without conflicts', isCorrect: true }, { text: 'Automatic bug fixes', isCorrect: false }, { text: 'Code encryption', isCorrect: false }]
+    paragraph: 'Goal setting is an important tool for success in any area of life. It helps you focus your efforts, measure your progress, and stay motivated. Clear and achievable goals provide direction and purpose.',
+    text: 'What is a benefit of setting goals?',
+    options: [{ text: 'Creating confusion', isCorrect: false }, { text: 'Providing direction and focus', isCorrect: true }, { text: 'Avoiding responsibility', isCorrect: false }, { text: 'Limiting opportunities', isCorrect: false }]
   },
 
   // Speaking (5)
@@ -264,7 +264,7 @@ export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
     lsrwType: 'SPEAKING',
     subTopic: 'Speaking',
     difficulty: 'Hard',
-    text: 'Summarize your understanding of Microservices architecture in 60 seconds.',
+    text: 'Describe your biggest professional achievement and what you learned from it.',
   },
   {
     id: 'comm-s2',
@@ -272,7 +272,7 @@ export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
     lsrwType: 'SPEAKING',
     subTopic: 'Speaking',
     difficulty: 'Medium',
-    text: 'Explain the concept of RESTful APIs in your own words.',
+    text: 'Explain how you handle conflicts or disagreements in a team setting.',
   },
   {
     id: 'comm-s3',
@@ -280,7 +280,7 @@ export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
     lsrwType: 'SPEAKING',
     subTopic: 'Speaking',
     difficulty: 'Easy',
-    text: 'Describe your experience with team collaboration in a project.',
+    text: 'Introduce yourself and talk about your strengths for 60 seconds.',
   },
   {
     id: 'comm-s4',
@@ -288,7 +288,7 @@ export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
     lsrwType: 'SPEAKING',
     subTopic: 'Speaking',
     difficulty: 'Hard',
-    text: 'Present a technical solution to improve application performance.',
+    text: 'Present a solution to improve workplace communication in your organization.',
   },
   {
     id: 'comm-s5',
@@ -296,7 +296,7 @@ export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
     lsrwType: 'SPEAKING',
     subTopic: 'Speaking',
     difficulty: 'Medium',
-    text: 'Discuss the importance of code reviews in software development.',
+    text: 'Discuss why continuous learning is important in today\'s workplace.',
   },
 
   // Writing (5)
@@ -306,8 +306,8 @@ export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
     lsrwType: 'WRITING',
     subTopic: 'Writing',
     difficulty: 'Medium',
-    scenario: 'Write a professional email to a client explaining a 2-day delay in the delivery of a module.',
-    text: 'Scenario: Your team has encountered a critical bug. Write a concise email to the project manager detailing the impact and estimated resolution time.'
+    scenario: 'Write a professional email to inform your manager about completing an assigned task ahead of schedule.',
+    text: 'Scenario: You have completed your work early. Write an email to your manager highlighting the completion and asking for next steps.'
   },
   {
     id: 'comm-w2',
@@ -315,8 +315,8 @@ export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
     lsrwType: 'WRITING',
     subTopic: 'Writing',
     difficulty: 'Easy',
-    scenario: 'Write a brief summary of a technical meeting.',
-    text: 'Document the key decisions made in today\'s sprint planning meeting.'
+    scenario: 'Write a thank you note to a colleague who helped you with a task.',
+    text: 'Express your gratitude to a team member who assisted you in completing a challenging assignment.'
   },
   {
     id: 'comm-w3',
@@ -324,8 +324,8 @@ export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
     lsrwType: 'WRITING',
     subTopic: 'Writing',
     difficulty: 'Hard',
-    scenario: 'Draft a technical proposal for implementing a new feature.',
-    text: 'Write a proposal for adding real-time notifications to the application, including technical approach and timeline.'
+    scenario: 'Draft a professional message requesting a meeting with senior management.',
+    text: 'Write a formal email requesting a 30-minute meeting to discuss a new initiative you would like to propose.'
   },
   {
     id: 'comm-w4',
@@ -333,8 +333,8 @@ export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
     lsrwType: 'WRITING',
     subTopic: 'Writing',
     difficulty: 'Medium',
-    scenario: 'Compose a status update email for stakeholders.',
-    text: 'Write a weekly status update highlighting progress, challenges, and next steps for the current project.'
+    scenario: 'Compose a brief update for your team about changes in work schedule.',
+    text: 'Write a team announcement about updated office hours and remote work policies.'
   },
   {
     id: 'comm-w5',
@@ -342,8 +342,8 @@ export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
     lsrwType: 'WRITING',
     subTopic: 'Writing',
     difficulty: 'Easy',
-    scenario: 'Write documentation for a code function.',
-    text: 'Create clear documentation for a function that validates user input.'
+    scenario: 'Write a message to welcome a new team member.',
+    text: 'Compose a friendly welcome message introducing yourself and offering help to a new colleague joining your team.'
   }
 ];
 
@@ -469,24 +469,76 @@ export const getStudentDashboardData = async (studentId: string) => {
   return {
     profile: student,
     learningPaths: [
-      { id: 'lp-quant', title: 'Quantitative Mastery', description: 'Advanced mathematical reasoning.', completed: 65, category: 'APTITUDE', subTopic: 'Quantitative' },
-      { id: 'lp-logic', title: 'Logical Deductions', description: 'Master syllogisms and puzzles.', completed: 40, category: 'APTITUDE', subTopic: 'Logical' },
-      { id: 'lp-verbal', title: 'Verbal Proficiency', description: 'Vocabulary and grammar.', completed: 85, category: 'APTITUDE', subTopic: 'Verbal' },
-      { id: 'lp-os', title: 'OS Architectures', description: 'Kernel internals.', completed: 50, category: 'TECHNICAL', subTopic: 'Operating Systems' },
-      { id: 'lp-dbms', title: 'Relational Frameworks', description: 'Query optimization.', completed: 30, category: 'TECHNICAL', subTopic: 'DBMS' },
-      { id: 'lp-dsa', title: 'Data Structures Hub', description: 'Trees and Graphs.', completed: 45, category: 'CODING', subTopic: 'Algorithms' },
-      { id: 'lp-cloud', title: 'Cloud Infrastructure', description: 'AWS and DevOps.', completed: 20, category: 'DOMAIN', subTopic: 'Cloud Computing' },
-      { id: 'lp-web', title: 'Full Stack Lab', description: 'MERN applications.', completed: 70, category: 'PROJECT', subTopic: 'Web Dev' },
+      // Aptitude & Logic (3 cards)
+      { id: 'lp-quant', title: 'Personalised Learning Path', description: 'Advanced mathematical reasoning and problem-solving skills.', completed: 65, category: 'APTITUDE', subTopic: 'Quantitative' },
+      { id: 'lp-faculty-test', title: 'Faculty Shared', description: 'Complete assigned assessments on time.', completed: 45, category: 'APTITUDE', subTopic: 'Quantitative' },
+      { id: 'lp-weekly-assess', title: 'Self Practice Test', description: 'Track progress with weekly checkpoints.', completed: 72, category: 'APTITUDE', subTopic: 'Quantitative' },
+      
+      // Technical Essentials (3 cards)
+      { id: 'lp-tech-1', title: 'Personalised Learning Path', description: 'Core computer science fundamentals and concepts.', completed: 50, category: 'TECHNICAL', subTopic: 'Operating Systems' },
+      { id: 'lp-tech-2', title: 'Faculty Shared', description: 'Technical assignments from instructors.', completed: 38, category: 'TECHNICAL', subTopic: 'Operating Systems' },
+      { id: 'lp-tech-3', title: 'Self Practice Test', description: 'Strengthen technical foundation independently.', completed: 55, category: 'TECHNICAL', subTopic: 'Operating Systems' },
+      
+      // Coding & Tech (3 cards)
+      { id: 'lp-code-1', title: 'Personalised Learning Path', description: 'Algorithm design and data structure mastery.', completed: 45, category: 'CODING', subTopic: 'Algorithms' },
+      { id: 'lp-code-2', title: 'Faculty Shared', description: 'Coding challenges assigned by faculty.', completed: 60, category: 'CODING', subTopic: 'Algorithms' },
+      { id: 'lp-code-3', title: 'Self Practice Test', description: 'Daily coding practice and problem solving.', completed: 52, category: 'CODING', subTopic: 'Algorithms' },
+      
+      // Psychometric Skill (3 cards)
+      { id: 'lp-psy-1', title: 'Personalised Learning Path', description: 'Behavioral traits and professional aptitude.', completed: 70, category: 'PSYCHOMETRIC', subTopic: 'Professional Integrity' },
+      { id: 'lp-psy-2', title: 'Faculty Shared', description: 'Personality assessment from mentors.', completed: 65, category: 'PSYCHOMETRIC', subTopic: 'Professional Integrity' },
+      { id: 'lp-psy-3', title: 'Self Practice Test', description: 'Self-assessment of work ethic and values.', completed: 78, category: 'PSYCHOMETRIC', subTopic: 'Professional Integrity' },
+      
+      // Domain Knowledge (3 cards)
+      { id: 'lp-dom-1', title: 'Personalised Learning Path', description: 'Industry-specific expertise and trends.', completed: 20, category: 'DOMAIN', subTopic: 'Cloud Computing' },
+      { id: 'lp-dom-2', title: 'Faculty Shared', description: 'Domain topics curated by experts.', completed: 35, category: 'DOMAIN', subTopic: 'Cloud Computing' },
+      { id: 'lp-dom-3', title: 'Self Practice Test', description: 'Build domain knowledge through practice.', completed: 28, category: 'DOMAIN', subTopic: 'Cloud Computing' },
+      
+      // Communication Skill (3 cards)
+      { id: 'lp-comm-1', title: 'Personalised Learning Path', description: 'Listening, speaking, reading, and writing excellence.', completed: 82, category: 'COMMUNICATION', subTopic: 'LSRW' },
+      { id: 'lp-comm-2', title: 'Faculty Shared', description: 'Communication exercises from instructors.', completed: 75, category: 'COMMUNICATION', subTopic: 'LSRW' },
+      { id: 'lp-comm-3', title: 'Self Practice Test', description: 'Improve communication skills independently.', completed: 88, category: 'COMMUNICATION', subTopic: 'LSRW' },
+      
+      // Projects Skill (3 cards)
+      { id: 'lp-proj-1', title: 'Personalised Learning Path', description: 'Hands-on project development experience.', completed: 70, category: 'PROJECT', subTopic: 'Web Dev' },
+      { id: 'lp-proj-2', title: 'Faculty Shared', description: 'Project assignments from faculty members.', completed: 55, category: 'PROJECT', subTopic: 'Web Dev' },
+      { id: 'lp-proj-3', title: 'Self Practice Test', description: 'Personal projects and portfolio building.', completed: 68, category: 'PROJECT', subTopic: 'Web Dev' },
     ],
     assessments: [
+      // Aptitude & Logic (3 cards)
       { id: 'a-quant', title: 'Quantitative Diagnostic', type: 'APTITUDE', subTopic: 'Quantitative', questions: 5, durationMins: 20, difficulty: 'Medium', status: 'ACTIVE' },
-      { id: 'a-logic', title: 'Logical Reasoning Mock', type: 'APTITUDE', subTopic: 'Logical', questions: 5, durationMins: 15, difficulty: 'Hard', status: 'ACTIVE' },
-      { id: 'a-verbal', title: 'Verbal Assessment', type: 'APTITUDE', subTopic: 'Verbal', questions: 5, durationMins: 15, difficulty: 'Medium', status: 'ACTIVE' },
-      { id: 'a-os', title: 'Operating Systems Quiz', type: 'TECHNICAL', subTopic: 'Operating Systems', questions: 10, durationMins: 25, difficulty: 'Medium', status: 'ACTIVE' },
-      { id: 'a-code-1', title: 'Algorithm Challenge #1', type: 'CODING', subTopic: 'Algorithms', questions: 1, durationMins: 90, difficulty: 'Hard', status: 'ACTIVE' },
-      { id: 'a-psy-1', title: 'Workplace Ethics Review', type: 'PSYCHOMETRIC', subTopic: 'Professional Integrity', questions: 1, durationMins: 30, difficulty: 'Medium', status: 'ACTIVE' },
-      { id: 'a-proj-1', title: 'Backend Migration Lab', type: 'PROJECT', subTopic: 'Web Dev', questions: 1, durationMins: 120, difficulty: 'Hard', status: 'ACTIVE' },
-      { id: 'a-dom-1', title: 'System Architecture Exam', type: 'DOMAIN', subTopic: 'Cloud Computing', questions: 10, durationMins: 30, difficulty: 'Hard', status: 'ACTIVE' },
+      { id: 'a-faculty-assigned', title: 'Faculty Assigned Evaluation', type: 'APTITUDE', subTopic: 'Quantitative', questions: 10, durationMins: 30, difficulty: 'Medium', status: 'ACTIVE' },
+      { id: 'a-weekly-test', title: 'Weekly Progress Test', type: 'APTITUDE', subTopic: 'Quantitative', questions: 8, durationMins: 25, difficulty: 'Easy', status: 'ACTIVE' },
+      
+      // Technical Essentials (3 cards)
+      { id: 'a-tech-1', title: 'Technical Fundamentals Test', type: 'TECHNICAL', subTopic: 'Operating Systems', questions: 10, durationMins: 25, difficulty: 'Medium', status: 'ACTIVE' },
+      { id: 'a-tech-2', title: 'Faculty Technical Assessment', type: 'TECHNICAL', subTopic: 'Operating Systems', questions: 12, durationMins: 35, difficulty: 'Hard', status: 'ACTIVE' },
+      { id: 'a-tech-3', title: 'Technical Practice Quiz', type: 'TECHNICAL', subTopic: 'Operating Systems', questions: 8, durationMins: 20, difficulty: 'Easy', status: 'ACTIVE' },
+      
+      // Coding & Tech (3 cards)
+      { id: 'a-code-1', title: 'Algorithm Challenge', type: 'CODING', subTopic: 'Algorithms', questions: 3, durationMins: 90, difficulty: 'Hard', status: 'ACTIVE' },
+      { id: 'a-code-2', title: 'Faculty Coding Assignment', type: 'CODING', subTopic: 'Algorithms', questions: 2, durationMins: 60, difficulty: 'Medium', status: 'ACTIVE' },
+      { id: 'a-code-3', title: 'Coding Practice Set', type: 'CODING', subTopic: 'Algorithms', questions: 5, durationMins: 45, difficulty: 'Easy', status: 'ACTIVE' },
+      
+      // Psychometric Skill (3 cards)
+      { id: 'a-psy-1', title: 'Workplace Ethics Review', type: 'PSYCHOMETRIC', subTopic: 'Professional Integrity', questions: 15, durationMins: 30, difficulty: 'Medium', status: 'ACTIVE' },
+      { id: 'a-psy-2', title: 'Faculty Behavior Assessment', type: 'PSYCHOMETRIC', subTopic: 'Professional Integrity', questions: 20, durationMins: 40, difficulty: 'Medium', status: 'ACTIVE' },
+      { id: 'a-psy-3', title: 'Personality Self-Test', type: 'PSYCHOMETRIC', subTopic: 'Professional Integrity', questions: 10, durationMins: 25, difficulty: 'Easy', status: 'ACTIVE' },
+      
+      // Domain Knowledge (3 cards)
+      { id: 'a-dom-1', title: 'Domain Expertise Test', type: 'DOMAIN', subTopic: 'Cloud Computing', questions: 10, durationMins: 30, difficulty: 'Hard', status: 'ACTIVE' },
+      { id: 'a-dom-2', title: 'Faculty Domain Assessment', type: 'DOMAIN', subTopic: 'Cloud Computing', questions: 12, durationMins: 35, difficulty: 'Medium', status: 'ACTIVE' },
+      { id: 'a-dom-3', title: 'Domain Practice Quiz', type: 'DOMAIN', subTopic: 'Cloud Computing', questions: 8, durationMins: 20, difficulty: 'Easy', status: 'ACTIVE' },
+      
+      // Communication Skill (3 cards)
+      { id: 'a-comm-1', title: 'LSRW Comprehensive Test', type: 'COMMUNICATION', subTopic: 'LSRW', questions: 20, durationMins: 50, difficulty: 'Medium', status: 'ACTIVE' },
+      { id: 'a-comm-2', title: 'Faculty Communication Evaluation', type: 'COMMUNICATION', subTopic: 'LSRW', questions: 15, durationMins: 40, difficulty: 'Medium', status: 'ACTIVE' },
+      { id: 'a-comm-3', title: 'Communication Skills Practice', type: 'COMMUNICATION', subTopic: 'LSRW', questions: 10, durationMins: 30, difficulty: 'Easy', status: 'ACTIVE' },
+      
+      // Projects Skill (3 cards)
+      { id: 'a-proj-1', title: 'Project Implementation Test', type: 'PROJECT', subTopic: 'Web Dev', questions: 1, durationMins: 120, difficulty: 'Hard', status: 'ACTIVE' },
+      { id: 'a-proj-2', title: 'Faculty Project Review', type: 'PROJECT', subTopic: 'Web Dev', questions: 1, durationMins: 90, difficulty: 'Medium', status: 'ACTIVE' },
+      { id: 'a-proj-3', title: 'Project Practice Lab', type: 'PROJECT', subTopic: 'Web Dev', questions: 1, durationMins: 60, difficulty: 'Easy', status: 'ACTIVE' },
     ],
     readinessExam: {
       id: 're1',
@@ -499,10 +551,48 @@ export const getStudentDashboardData = async (studentId: string) => {
       description: 'The definitive end-to-end evaluation for engineering recruitment excellence.'
     },
     practiceSets: [
+      // Aptitude & Logic (3 cards)
       { id: 'ps-quant', title: 'Time and Distance Drill', type: 'APTITUDE', subTopic: 'Quantitative', items: 30 },
-      { id: 'ps-code-1', title: 'Daily String Algorithms', type: 'CODING', subTopic: 'Algorithms', items: 10 },
+      { id: 'ps-faculty-practice', title: 'Faculty Practice Set', type: 'APTITUDE', subTopic: 'Quantitative', items: 25 },
+      { id: 'ps-weekly-drills', title: 'Weekly Skill Drills', type: 'APTITUDE', subTopic: 'Quantitative', items: 20 },
+      
+      // Technical Essentials (3 cards)
+      { id: 'ps-tech-1', title: 'Technical Concepts Practice', type: 'TECHNICAL', subTopic: 'Operating Systems', items: 35 },
+      { id: 'ps-tech-2', title: 'Faculty Tech Drills', type: 'TECHNICAL', subTopic: 'Operating Systems', items: 28 },
+      { id: 'ps-tech-3', title: 'Self-Study Tech Questions', type: 'TECHNICAL', subTopic: 'Operating Systems', items: 22 },
+      
+      // Coding & Tech (3 cards)
+      { id: 'ps-code-1', title: 'Daily Coding Algorithms', type: 'CODING', subTopic: 'Algorithms', items: 40 },
+      { id: 'ps-code-2', title: 'Faculty Coding Challenges', type: 'CODING', subTopic: 'Algorithms', items: 32 },
+      { id: 'ps-code-3', title: 'Problem Solving Practice', type: 'CODING', subTopic: 'Algorithms', items: 25 },
+      
+      // Psychometric Skill (3 cards)
+      { id: 'ps-psy-1', title: 'Behavioral Scenarios', type: 'PSYCHOMETRIC', subTopic: 'Professional Integrity', items: 30 },
+      { id: 'ps-psy-2', title: 'Faculty Personality Tests', type: 'PSYCHOMETRIC', subTopic: 'Professional Integrity', items: 24 },
+      { id: 'ps-psy-3', title: 'Work Ethics Practice', type: 'PSYCHOMETRIC', subTopic: 'Professional Integrity', items: 18 },
+      
+      // Domain Knowledge (3 cards)
+      { id: 'ps-dom-1', title: 'Domain Knowledge Drills', type: 'DOMAIN', subTopic: 'Cloud Computing', items: 35 },
+      { id: 'ps-dom-2', title: 'Faculty Domain Practice', type: 'DOMAIN', subTopic: 'Cloud Computing', items: 28 },
+      { id: 'ps-dom-3', title: 'Industry Trends Quiz', type: 'DOMAIN', subTopic: 'Cloud Computing', items: 20 },
+      
+      // Communication Skill (3 cards)
+      { id: 'ps-comm-1', title: 'LSRW Practice Sessions', type: 'COMMUNICATION', subTopic: 'LSRW', items: 40 },
+      { id: 'ps-comm-2', title: 'Faculty Communication Drills', type: 'COMMUNICATION', subTopic: 'LSRW', items: 32 },
+      { id: 'ps-comm-3', title: 'Speaking & Writing Practice', type: 'COMMUNICATION', subTopic: 'LSRW', items: 25 },
+      
+      // Projects Skill (3 cards)
+      { id: 'ps-proj-1', title: 'Project Development Tasks', type: 'PROJECT', subTopic: 'Web Dev', items: 15 },
+      { id: 'ps-proj-2', title: 'Faculty Project Assignments', type: 'PROJECT', subTopic: 'Web Dev', items: 12 },
+      { id: 'ps-proj-3', title: 'Portfolio Building Exercises', type: 'PROJECT', subTopic: 'Web Dev', items: 10 },
     ],
-    history: [{ id: 'h1', title: 'Logical Reasoning Mock', type: 'APTITUDE', score: 82, date: 'Oct 12, 2023' }],
+    history: [
+      { id: 'h1', title: 'Logical Reasoning Mock', type: 'APTITUDE', score: 82, date: 'Oct 12, 2023' },
+      { id: 'h2', title: 'Algorithm Challenge', type: 'CODING', score: 78, date: 'Oct 18, 2023' },
+      { id: 'h3', title: 'Communication Skills Test', type: 'COMMUNICATION', score: 88, date: 'Oct 25, 2023' },
+      { id: 'h4', title: 'Technical Fundamentals Quiz', type: 'TECHNICAL', score: 75, date: 'Nov 02, 2023' },
+      { id: 'h5', title: 'Domain Knowledge Assessment', type: 'DOMAIN', score: 85, date: 'Nov 10, 2023' },
+    ],
     analytics: [
       { subject: 'Aptitude', A: 85, fullMark: 100 },
       { subject: 'Coding', A: 72, fullMark: 100 },

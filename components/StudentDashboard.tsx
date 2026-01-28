@@ -471,10 +471,10 @@ const StudentDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
             {activeTab === 'history' && (
                 <div className="space-y-12 animate-fadeIn">
                     <div>
-                        <h2 className="text-6xl font-black text-slate-900 tracking-tighter flex items-center">
-                            <HistoryIcon className="w-16 h-16 mr-8 text-primary-600" /> Exam History
+                        <h2 className="text-4xl font-black text-slate-900 tracking-tighter flex items-center">
+                            <HistoryIcon className="w-10 h-10 mr-6 text-primary-600" /> Exam History
                         </h2>
-                        <p className="text-slate-400 mt-6 font-medium text-2xl max-w-2xl italic">Review your past performance and track your growth over time.</p>
+                        <p className="text-slate-400 mt-4 font-medium text-lg max-w-2xl italic">Review your past performance and track your growth over time.</p>
                     </div>
 
                     <div className="bg-white rounded-[64px] border border-slate-100 shadow-sm overflow-hidden p-4">

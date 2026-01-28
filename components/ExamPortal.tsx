@@ -111,17 +111,12 @@ const ExamPortal: React.FC<Props> = ({ assessment, onClose }) => {
                     label: 'Part 3: Professional Spectrum',
                     desc: 'Communication proficiency (LSRW) and behavioral integrity.',
                     sections: [
-                        { label: 'Listening', category: 'COMMUNICATION', questions: DEMO_COMMUNICATION_QUESTIONS.filter(q => q.lsrwType === 'LISTENING') },
-                        { label: 'Reading', category: 'COMMUNICATION', questions: DEMO_COMMUNICATION_QUESTIONS.filter(q => q.lsrwType === 'READING') },
-                        { label: 'Speaking', category: 'COMMUNICATION', questions: DEMO_COMMUNICATION_QUESTIONS.filter(q => q.lsrwType === 'SPEAKING') },
-                        { label: 'Writing', category: 'COMMUNICATION', questions: DEMO_COMMUNICATION_QUESTIONS.filter(q => q.lsrwType === 'WRITING') },
+                        { label: 'Verbal', category: 'COMMUNICATION', questions: [...DEMO_COMMUNICATION_QUESTIONS] },
                         { label: 'Behavioral', category: 'PSYCHOMETRIC', questions: [...DEMO_PSYCHOMETRIC_QUESTIONS] }
                     ],
                     guidelines: [
-                        'Listening: 5 audio-based comprehension questions.',
-                        'Reading: 5 paragraph-based comprehension questions.',
-                        'Speaking: 5 oral articulation tasks (record your response).',
-                        'Writing: 5 professional writing scenarios.',
+                        'Verbal: Complete 20 communication questions covering Listening, Reading, Speaking, and Writing.',
+                        'Navigate between subsections (LSRW) using the question navigation panel.',
                         'Behavioral: Psychometric assessment of professional values.',
                         'Navigate between sections using the top bar.'
                     ]
@@ -552,7 +547,78 @@ const ExamPortal: React.FC<Props> = ({ assessment, onClose }) => {
                                     <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.4em] mt-2">Module: {activeSection.label}</p>
                                 </div>
                                 <div className="flex-1 overflow-y-auto p-8 scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                                    {activeSection.label !== 'Cognitive' && activeSection.category !== 'APTITUDE' ? (
+                                    {activeSection.label === 'Verbal' || activeSection.category === 'COMMUNICATION' ? (
+                                        // Verbal section with LSRW subsections
+                                        (() => {
+                                            const lsrwTypes: LSRWType[] = ['LISTENING', 'SPEAKING', 'READING', 'WRITING'];
+                                            const lsrwLabels = { LISTENING: 'Listening', SPEAKING: 'Speaking', READING: 'Reading', WRITING: 'Writing' };
+                                            
+                                            return lsrwTypes.map((lsrwType, sectionIdx) => {
+                                                const sectionQuestions = activeSection.questions.filter(q => q.lsrwType === lsrwType);
+                                                if (sectionQuestions.length === 0) return null;
+                                                
+                                                const startIdx = activeSection.questions.findIndex(q => q.lsrwType === lsrwType);
+                                                const isExpanded = expandedSection === sectionIdx;
+                                                const sectionLetter = String.fromCharCode(65 + sectionIdx);
+                                                const sectionName = lsrwLabels[lsrwType];
+
+                                                return (
+                                                    <div id={`section-${sectionIdx}`} key={lsrwType} className={`mb-4 border rounded-2xl overflow-hidden transition-all duration-300 ${isExpanded ? 'border-primary-100 shadow-md bg-white' : 'border-slate-100 shadow-sm bg-slate-50/50'}`}>
+                                                        <button
+                                                            onClick={() => {
+                                                                const nextState = isExpanded ? null : sectionIdx;
+                                                                setExpandedSection(nextState);
+                                                                if (nextState !== null) {
+                                                                    setTimeout(() => {
+                                                                        document.getElementById(`section-${sectionIdx}`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                                                                    }, 300);
+                                                                }
+                                                            }}
+                                                            className="w-full flex items-center justify-between p-4 cursor-pointer hover:bg-slate-50 transition-colors"
+                                                        >
+                                                            <div className="flex items-center gap-3">
+                                                                <div className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-300 ${isExpanded ? 'bg-primary-600 text-white shadow-lg shadow-primary-600/20' : 'bg-white border border-slate-200 text-slate-400'}`}>
+                                                                    <span className="text-xs font-black">{sectionLetter}</span>
+                                                                </div>
+                                                                <div className="flex flex-col items-start">
+                                                                    <span className={`text-[10px] font-black uppercase tracking-widest ${isExpanded ? 'text-primary-600' : 'text-slate-400'}`}>{sectionName}</span>
+                                                                    <span className="text-[9px] font-bold text-slate-300 uppercase tracking-wider">{sectionQuestions.length} Questions</span>
+                                                                </div>
+                                                            </div>
+                                                            <ChevronRight className={`w-4 h-4 text-slate-400 transition-transform duration-300 ${isExpanded ? 'rotate-90 text-primary-500' : ''}`} />
+                                                        </button>
+
+                                                        {isExpanded && (
+                                                            <div className="p-4 pt-0 bg-white animate-fadeIn">
+                                                                <div className="h-px w-full bg-slate-50 mb-4"></div>
+                                                                <div className="grid grid-cols-5 gap-3">
+                                                                    {sectionQuestions.map((item) => {
+                                                                        const idx = activeSection.questions.indexOf(item);
+                                                                        const isAnswered = userAnswers[item.id] !== undefined || (item.category === 'PROJECT' && Object.keys(userAnswers).some(k => k.startsWith(item.id)));
+                                                                        const isNow = currentQuestionIdx === idx;
+                                                                        const isFlagged = flaggedQuestions[item.id];
+                                                                        return (
+                                                                            <button
+                                                                                key={item.id}
+                                                                                onClick={() => setCurrentQuestionIdx(idx)}
+                                                                                className={`aspect-square rounded-xl flex items-center justify-center font-black text-sm transition-all border-2 ${isNow ? 'bg-primary-600 border-primary-600 text-white shadow-2xl scale-110 z-10' :
+                                                                                    isFlagged ? 'bg-orange-50 border-orange-400 text-orange-600' :
+                                                                                        isAnswered ? 'bg-green-500 border-green-500 text-white shadow-lg' :
+                                                                                            'bg-white border-slate-200 text-slate-400 hover:border-primary-300 hover:text-primary-600'
+                                                                                    }`}
+                                                                            >
+                                                                                {idx + 1}
+                                                                            </button>
+                                                                        );
+                                                                    })}
+                                                                </div>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                );
+                                            });
+                                        })()
+                                    ) : activeSection.label !== 'Cognitive' && activeSection.category !== 'APTITUDE' ? (
                                         <div className="grid grid-cols-4 gap-4">
                                             {activeSection.questions.map((item, idx) => {
                                                 const isAnswered = userAnswers[item.id] !== undefined || (item.category === 'PROJECT' && Object.keys(userAnswers).some(k => k.startsWith(item.id)));

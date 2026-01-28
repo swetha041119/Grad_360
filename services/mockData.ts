@@ -5,145 +5,145 @@ import { User, Student, Faculty, Company, Assessment, Job, Resume, Interview, Qu
 
 export const DEMO_APTITUDE_QUESTIONS: Question[] = [
   // Quantitative (5)
-  { 
-    id: 'apt-q1', category: 'APTITUDE', subTopic: 'Quantitative', difficulty: 'Medium', 
-    text: 'A train 150m long is running at a speed of 54 km/hr. How much time will it take to cross a platform 250m long?', 
+  {
+    id: 'apt-q1', category: 'APTITUDE', subTopic: 'Quantitative', difficulty: 'Medium',
+    text: 'A train 150m long is running at a speed of 54 km/hr. How much time will it take to cross a platform 250m long?',
     options: [{ text: '20 seconds', isCorrect: false }, { text: '26.67 seconds', isCorrect: true }, { text: '30 seconds', isCorrect: false }, { text: '15 seconds', isCorrect: false }],
   },
-  { 
-    id: 'apt-q2', category: 'APTITUDE', subTopic: 'Quantitative', difficulty: 'Easy', 
-    text: 'Find the average of first 5 multiples of 3.', 
+  {
+    id: 'apt-q2', category: 'APTITUDE', subTopic: 'Quantitative', difficulty: 'Easy',
+    text: 'Find the average of first 5 multiples of 3.',
     options: [{ text: '9', isCorrect: true }, { text: '12', isCorrect: false }, { text: '15', isCorrect: false }, { text: '10', isCorrect: false }],
   },
-  { 
-    id: 'apt-q3', category: 'APTITUDE', subTopic: 'Quantitative', difficulty: 'Medium', 
-    text: 'A sum of money at simple interest amounts to $815 in 3 years and to $854 in 4 years. The sum is:', 
+  {
+    id: 'apt-q3', category: 'APTITUDE', subTopic: 'Quantitative', difficulty: 'Medium',
+    text: 'A sum of money at simple interest amounts to $815 in 3 years and to $854 in 4 years. The sum is:',
     options: [{ text: '$650', isCorrect: false }, { text: '$690', isCorrect: false }, { text: '$698', isCorrect: true }, { text: '$700', isCorrect: false }],
   },
-  { 
-    id: 'apt-q4', category: 'APTITUDE', subTopic: 'Quantitative', difficulty: 'Hard', 
-    text: 'Two pipes A and B can fill a cistern in 37.5 minutes and 45 minutes respectively. Both pipes are opened. The cistern will be filled in just half an hour, if the pipe B is turned off after:', 
+  {
+    id: 'apt-q4', category: 'APTITUDE', subTopic: 'Quantitative', difficulty: 'Hard',
+    text: 'Two pipes A and B can fill a cistern in 37.5 minutes and 45 minutes respectively. Both pipes are opened. The cistern will be filled in just half an hour, if the pipe B is turned off after:',
     options: [{ text: '5 min', isCorrect: false }, { text: '9 min', isCorrect: true }, { text: '10 min', isCorrect: false }, { text: '15 min', isCorrect: false }],
   },
-  { 
-    id: 'apt-q5', category: 'APTITUDE', subTopic: 'Quantitative', difficulty: 'Medium', 
-    text: 'The ratio between the length and the breadth of a rectangular park is 3 : 2. If a man cycling along the boundary of the park at the speed of 12 km/hr completes one round in 8 minutes, then the area of the park (in sq. m) is:', 
+  {
+    id: 'apt-q5', category: 'APTITUDE', subTopic: 'Quantitative', difficulty: 'Medium',
+    text: 'The ratio between the length and the breadth of a rectangular park is 3 : 2. If a man cycling along the boundary of the park at the speed of 12 km/hr completes one round in 8 minutes, then the area of the park (in sq. m) is:',
     options: [{ text: '15360', isCorrect: false }, { text: '153600', isCorrect: true }, { text: '30720', isCorrect: false }, { text: '307200', isCorrect: false }],
   },
   // Logical (5)
-  { 
-    id: 'apt-l1', category: 'APTITUDE', subTopic: 'Logical', difficulty: 'Hard', 
-    text: 'If "MONKEY" is coded as "XDJMNL", how is "TIGER" coded?', 
+  {
+    id: 'apt-l1', category: 'APTITUDE', subTopic: 'Logical', difficulty: 'Hard',
+    text: 'If "MONKEY" is coded as "XDJMNL", how is "TIGER" coded?',
     options: [{ text: 'QDFHS', isCorrect: true }, { text: 'SDFHS', isCorrect: false }, { text: 'SHFDQ', isCorrect: false }, { text: 'UJHFS', isCorrect: false }],
   },
-  { 
-    id: 'apt-l2', category: 'APTITUDE', subTopic: 'Logical', difficulty: 'Medium', 
-    text: 'Look at this series: 7, 10, 8, 11, 9, 12, ... What number should come next?', 
+  {
+    id: 'apt-l2', category: 'APTITUDE', subTopic: 'Logical', difficulty: 'Medium',
+    text: 'Look at this series: 7, 10, 8, 11, 9, 12, ... What number should come next?',
     options: [{ text: '7', isCorrect: false }, { text: '10', isCorrect: true }, { text: '12', isCorrect: false }, { text: '13', isCorrect: false }],
   },
-  { 
-    id: 'apt-l3', category: 'APTITUDE', subTopic: 'Logical', difficulty: 'Medium', 
-    text: 'Pointing to a photograph, a man said, "I have no brother or sister but that man\'s father is my father\'s son." Whose photograph was it?', 
+  {
+    id: 'apt-l3', category: 'APTITUDE', subTopic: 'Logical', difficulty: 'Medium',
+    text: 'Pointing to a photograph, a man said, "I have no brother or sister but that man\'s father is my father\'s son." Whose photograph was it?',
     options: [{ text: 'His own', isCorrect: false }, { text: 'His son\'s', isCorrect: true }, { text: 'His father\'s', isCorrect: false }, { text: 'His nephew\'s', isCorrect: false }],
   },
-  { 
-    id: 'apt-l4', category: 'APTITUDE', subTopic: 'Logical', difficulty: 'Easy', 
-    text: 'Which word does NOT belong with the others?', 
+  {
+    id: 'apt-l4', category: 'APTITUDE', subTopic: 'Logical', difficulty: 'Easy',
+    text: 'Which word does NOT belong with the others?',
     options: [{ text: 'Tyre', isCorrect: false }, { text: 'Steering wheel', isCorrect: false }, { text: 'Engine', isCorrect: false }, { text: 'Car', isCorrect: true }],
   },
-  { 
-    id: 'apt-l5', category: 'APTITUDE', subTopic: 'Logical', difficulty: 'Hard', 
-    text: 'Statement: Should all the unauthorized structures in the city be demolished? Arguments: I. Yes. This will give a clear message to the people. II. No. Where will the people residing in these houses go?', 
+  {
+    id: 'apt-l5', category: 'APTITUDE', subTopic: 'Logical', difficulty: 'Hard',
+    text: 'Statement: Should all the unauthorized structures in the city be demolished? Arguments: I. Yes. This will give a clear message to the people. II. No. Where will the people residing in these houses go?',
     options: [{ text: 'Only argument I is strong', isCorrect: true }, { text: 'Only argument II is strong', isCorrect: false }, { text: 'Both I and II are strong', isCorrect: false }, { text: 'Neither I nor II is strong', isCorrect: false }],
   },
   // Verbal (5)
   {
-    id: 'apt-v1', category: 'APTITUDE', subTopic: 'Verbal', difficulty: 'Medium', 
+    id: 'apt-v1', category: 'APTITUDE', subTopic: 'Verbal', difficulty: 'Medium',
     text: 'Choose the word most nearly opposite in meaning to "CANDID":',
     options: [{ text: 'Evasive', isCorrect: true }, { text: 'Blunt', isCorrect: false }, { text: 'Honest', isCorrect: false }, { text: 'Neutral', isCorrect: false }],
   },
   {
-    id: 'apt-v2', category: 'APTITUDE', subTopic: 'Verbal', difficulty: 'Easy', 
+    id: 'apt-v2', category: 'APTITUDE', subTopic: 'Verbal', difficulty: 'Easy',
     text: 'Identify the synonym of "ABANDON":',
     options: [{ text: 'Keep', isCorrect: false }, { text: 'Forsake', isCorrect: true }, { text: 'Adopt', isCorrect: false }, { text: 'Cherish', isCorrect: false }],
   },
   {
-    id: 'apt-v3', category: 'APTITUDE', subTopic: 'Verbal', difficulty: 'Medium', 
+    id: 'apt-v3', category: 'APTITUDE', subTopic: 'Verbal', difficulty: 'Medium',
     text: 'Fill in the blank: The sun _____ in the east.',
     options: [{ text: 'Rise', isCorrect: false }, { text: 'Rises', isCorrect: true }, { text: 'Rising', isCorrect: false }, { text: 'Rose', isCorrect: false }],
   },
   {
-    id: 'apt-v4', category: 'APTITUDE', subTopic: 'Verbal', difficulty: 'Hard', 
+    id: 'apt-v4', category: 'APTITUDE', subTopic: 'Verbal', difficulty: 'Hard',
     text: 'Choose the correct spelling:',
     options: [{ text: 'Accomodation', isCorrect: false }, { text: 'Accommodation', isCorrect: true }, { text: 'Acommodation', isCorrect: false }, { text: 'Accommodasion', isCorrect: false }],
   },
   {
-    id: 'apt-v5', category: 'APTITUDE', subTopic: 'Verbal', difficulty: 'Medium', 
+    id: 'apt-v5', category: 'APTITUDE', subTopic: 'Verbal', difficulty: 'Medium',
     text: 'Which part of speech is the word "gracefully" in the sentence "She danced gracefully"?',
     options: [{ text: 'Adjective', isCorrect: false }, { text: 'Verb', isCorrect: false }, { text: 'Adverb', isCorrect: true }, { text: 'Noun', isCorrect: false }],
   }
 ];
 
 export const DEMO_TECHNICAL_QUESTIONS: Question[] = [
-  { 
-    id: 'tech1', category: 'TECHNICAL', subTopic: 'Operating Systems', difficulty: 'Medium', 
+  {
+    id: 'tech1', category: 'TECHNICAL', subTopic: 'Operating Systems', difficulty: 'Medium',
     text: 'What is "Belady\'s Anomaly" in the context of Page Replacement Algorithms?',
     options: [{ text: 'Page faults decrease as frames increase', isCorrect: false }, { text: 'Page faults increase as frames increase', isCorrect: true }, { text: 'CPU utilization drops', isCorrect: false }, { text: 'Deadlock occurs', isCorrect: false }],
   },
-  { 
-    id: 'tech2', category: 'TECHNICAL', subTopic: 'Database Systems', difficulty: 'Medium', 
+  {
+    id: 'tech2', category: 'TECHNICAL', subTopic: 'Database Systems', difficulty: 'Medium',
     text: 'Which normal form deals with multi-valued dependency?',
     options: [{ text: '2NF', isCorrect: false }, { text: '3NF', isCorrect: false }, { text: '4NF', isCorrect: true }, { text: 'BCNF', isCorrect: false }],
   },
-  { 
-    id: 'tech3', category: 'TECHNICAL', subTopic: 'Networking', difficulty: 'Easy', 
+  {
+    id: 'tech3', category: 'TECHNICAL', subTopic: 'Networking', difficulty: 'Easy',
     text: 'Which protocol is used to map an IP address to a MAC address?',
     options: [{ text: 'DHCP', isCorrect: false }, { text: 'DNS', isCorrect: false }, { text: 'ARP', isCorrect: true }, { text: 'ICMP', isCorrect: false }],
   },
-  { 
-    id: 'tech4', category: 'TECHNICAL', subTopic: 'Data Structures', difficulty: 'Hard', 
+  {
+    id: 'tech4', category: 'TECHNICAL', subTopic: 'Data Structures', difficulty: 'Hard',
     text: 'What is the best case time complexity of QuickSort?',
     options: [{ text: 'O(n)', isCorrect: false }, { text: 'O(n log n)', isCorrect: true }, { text: 'O(n^2)', isCorrect: false }, { text: 'O(log n)', isCorrect: false }],
   },
-  { 
-    id: 'tech5', category: 'TECHNICAL', subTopic: 'Computer Architecture', difficulty: 'Medium', 
+  {
+    id: 'tech5', category: 'TECHNICAL', subTopic: 'Computer Architecture', difficulty: 'Medium',
     text: 'Which memory is non-volatile?',
     options: [{ text: 'RAM', isCorrect: false }, { text: 'SRAM', isCorrect: false }, { text: 'DRAM', isCorrect: false }, { text: 'ROM', isCorrect: true }],
   },
-  { 
-    id: 'tech6', category: 'TECHNICAL', subTopic: 'Software Engineering', difficulty: 'Medium', 
+  {
+    id: 'tech6', category: 'TECHNICAL', subTopic: 'Software Engineering', difficulty: 'Medium',
     text: 'The "Spiral Model" is especially suitable for:',
     options: [{ text: 'Small projects', isCorrect: false }, { text: 'Large, high-risk projects', isCorrect: true }, { text: 'Linear projects', isCorrect: false }, { text: 'Maintenance only', isCorrect: false }],
   },
-  { 
-    id: 'tech7', category: 'TECHNICAL', subTopic: 'Theory of Computation', difficulty: 'Hard', 
+  {
+    id: 'tech7', category: 'TECHNICAL', subTopic: 'Theory of Computation', difficulty: 'Hard',
     text: 'Which of the following is an undecidable problem?',
     options: [{ text: 'Context-free language emptiness', isCorrect: false }, { text: 'Halting problem', isCorrect: true }, { text: 'Regular expression matching', isCorrect: false }, { text: 'LFA acceptance', isCorrect: false }],
   },
-  { 
-    id: 'tech8', category: 'TECHNICAL', subTopic: 'Object Oriented Programming', difficulty: 'Easy', 
+  {
+    id: 'tech8', category: 'TECHNICAL', subTopic: 'Object Oriented Programming', difficulty: 'Easy',
     text: 'Wrapping data and methods into a single unit is called:',
     options: [{ text: 'Inheritance', isCorrect: false }, { text: 'Abstraction', isCorrect: false }, { text: 'Polymorphism', isCorrect: false }, { text: 'Encapsulation', isCorrect: true }],
   },
-  { 
-    id: 'tech9', category: 'TECHNICAL', subTopic: 'Web Technology', difficulty: 'Medium', 
+  {
+    id: 'tech9', category: 'TECHNICAL', subTopic: 'Web Technology', difficulty: 'Medium',
     text: 'Which HTTP method is idempotent?',
     options: [{ text: 'POST', isCorrect: false }, { text: 'GET', isCorrect: true }, { text: 'PATCH', isCorrect: false }, { text: 'CONNECT', isCorrect: false }],
   },
-  { 
-    id: 'tech10', category: 'TECHNICAL', subTopic: 'Cloud Computing', difficulty: 'Medium', 
+  {
+    id: 'tech10', category: 'TECHNICAL', subTopic: 'Cloud Computing', difficulty: 'Medium',
     text: 'Which is a Type 1 Hypervisor?',
     options: [{ text: 'Oracle VirtualBox', isCorrect: false }, { text: 'VMware ESXi', isCorrect: true }, { text: 'VMware Workstation', isCorrect: false }, { text: 'KVM', isCorrect: false }],
   }
 ];
 
 export const DEMO_CODING_QUESTIONS: Question[] = [
-  { 
-    id: 'code1', 
-    category: 'CODING', 
-    subTopic: 'Algorithms', 
-    difficulty: 'Hard', 
-    title: 'Trapping Rain Water', 
+  {
+    id: 'code1',
+    category: 'CODING',
+    subTopic: 'Algorithms',
+    difficulty: 'Hard',
+    title: 'Trapping Rain Water',
     problemStatement: 'Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.',
     constraints: '• n == height.length\n• 1 <= n <= 2 * 10^4\n• 0 <= height[i] <= 10^5',
     sampleInput: 'height = [0,1,0,2,1,0,1,3,2,1,2,1]',
@@ -153,42 +153,197 @@ export const DEMO_CODING_QUESTIONS: Question[] = [
 ];
 
 export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
-  { 
-    id: 'comm-l1', 
-    category: 'COMMUNICATION', 
+  // Listening (5)
+  {
+    id: 'comm-l1',
+    category: 'COMMUNICATION',
     lsrwType: 'LISTENING',
-    subTopic: 'Audio Comprehension',
+    subTopic: 'Listening',
     difficulty: 'Medium',
     text: 'Based on the audio clip, what is the main objective of the proposed project?',
     audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
     options: [{ text: 'Cost reduction', isCorrect: false }, { text: 'Market expansion', isCorrect: true }, { text: 'Team restructuring', isCorrect: false }, { text: 'Legal compliance', isCorrect: false }]
   },
   {
-    id: 'comm-s1',
+    id: 'comm-l2',
     category: 'COMMUNICATION',
-    lsrwType: 'SPEAKING',
-    subTopic: 'Oral Articulation',
-    difficulty: 'Hard',
-    text: 'Summarize your understanding of Microservices architecture in 60 seconds.',
+    lsrwType: 'LISTENING',
+    subTopic: 'Listening',
+    difficulty: 'Easy',
+    text: 'What is the speaker\'s primary concern in the audio?',
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    options: [{ text: 'Budget constraints', isCorrect: true }, { text: 'Timeline delays', isCorrect: false }, { text: 'Resource allocation', isCorrect: false }, { text: 'Quality assurance', isCorrect: false }]
   },
+  {
+    id: 'comm-l3',
+    category: 'COMMUNICATION',
+    lsrwType: 'LISTENING',
+    subTopic: 'Listening',
+    difficulty: 'Hard',
+    text: 'According to the audio, which department will lead the initiative?',
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    options: [{ text: 'Marketing', isCorrect: false }, { text: 'Engineering', isCorrect: true }, { text: 'Sales', isCorrect: false }, { text: 'HR', isCorrect: false }]
+  },
+  {
+    id: 'comm-l4',
+    category: 'COMMUNICATION',
+    lsrwType: 'LISTENING',
+    subTopic: 'Listening',
+    difficulty: 'Medium',
+    text: 'What is the expected completion timeline mentioned in the audio?',
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    options: [{ text: '3 months', isCorrect: false }, { text: '6 months', isCorrect: true }, { text: '9 months', isCorrect: false }, { text: '12 months', isCorrect: false }]
+  },
+  {
+    id: 'comm-l5',
+    category: 'COMMUNICATION',
+    lsrwType: 'LISTENING',
+    subTopic: 'Listening',
+    difficulty: 'Easy',
+    text: 'What tone does the speaker use in the presentation?',
+    audioUrl: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3',
+    options: [{ text: 'Aggressive', isCorrect: false }, { text: 'Professional', isCorrect: true }, { text: 'Casual', isCorrect: false }, { text: 'Defensive', isCorrect: false }]
+  },
+
+  // Reading (5)
   {
     id: 'comm-r1',
     category: 'COMMUNICATION',
     lsrwType: 'READING',
-    subTopic: 'Reading Speed',
+    subTopic: 'Reading',
     difficulty: 'Medium',
     paragraph: 'Agile methodologies prioritize iterative development, where requirements and solutions evolve through the collaborative effort of self-organizing and cross-functional teams.',
     text: 'What does Agile prioritize according to the text?',
     options: [{ text: 'Iterative development', isCorrect: true }, { text: 'Linear planning', isCorrect: false }, { text: 'Individual silos', isCorrect: false }, { text: 'Rigid documentation', isCorrect: false }]
   },
   {
+    id: 'comm-r2',
+    category: 'COMMUNICATION',
+    lsrwType: 'READING',
+    subTopic: 'Reading',
+    difficulty: 'Easy',
+    paragraph: 'DevOps is a set of practices that combines software development and IT operations. It aims to shorten the systems development life cycle and provide continuous delivery with high software quality.',
+    text: 'What is the main goal of DevOps?',
+    options: [{ text: 'Increase team size', isCorrect: false }, { text: 'Continuous delivery', isCorrect: true }, { text: 'Reduce costs', isCorrect: false }, { text: 'Eliminate testing', isCorrect: false }]
+  },
+  {
+    id: 'comm-r3',
+    category: 'COMMUNICATION',
+    lsrwType: 'READING',
+    subTopic: 'Reading',
+    difficulty: 'Hard',
+    paragraph: 'Microservices architecture is an approach to developing a single application as a suite of small services, each running in its own process and communicating with lightweight mechanisms, often an HTTP resource API.',
+    text: 'How do microservices typically communicate?',
+    options: [{ text: 'Shared database', isCorrect: false }, { text: 'HTTP API', isCorrect: true }, { text: 'File system', isCorrect: false }, { text: 'Direct memory access', isCorrect: false }]
+  },
+  {
+    id: 'comm-r4',
+    category: 'COMMUNICATION',
+    lsrwType: 'READING',
+    subTopic: 'Reading',
+    difficulty: 'Medium',
+    paragraph: 'Cloud computing provides on-demand availability of computer system resources, especially data storage and computing power, without direct active management by the user.',
+    text: 'What is a key characteristic of cloud computing?',
+    options: [{ text: 'Manual resource management', isCorrect: false }, { text: 'On-demand availability', isCorrect: true }, { text: 'Local storage only', isCorrect: false }, { text: 'Fixed capacity', isCorrect: false }]
+  },
+  {
+    id: 'comm-r5',
+    category: 'COMMUNICATION',
+    lsrwType: 'READING',
+    subTopic: 'Reading',
+    difficulty: 'Easy',
+    paragraph: 'Version control systems track changes to files over time, allowing multiple developers to collaborate on the same codebase without conflicts.',
+    text: 'What is the primary benefit of version control?',
+    options: [{ text: 'Faster compilation', isCorrect: false }, { text: 'Collaboration without conflicts', isCorrect: true }, { text: 'Automatic bug fixes', isCorrect: false }, { text: 'Code encryption', isCorrect: false }]
+  },
+
+  // Speaking (5)
+  {
+    id: 'comm-s1',
+    category: 'COMMUNICATION',
+    lsrwType: 'SPEAKING',
+    subTopic: 'Speaking',
+    difficulty: 'Hard',
+    text: 'Summarize your understanding of Microservices architecture in 60 seconds.',
+  },
+  {
+    id: 'comm-s2',
+    category: 'COMMUNICATION',
+    lsrwType: 'SPEAKING',
+    subTopic: 'Speaking',
+    difficulty: 'Medium',
+    text: 'Explain the concept of RESTful APIs in your own words.',
+  },
+  {
+    id: 'comm-s3',
+    category: 'COMMUNICATION',
+    lsrwType: 'SPEAKING',
+    subTopic: 'Speaking',
+    difficulty: 'Easy',
+    text: 'Describe your experience with team collaboration in a project.',
+  },
+  {
+    id: 'comm-s4',
+    category: 'COMMUNICATION',
+    lsrwType: 'SPEAKING',
+    subTopic: 'Speaking',
+    difficulty: 'Hard',
+    text: 'Present a technical solution to improve application performance.',
+  },
+  {
+    id: 'comm-s5',
+    category: 'COMMUNICATION',
+    lsrwType: 'SPEAKING',
+    subTopic: 'Speaking',
+    difficulty: 'Medium',
+    text: 'Discuss the importance of code reviews in software development.',
+  },
+
+  // Writing (5)
+  {
     id: 'comm-w1',
     category: 'COMMUNICATION',
     lsrwType: 'WRITING',
-    subTopic: 'Professional Writing',
+    subTopic: 'Writing',
     difficulty: 'Medium',
     scenario: 'Write a professional email to a client explaining a 2-day delay in the delivery of a module.',
     text: 'Scenario: Your team has encountered a critical bug. Write a concise email to the project manager detailing the impact and estimated resolution time.'
+  },
+  {
+    id: 'comm-w2',
+    category: 'COMMUNICATION',
+    lsrwType: 'WRITING',
+    subTopic: 'Writing',
+    difficulty: 'Easy',
+    scenario: 'Write a brief summary of a technical meeting.',
+    text: 'Document the key decisions made in today\'s sprint planning meeting.'
+  },
+  {
+    id: 'comm-w3',
+    category: 'COMMUNICATION',
+    lsrwType: 'WRITING',
+    subTopic: 'Writing',
+    difficulty: 'Hard',
+    scenario: 'Draft a technical proposal for implementing a new feature.',
+    text: 'Write a proposal for adding real-time notifications to the application, including technical approach and timeline.'
+  },
+  {
+    id: 'comm-w4',
+    category: 'COMMUNICATION',
+    lsrwType: 'WRITING',
+    subTopic: 'Writing',
+    difficulty: 'Medium',
+    scenario: 'Compose a status update email for stakeholders.',
+    text: 'Write a weekly status update highlighting progress, challenges, and next steps for the current project.'
+  },
+  {
+    id: 'comm-w5',
+    category: 'COMMUNICATION',
+    lsrwType: 'WRITING',
+    subTopic: 'Writing',
+    difficulty: 'Easy',
+    scenario: 'Write documentation for a code function.',
+    text: 'Create clear documentation for a function that validates user input.'
   }
 ];
 
@@ -213,30 +368,74 @@ export const DEMO_PROJECT_QUESTIONS: Question[] = [
       { text: 'Ignoring consistency to prioritize low latency', isCorrect: false }
     ],
     justificationQs: [
-        'Why is eventual consistency preferred over strong consistency in this high-load scenario?',
-        'How does your chosen database schema prevent race conditions during bulk flash sales?'
+      'Why is eventual consistency preferred over strong consistency in this high-load scenario?',
+      'How does your chosen database schema prevent race conditions during bulk flash sales?'
     ]
   }
 ];
 
+export const DEMO_DOMAIN_QUESTIONS: Question[] = [
+  {
+    id: 'dom1',
+    category: 'DOMAIN',
+    subTopic: 'Cloud Computing',
+    difficulty: 'Medium',
+    text: 'Which AWS service provides a managed Kubernetes service?',
+    options: [{ text: 'ECS', isCorrect: false }, { text: 'EKS', isCorrect: true }, { text: 'Lambda', isCorrect: false }, { text: 'Fargate', isCorrect: false }]
+  },
+  {
+    id: 'dom2',
+    category: 'DOMAIN',
+    subTopic: 'System Design',
+    difficulty: 'Hard',
+    text: 'In a microservices architecture, what pattern is used to handle distributed transactions?',
+    options: [{ text: 'Two-Phase Commit', isCorrect: false }, { text: 'Saga Pattern', isCorrect: true }, { text: 'ACID Transactions', isCorrect: false }, { text: 'Mutex Locks', isCorrect: false }]
+  },
+  {
+    id: 'dom3',
+    category: 'DOMAIN',
+    subTopic: 'DevOps',
+    difficulty: 'Medium',
+    text: 'What is the primary purpose of a CI/CD pipeline?',
+    options: [{ text: 'Manual deployment', isCorrect: false }, { text: 'Automated testing and deployment', isCorrect: true }, { text: 'Database backup', isCorrect: false }, { text: 'User authentication', isCorrect: false }]
+  },
+  {
+    id: 'dom4',
+    category: 'DOMAIN',
+    subTopic: 'Cloud Computing',
+    difficulty: 'Easy',
+    text: 'Which of the following is a NoSQL database?',
+    options: [{ text: 'PostgreSQL', isCorrect: false }, { text: 'MySQL', isCorrect: false }, { text: 'MongoDB', isCorrect: true }, { text: 'Oracle', isCorrect: false }]
+  },
+  {
+    id: 'dom5',
+    category: 'DOMAIN',
+    subTopic: 'System Design',
+    difficulty: 'Hard',
+    text: 'What is the CAP theorem in distributed systems?',
+    options: [{ text: 'Consistency, Availability, Partition tolerance', isCorrect: true }, { text: 'Cache, API, Performance', isCorrect: false }, { text: 'Compute, Access, Protocol', isCorrect: false }, { text: 'Cloud, Application, Platform', isCorrect: false }]
+  }
+];
+
 export const DEMO_PSYCHOMETRIC_QUESTIONS: Question[] = [
-  { 
-    id: 'psy1', 
-    category: 'PSYCHOMETRIC', 
-    subTopic: 'Professional Integrity', 
-    difficulty: 'Medium', 
+  {
+    id: 'psy1',
+    category: 'PSYCHOMETRIC',
+    subTopic: 'Professional Integrity',
+    difficulty: 'Medium',
     text: 'How do you handle a situation where a colleague takes credit for your work?',
     options: [{ text: 'Ignore it', isCorrect: false }, { text: 'Publicly confront them', isCorrect: false }, { text: 'Private conversation to clarify contribution', isCorrect: true }, { text: 'Complain to the CEO immediately', isCorrect: false }]
   }
 ];
 
 export const SIMULATION_QUESTIONS: Question[] = [
-    ...DEMO_APTITUDE_QUESTIONS,
-    ...DEMO_TECHNICAL_QUESTIONS,
-    ...DEMO_CODING_QUESTIONS,
-    ...DEMO_COMMUNICATION_QUESTIONS,
-    ...DEMO_PROJECT_QUESTIONS,
-    ...DEMO_PSYCHOMETRIC_QUESTIONS
+  ...DEMO_APTITUDE_QUESTIONS,
+  ...DEMO_TECHNICAL_QUESTIONS,
+  ...DEMO_CODING_QUESTIONS,
+  ...DEMO_COMMUNICATION_QUESTIONS,
+  ...DEMO_PROJECT_QUESTIONS,
+  ...DEMO_DOMAIN_QUESTIONS,
+  ...DEMO_PSYCHOMETRIC_QUESTIONS
 ];
 
 const STUDENTS: Student[] = Array.from({ length: 15 }).map((_, i) => ({
@@ -256,7 +455,7 @@ const STUDENTS: Student[] = Array.from({ length: 15 }).map((_, i) => ({
   modulesCompleted: 3,
   totalModules: 12,
   status: 'Ready',
-  onboardingCompleted: true, 
+  onboardingCompleted: true,
   resumes: [],
 }));
 
@@ -289,15 +488,15 @@ export const getStudentDashboardData = async (studentId: string) => {
       { id: 'a-proj-1', title: 'Backend Migration Lab', type: 'PROJECT', subTopic: 'Web Dev', questions: 1, durationMins: 120, difficulty: 'Hard', status: 'ACTIVE' },
       { id: 'a-dom-1', title: 'System Architecture Exam', type: 'DOMAIN', subTopic: 'Cloud Computing', questions: 10, durationMins: 30, difficulty: 'Hard', status: 'ACTIVE' },
     ],
-    readinessExam: { 
-      id: 're1', 
-      title: 'GradUp+ Placement Readiness Simulation', 
-      type: 'SIMULATION', 
-      questions: 28, 
-      durationMins: 180, 
-      status: 'ACTIVE', 
+    readinessExam: {
+      id: 're1',
+      title: 'GradUp+ Placement Readiness Simulation',
+      type: 'SIMULATION',
+      questions: 28,
+      durationMins: 180,
+      status: 'ACTIVE',
       difficulty: 'Hard',
-      description: 'The definitive end-to-end evaluation for engineering recruitment excellence.' 
+      description: 'The definitive end-to-end evaluation for engineering recruitment excellence.'
     },
     practiceSets: [
       { id: 'ps-quant', title: 'Time and Distance Drill', type: 'APTITUDE', subTopic: 'Quantitative', items: 30 },

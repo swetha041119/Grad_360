@@ -3,7 +3,7 @@ import React from 'react';
 import { User } from '../types';
 import {
   LogOut, LayoutDashboard, BrainCircuit, Code2,
-  History, Zap, UserCheck, FileCheck, Users, Briefcase, BookOpen, MessageSquare, BriefcaseBusiness
+  History, Zap, UserCheck, FileCheck, Users, Briefcase, BookOpen, MessageSquare, BriefcaseBusiness, Calendar, TrendingUp, Database
 } from 'lucide-react';
 
 interface LayoutProps {
@@ -36,14 +36,14 @@ const Layout: React.FC<LayoutProps> = ({ children, user, onLogout, activeTab, se
           { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
           { id: 'assessments', label: 'Assessments', icon: FileCheck },
           { id: 'students', label: 'Students', icon: Users },
+          { id: 'jobs', label: 'Jobs & Shortlist', icon: Briefcase },
+          { id: 'intelligence', label: 'Visual Intelligence', icon: TrendingUp },
         ];
       case 'COMPANY':
         return [
           { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
           { id: 'candidates', label: 'Candidates', icon: Users },
-          { id: 'jobs', label: 'Jobs', icon: Briefcase },
-          { id: 'assessments', label: 'Tests', icon: Zap },
-          { id: 'interviews', label: 'Interviews', icon: History },
+          { id: 'jobs', label: 'My Job Posting', icon: Briefcase },
         ];
       default:
         return [];

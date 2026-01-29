@@ -459,9 +459,57 @@ const STUDENTS: Student[] = Array.from({ length: 15 }).map((_, i) => ({
   resumes: [],
 }));
 
+const FACULTY_USERS: Faculty[] = [
+  {
+    id: 'f1',
+    name: 'Dr. Sarah Williams',
+    email: 'sarah@univ.edu',
+    role: 'FACULTY',
+    avatar: 'https://picsum.photos/seed/faculty1/200',
+    department: 'Computer Science',
+  },
+  {
+    id: 'f2',
+    name: 'Prof. John Smith',
+    email: 'john.smith@univ.edu',
+    role: 'FACULTY',
+    avatar: 'https://picsum.photos/seed/faculty2/200',
+    department: 'Electronics',
+  }
+];
+
+const COMPANY_USERS: Company[] = [
+  {
+    id: 'c1',
+    name: 'John Recruiter',
+    email: 'john@techcorp.com',
+    role: 'COMPANY',
+    avatar: 'https://picsum.photos/seed/company1/200',
+    companyName: 'TechCorp Inc.',
+  },
+  {
+    id: 'c2',
+    name: 'Jane HR',
+    email: 'jane@innovate.com',
+    role: 'COMPANY',
+    avatar: 'https://picsum.photos/seed/company2/200',
+    companyName: 'Innovate Solutions',
+  }
+];
+
 export const loginUser = async (email: string, role: UserRole) => {
   await new Promise(resolve => setTimeout(resolve, 600));
-  return STUDENTS.find(s => s.email === email) || STUDENTS[0];
+  
+  switch (role) {
+    case 'STUDENT':
+      return STUDENTS.find(s => s.email === email) || STUDENTS[0];
+    case 'FACULTY':
+      return FACULTY_USERS.find(f => f.email === email) || FACULTY_USERS[0];
+    case 'COMPANY':
+      return COMPANY_USERS.find(c => c.email === email) || COMPANY_USERS[0];
+    default:
+      return STUDENTS[0];
+  }
 };
 
 export const getStudentDashboardData = async (studentId: string) => {
@@ -632,7 +680,37 @@ export const createAssessment = async (assessment: any) => {
 
 export const getCompanyDashboardData = async () => {
   await new Promise(resolve => setTimeout(resolve, 800));
-  return { candidates: STUDENTS, activeAssessments: [], jobs: [], interviews: [] };
+  return { 
+    candidates: STUDENTS, 
+    activeAssessments: [], 
+    jobs: [
+      {
+        id: 'j1',
+        title: 'Software Engineer',
+        companyName: 'Google',
+        skills: ['JAVA', 'C++', 'SYSTEM DESIGN'],
+        type: 'FULL-TIME',
+        location: 'MOUNTAIN VIEW, CA',
+        package: '120K USD',
+        status: 'Active',
+        applicants: 450,
+        postedDate: '2 DAYS AGO'
+      },
+      {
+        id: 'j2',
+        title: 'Product Manager',
+        companyName: 'Microsoft',
+        skills: ['AGILE', 'SQL', 'PRODUCT STRATEGY'],
+        type: 'FULL-TIME',
+        location: 'REDMOND, WA',
+        package: '115K USD',
+        status: 'Active',
+        applicants: 230,
+        postedDate: '5 DAYS AGO'
+      }
+    ], 
+    interviews: [] 
+  };
 };
 
 export const getContributorDashboardData = async () => {

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Company, Student, Job, Interview, Assessment } from '../types';
 import { getCompanyDashboardData } from '../services/mockData';
-import { Search, Briefcase, Filter, Mail, FileText, CheckCircle, Users, Download, Plus, Clock, Video, Calendar, MoreVertical, X, Award, ChevronRight, User as UserIcon, Send, Zap, Trash2, Eye, Star, Edit3 } from 'lucide-react';
+import { Search, Briefcase, Filter, Mail, FileText, CheckCircle, Users, Download, Plus, Clock, Video, Calendar, MoreVertical, X, Award, ChevronRight, User as UserIcon, Send, Zap, Trash2, Eye, Star, Edit3, TrendingUp } from 'lucide-react';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 
 interface Props {
@@ -156,11 +156,10 @@ const CompanyDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
             <div className="absolute right-0 top-0 h-full w-1/3 bg-gradient-to-l from-primary-600/10 to-transparent"></div>
          </header>
 
-        <div className="grid md:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-3 gap-6">
             {[
                 { label: 'Qualified Talent', val: data.candidates.length, icon: Users, color: 'text-blue-600', bg: 'bg-blue-50' },
                 { label: 'Active Openings', val: data.jobs.filter(j => j.status === 'Active').length, icon: Briefcase, color: 'text-green-600', bg: 'bg-green-50' },
-                { label: 'Daily Interviews', val: data.interviews.filter(i => i.status === 'Scheduled').length, icon: Clock, color: 'text-purple-600', bg: 'bg-purple-50' },
                 { label: 'Avg Skill Baseline', val: '74.2%', icon: Award, color: 'text-orange-600', bg: 'bg-orange-50' },
             ].map((stat, i) => (
                 <div key={i} className="bg-white p-10 rounded-[40px] shadow-sm border border-gray-100 hover:shadow-2xl transition-all group">
@@ -257,42 +256,42 @@ const CompanyDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
   );
 
   const renderJobs = () => (
-      <div className="space-y-8 animate-fadeIn font-inter">
+      <div className="space-y-6 animate-fadeIn font-inter">
           <div className="flex justify-between items-end">
               <div>
-                  <h2 className="text-4xl font-black text-gray-900 tracking-tighter flex items-center"><Briefcase className="w-10 h-10 mr-4 text-primary-600" /> Active Openings</h2>
-                  <p className="text-gray-500 mt-2 font-medium">Manage your corporate recruitment listings.</p>
+                  <h2 className="text-4xl font-black text-slate-900 tracking-tight flex items-center"><Briefcase className="w-9 h-9 mr-3 text-primary-600" /> Job Postings</h2>
+                  <p className="text-gray-500 mt-1 font-normal text-base">Maintain and monitor your corporate openings within GradUp.</p>
               </div>
-              <button onClick={() => setIsJobModalOpen(true)} className="bg-primary-600 text-white px-10 py-5 rounded-[32px] font-black flex items-center shadow-2xl hover:bg-primary-700 transition-all text-xs uppercase tracking-widest">
-                  <Plus className="w-5 h-5 mr-3" /> Post New Role
+              <button onClick={() => setIsJobModalOpen(true)} className="bg-primary-600 text-white px-6 py-3.5 rounded-xl font-bold flex items-center shadow-lg hover:bg-primary-700 transition-all text-sm">
+                  <Plus className="w-4 h-4 mr-2" /> Post New Job
               </button>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-6">
               {data && data.jobs.map((j) => (
-                  <div key={j.id} className="bg-white p-10 rounded-[56px] border border-gray-100 shadow-sm flex flex-col group hover:shadow-2xl transition-all duration-500">
-                      <div className="flex justify-between items-start mb-8">
-                          <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100"><Briefcase className="w-8 h-8 text-primary-600" /></div>
-                          <span className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] ${j.status === 'Active' ? 'bg-green-50 text-green-700 border border-green-100' : 'bg-slate-50 text-slate-500'}`}>{j.status}</span>
+                  <div key={j.id} className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
+                      <div className="flex justify-between items-start mb-6">
+                          <span className="px-4 py-1.5 rounded-lg text-xs font-bold uppercase bg-green-100 text-green-700">Active</span>
+                          <span className="text-sm font-medium text-gray-400 uppercase tracking-wide">{j.postedDate}</span>
                       </div>
-                      <h4 className="font-black text-3xl text-gray-900 mb-2 tracking-tighter">{j.title}</h4>
-                      <p className="text-xs text-gray-400 font-black uppercase tracking-[0.2em] mb-10">{j.type} • {j.location}</p>
                       
-                      <div className="flex flex-wrap gap-2 mb-10">
+                      <h4 className="font-black text-2xl text-slate-900 mb-2 tracking-tight">{j.title}</h4>
+                      <p className="text-xs text-gray-400 font-bold uppercase tracking-widest mb-6">{j.location} • {j.type}</p>
+                      
+                      <div className="flex flex-wrap gap-2 mb-8">
                           {j.skills.map((s, idx) => (
-                              <span key={idx} className="px-4 py-2 bg-slate-50 text-slate-500 rounded-xl text-[10px] font-black uppercase tracking-widest border border-slate-100">{s}</span>
+                              <span key={idx} className="px-3 py-1.5 bg-blue-50 text-blue-600 rounded-lg text-xs font-bold uppercase tracking-wide">{s}</span>
                           ))}
                       </div>
 
-                      <div className="mt-auto pt-10 border-t border-gray-50 flex items-center justify-between">
+                      <div className="flex items-center justify-between">
                           <div>
-                              <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Pipeline Volume</p>
-                              <p className="text-2xl font-black text-gray-900 tracking-tighter">{j.applicants} Applicants</p>
+                              <p className="text-3xl font-black text-primary-600 tracking-tight">{j.applicants}</p>
+                              <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mt-1">Active Applicants</p>
                           </div>
-                          <div className="flex gap-3">
-                              <button className="p-4 bg-slate-50 text-gray-400 rounded-2xl hover:text-primary-600 hover:bg-white border border-transparent hover:border-slate-100 transition-all shadow-sm"><Edit3 className="w-6 h-6" /></button>
-                              <button className="p-4 bg-slate-50 text-gray-400 rounded-2xl hover:text-red-600 hover:bg-white border border-transparent hover:border-slate-100 transition-all shadow-sm"><Trash2 className="w-6 h-6" /></button>
-                          </div>
+                          <button className="p-2 hover:bg-gray-50 rounded-lg transition-all">
+                              <span className="text-gray-400 text-2xl">⋮</span>
+                          </button>
                       </div>
                   </div>
               ))}
@@ -404,38 +403,90 @@ const CompanyDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
           {/* Candidate Profile Modal */}
           {selectedCandidate && (
               <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-md">
-                  <div className="bg-white rounded-[64px] p-16 max-w-3xl w-full shadow-2xl max-h-[90vh] overflow-y-auto">
-                      <div className="flex justify-between items-start mb-12">
-                          <div className="flex items-center gap-8">
-                              <img src={selectedCandidate.avatar} className="w-32 h-32 rounded-[40px] border-8 border-slate-50 object-cover shadow-inner" alt={selectedCandidate.name} />
+                  <div className="bg-white rounded-[40px] max-w-3xl w-full shadow-2xl max-h-[90vh] flex flex-col overflow-hidden">
+                      <div className="flex justify-between items-start p-10 pb-6">
+                          <div className="flex items-center gap-6">
+                              <img src={selectedCandidate.avatar} className="w-24 h-24 rounded-[28px] border-4 border-slate-50 object-cover shadow-sm" alt={selectedCandidate.name} />
                               <div>
-                                  <h3 className="text-4xl font-black text-gray-900 tracking-tighter">{selectedCandidate.name}</h3>
-                                  <p className="text-primary-600 font-black uppercase tracking-[0.3em] text-xs mt-3">{selectedCandidate.targetRole}</p>
+                                  <h3 className="text-3xl font-black text-slate-900 tracking-tight">{selectedCandidate.name}</h3>
+                                  <p className="text-primary-600 font-black uppercase tracking-[0.3em] text-[10px] mt-2">{selectedCandidate.targetRole}</p>
                               </div>
                           </div>
-                          <button onClick={() => setSelectedCandidate(null)} className="p-3 text-gray-200 hover:text-red-500 transition-colors"><X className="w-10 h-10" /></button>
+                          <button onClick={() => setSelectedCandidate(null)} className="p-2 text-gray-300 hover:text-gray-500 transition-colors"><X className="w-7 h-7" /></button>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-8 mb-12">
-                          <div className="bg-slate-50 p-8 rounded-[32px] border border-gray-100 shadow-inner">
-                              <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">Logic / Aptitude</p>
-                              <div className="h-2.5 bg-gray-100 rounded-full overflow-hidden">
-                                  <div className="h-full bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.5)]" style={{ width: `${selectedCandidate.skills.aptitude}%` }}></div>
-                              </div>
-                              <p className="text-right mt-2 text-xs font-black text-blue-600">{selectedCandidate.skills.aptitude}%</p>
+                      <div className="px-10 pb-10 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent hover:scrollbar-thumb-gray-400">
+                      {/* Readiness Spectrum */}
+                      <div className="bg-gradient-to-br from-gray-50 to-white rounded-[28px] p-6 mb-6">
+                          <div className="flex items-center gap-2 mb-4">
+                              <TrendingUp className="w-4 h-4 text-primary-600" />
+                              <h4 className="text-lg font-black text-slate-900 tracking-tight">Readiness Spectrum</h4>
                           </div>
-                          <div className="bg-slate-50 p-8 rounded-[32px] border border-gray-100 shadow-inner">
-                              <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-3">Engineering Logic</p>
-                              <div className="h-2.5 bg-gray-100 rounded-full overflow-hidden">
-                                  <div className="h-full bg-gray-900 shadow-[0_0_10px_rgba(0,0,0,0.3)]" style={{ width: `${selectedCandidate.skills.coding}%` }}></div>
-                              </div>
-                              <p className="text-right mt-2 text-xs font-black text-gray-900">{selectedCandidate.skills.coding}%</p>
+                          <div className="relative w-full max-w-xs mx-auto" style={{ aspectRatio: '1' }}>
+                              <svg viewBox="0 0 400 400" className="w-full h-full">
+                                  {/* Pentagon grid levels */}
+                                  {[1, 0.75, 0.5, 0.25].map((scale, idx) => {
+                                      const points = [
+                                          [200, 60], [330, 155], [290, 320], [110, 320], [70, 155]
+                                      ].map(([x, y]) => {
+                                          const dx = x - 200;
+                                          const dy = y - 200;
+                                          return [200 + dx * scale, 200 + dy * scale];
+                                      });
+                                      return (
+                                          <polygon
+                                              key={idx}
+                                              points={points.map(p => p.join(',')).join(' ')}
+                                              fill="none"
+                                              stroke="#e5e7eb"
+                                              strokeWidth="1.5"
+                                          />
+                                      );
+                                  })}
+                                  
+                                  {/* Axes from center */}
+                                  {[
+                                      [200, 200, 200, 60],
+                                      [200, 200, 330, 155],
+                                      [200, 200, 290, 320],
+                                      [200, 200, 110, 320],
+                                      [200, 200, 70, 155]
+                                  ].map((line, idx) => (
+                                      <line key={idx} x1={line[0]} y1={line[1]} x2={line[2]} y2={line[3]} stroke="#e5e7eb" strokeWidth="1.5"/>
+                                  ))}
+                                  
+                                  {/* Data polygon */}
+                                  <polygon
+                                      points={[
+                                          [200, 60 + (140 * (1 - selectedCandidate.skills.aptitude / 100))],
+                                          [200 + (130 * selectedCandidate.skills.coding / 100), 155],
+                                          [200 + (90 * selectedCandidate.skills.communication / 100), 320],
+                                          [110 + (90 * 0.72), 320],
+                                          [70 + (130 * 0.68), 155]
+                                      ].map(p => p.join(',')).join(' ')}
+                                      fill="rgba(220, 38, 38, 0.08)"
+                                      stroke="#dc2626"
+                                      strokeWidth="3"
+                                      strokeLinejoin="round"
+                                  />
+                                  
+                                  {/* Labels */}
+                                  <text x="200" y="45" textAnchor="middle" className="fill-gray-600 text-sm font-semibold">Aptitude</text>
+                                  <text x="350" y="160" textAnchor="start" className="fill-gray-600 text-sm font-semibold">Coding</text>
+                                  <text x="305" y="345" textAnchor="middle" className="fill-gray-600 text-sm font-semibold">Communication</text>
+                                  <text x="95" y="345" textAnchor="middle" className="fill-gray-600 text-sm font-semibold">Projects</text>
+                                  <text x="50" y="160" textAnchor="end" className="fill-gray-600 text-sm font-semibold">Technical</text>
+                              </svg>
                           </div>
                       </div>
 
-                      <div className="pt-12 border-t border-gray-100 flex gap-6">
-                          <button onClick={() => { setSendTarget({...sendTarget, studentId: selectedCandidate.id}); setIsSendAssessmentModalOpen(true); }} className="flex-1 py-6 bg-primary-600 text-white rounded-[32px] font-black uppercase text-xs tracking-[0.2em] shadow-2xl shadow-primary-600/30 hover:bg-primary-700 transition-all active:scale-95">Send Assessment</button>
-                          <button onClick={() => { setNewInterview({...newInterview, studentId: selectedCandidate.id}); setIsInterviewModalOpen(true); }} className="flex-1 py-6 bg-slate-900 text-white rounded-[32px] font-black uppercase text-xs tracking-[0.2em] shadow-2xl shadow-slate-900/30 hover:bg-black transition-all active:scale-95">Schedule Prep</button>
+                      <div className="flex gap-3">
+                          <button onClick={() => { setSendTarget({...sendTarget, studentId: selectedCandidate.id}); setIsSendAssessmentModalOpen(true); }} className="flex-1 py-3.5 bg-primary-600 text-white rounded-[20px] font-black uppercase text-xs tracking-[0.2em] shadow-lg hover:bg-primary-700 transition-all">Send Assessment</button>
+                          <button onClick={() => { setNewInterview({...newInterview, studentId: selectedCandidate.id}); setIsInterviewModalOpen(true); }} className="flex-1 py-3.5 bg-slate-900 text-white rounded-[20px] font-black uppercase text-xs tracking-[0.2em] shadow-lg hover:bg-black transition-all">Schedule Prep</button>
+                          <button className="px-5 py-3.5 bg-white border-2 border-slate-200 text-slate-700 rounded-[20px] font-black uppercase text-xs tracking-[0.2em] hover:bg-slate-50 transition-all flex items-center gap-2">
+                              <Download className="w-4 h-4" /> Resume
+                          </button>
+                      </div>
                       </div>
                   </div>
               </div>

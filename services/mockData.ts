@@ -149,6 +149,30 @@ export const DEMO_CODING_QUESTIONS: Question[] = [
     sampleInput: 'height = [0,1,0,2,1,0,1,3,2,1,2,1]',
     sampleOutput: '6',
     testCases: [{ input: '[0,1,0,2,1,0,1,3,2,1,2,1]', output: '6', isHidden: false }]
+  },
+  {
+    id: 'code2',
+    category: 'CODING',
+    subTopic: 'System Design',
+    difficulty: 'Medium',
+    title: 'Parallel Processing',
+    problemStatement: 'You are given a set of n tasks with varying execution times. You have m processors. Implement a scheduling algorithm that minimizes the total make-span (time when the last task finishes).',
+    constraints: '• 1 <= n <= 10^5\n• 1 <= m <= 100\n• 1 <= taskTime[i] <= 10^9',
+    sampleInput: 'tasks = [3, 2, 4, 1, 5], m = 2',
+    sampleOutput: '8', // Example output
+    testCases: [{ input: '[3, 2, 4, 1, 5], 2', output: '8', isHidden: false }]
+  },
+  {
+    id: 'code3',
+    category: 'CODING',
+    subTopic: 'Graph Theory',
+    difficulty: 'Hard',
+    title: 'Road Repair',
+    problemStatement: 'A country has n cities and m damaged roads. You are given the cost to repair each road. Find the minimum cost to make all cities connected. If it is impossible, return -1.',
+    constraints: '• 1 <= n <= 10^4\n• 1 <= m <= 10^5\n• 1 <= cost[i] <= 10^6',
+    sampleInput: 'n = 4, roads = [[1,2,5],[1,3,3],[2,3,1],[3,4,6]]',
+    sampleOutput: '10', // Example output
+    testCases: [{ input: '4, [[1,2,5],[1,3,3],[2,3,1],[3,4,6]]', output: '10', isHidden: false }]
   }
 ];
 
@@ -517,80 +541,88 @@ export const getStudentDashboardData = async (studentId: string) => {
   return {
     profile: student,
     learningPaths: [
-      // Aptitude & Logic (3 cards)
-      { id: 'lp-quant', title: 'Personalised Learning Path', description: 'Advanced mathematical reasoning and problem-solving skills.', completed: 65, category: 'APTITUDE', subTopic: 'Quantitative' },
-      { id: 'lp-faculty-test', title: 'Faculty Shared', description: 'Complete assigned assessments on time.', completed: 45, category: 'APTITUDE', subTopic: 'Quantitative' },
-      { id: 'lp-weekly-assess', title: 'Self Practice Test', description: 'Track progress with weekly checkpoints.', completed: 72, category: 'APTITUDE', subTopic: 'Quantitative' },
+      // Aptitude & Logic
+      { id: 'lp-quant', title: 'Quantitative Mastery', description: 'Advanced mathematical reasoning, data interpretation, and quantitative problem-solving.', completed: 65, category: 'APTITUDE', subTopic: 'Quantitative' },
+      { id: 'lp-faculty-test', title: 'Expert Drills', description: 'Curated drills on complex algebra, geometry, and arithmetic word problems.', completed: 45, category: 'APTITUDE', subTopic: 'Quantitative' },
+      { id: 'lp-weekly-assess', title: 'Speed Challenge', description: 'Speed-math quizzes and time-bound quantitative skill assessments.', completed: 72, category: 'APTITUDE', subTopic: 'Quantitative' },
       
-      // Technical Essentials (3 cards)
-      { id: 'lp-tech-1', title: 'Personalised Learning Path', description: 'Core computer science fundamentals and concepts.', completed: 50, category: 'TECHNICAL', subTopic: 'Operating Systems' },
-      { id: 'lp-tech-2', title: 'Faculty Shared', description: 'Technical assignments from instructors.', completed: 38, category: 'TECHNICAL', subTopic: 'Operating Systems' },
-      { id: 'lp-tech-3', title: 'Self Practice Test', description: 'Strengthen technical foundation independently.', completed: 55, category: 'TECHNICAL', subTopic: 'Operating Systems' },
+      { id: 'lp-logical', title: 'Logical Reasoning', description: 'Enhance analytical thinking, pattern recognition, and deductive reasoning.', completed: 40, category: 'APTITUDE', subTopic: 'Logical' },
+      { id: 'lp-faculty-logical', title: 'Puzzle Architect', description: 'Expert-curated puzzles, seating arrangements, and logical deduction tasks.', completed: 30, category: 'APTITUDE', subTopic: 'Logical' },
+      { id: 'lp-weekly-logical', title: 'Deduction Sprint', description: 'Weekly exercises on syllogisms, blood relations, and coding-decoding.', completed: 50, category: 'APTITUDE', subTopic: 'Logical' },
       
-      // Coding & Tech (3 cards)
-      { id: 'lp-code-1', title: 'Personalised Learning Path', description: 'Algorithm design and data structure mastery.', completed: 45, category: 'CODING', subTopic: 'Algorithms' },
-      { id: 'lp-code-2', title: 'Faculty Shared', description: 'Coding challenges assigned by faculty.', completed: 60, category: 'CODING', subTopic: 'Algorithms' },
-      { id: 'lp-code-3', title: 'Self Practice Test', description: 'Daily coding practice and problem solving.', completed: 52, category: 'CODING', subTopic: 'Algorithms' },
+      { id: 'lp-verbal', title: 'Verbal Excellence', description: 'Master vocabulary, grammar usage, and reading comprehension strategies.', completed: 55, category: 'APTITUDE', subTopic: 'Verbal' },
+      { id: 'lp-faculty-verbal', title: 'Critical Verbal', description: 'Assignments on critical reasoning, sentence correction, and verbal analogies.', completed: 60, category: 'APTITUDE', subTopic: 'Verbal' },
+      { id: 'lp-weekly-verbal', title: 'Fluency Test', description: 'Routine tests to evaluate reading speed and verbal proficiency.', completed: 65, category: 'APTITUDE', subTopic: 'Verbal' },
       
-      // Psychometric Skill (3 cards)
-      { id: 'lp-psy-1', title: 'Personalised Learning Path', description: 'Behavioral traits and professional aptitude.', completed: 70, category: 'PSYCHOMETRIC', subTopic: 'Professional Integrity' },
-      { id: 'lp-psy-2', title: 'Faculty Shared', description: 'Personality assessment from mentors.', completed: 65, category: 'PSYCHOMETRIC', subTopic: 'Professional Integrity' },
-      { id: 'lp-psy-3', title: 'Self Practice Test', description: 'Self-assessment of work ethic and values.', completed: 78, category: 'PSYCHOMETRIC', subTopic: 'Professional Integrity' },
+      // Technical Essentials
+      { id: 'lp-tech-1', title: 'OS Kernel Deep Dive', description: 'Deep dive into OS kernels, process management, and memory architecture.', completed: 50, category: 'TECHNICAL', subTopic: 'Operating Systems' },
+      { id: 'lp-tech-2', title: 'Scheduling Algorithms', description: 'Curated assignments on deadlock handling and scheduling algorithms.', completed: 38, category: 'TECHNICAL', subTopic: 'Operating Systems' },
+      { id: 'lp-tech-3', title: 'Core Concepts Check', description: 'Checkpoint quizzes to validate your core OS conceptual strength.', completed: 55, category: 'TECHNICAL', subTopic: 'Operating Systems' },
       
-      // Domain Knowledge (3 cards)
-      { id: 'lp-dom-1', title: 'Personalised Learning Path', description: 'Industry-specific expertise and trends.', completed: 20, category: 'DOMAIN', subTopic: 'Cloud Computing' },
-      { id: 'lp-dom-2', title: 'Faculty Shared', description: 'Domain topics curated by experts.', completed: 35, category: 'DOMAIN', subTopic: 'Cloud Computing' },
-      { id: 'lp-dom-3', title: 'Self Practice Test', description: 'Build domain knowledge through practice.', completed: 28, category: 'DOMAIN', subTopic: 'Cloud Computing' },
+      // Coding & Tech
+      { id: 'lp-code-1', title: 'Advanced DSA', description: 'Master graph traversal, dynamic programming, and advanced data structures.', completed: 45, category: 'CODING', subTopic: 'Algorithms' },
+      { id: 'lp-code-2', title: 'LeetCode Patterns', description: 'Instructor-selected LeetCode patterns and optimization challenges.', completed: 60, category: 'CODING', subTopic: 'Algorithms' },
+      { id: 'lp-code-3', title: 'Complexity Analysis', description: 'Daily sprints to improve code efficiency and time complexity analysis.', completed: 52, category: 'CODING', subTopic: 'Algorithms' },
       
-      // Communication Skill (3 cards)
-      { id: 'lp-comm-1', title: 'Personalised Learning Path', description: 'Listening, speaking, reading, and writing excellence.', completed: 82, category: 'COMMUNICATION', subTopic: 'LSRW' },
-      { id: 'lp-comm-2', title: 'Faculty Shared', description: 'Communication exercises from instructors.', completed: 75, category: 'COMMUNICATION', subTopic: 'LSRW' },
-      { id: 'lp-comm-3', title: 'Self Practice Test', description: 'Improve communication skills independently.', completed: 88, category: 'COMMUNICATION', subTopic: 'LSRW' },
+      // Psychometric Skill
+      { id: 'lp-psy-1', title: 'Emotional Intelligence', description: 'Develop emotional intelligence, corporate etiquette, and leadership traits.', completed: 70, category: 'PSYCHOMETRIC', subTopic: 'Professional Integrity' },
+      { id: 'lp-psy-2', title: 'Workplace Ethics', description: 'Scenarios focusing on workplace ethics and conflict resolution.', completed: 65, category: 'PSYCHOMETRIC', subTopic: 'Professional Integrity' },
+      { id: 'lp-psy-3', title: 'Adaptability Quotient', description: 'Self-reflection exercises to gauge your professional adaptability.', completed: 78, category: 'PSYCHOMETRIC', subTopic: 'Professional Integrity' },
       
-      // Projects Skill (3 cards)
-      { id: 'lp-proj-1', title: 'Personalised Learning Path', description: 'Hands-on project development experience.', completed: 70, category: 'PROJECT', subTopic: 'Web Dev' },
-      { id: 'lp-proj-2', title: 'Faculty Shared', description: 'Project assignments from faculty members.', completed: 55, category: 'PROJECT', subTopic: 'Web Dev' },
-      { id: 'lp-proj-3', title: 'Self Practice Test', description: 'Personal projects and portfolio building.', completed: 68, category: 'PROJECT', subTopic: 'Web Dev' },
+      // Domain Knowledge
+      { id: 'lp-dom-1', title: 'AWS Cloud Architect', description: 'Comprehensive guide to AWS services, serverless architectures, and DevOps.', completed: 20, category: 'DOMAIN', subTopic: 'Cloud Computing' },
+      { id: 'lp-dom-2', title: 'Enterprise Migration', description: 'Case studies on enterprise cloud migration and system design.', completed: 35, category: 'DOMAIN', subTopic: 'Cloud Computing' },
+      { id: 'lp-dom-3', title: 'Security & Containers', description: 'Quizzes on virtualization, containerization, and cloud security.', completed: 28, category: 'DOMAIN', subTopic: 'Cloud Computing' },
+      
+      // Communication Skill
+      { id: 'lp-comm-1', title: 'Corporate Communication', description: 'Refine articulation, active listening, and business writing capabilities.', completed: 82, category: 'COMMUNICATION', subTopic: 'LSRW' },
+      { id: 'lp-comm-2', title: 'Public Speaking', description: 'Exercises in public speaking, email etiquette, and presentation skills.', completed: 75, category: 'COMMUNICATION', subTopic: 'LSRW' },
+      { id: 'lp-comm-3', title: 'Interview Readiness', description: 'Mock interviews and comprehension tests to polish fluency.', completed: 88, category: 'COMMUNICATION', subTopic: 'LSRW' },
+      
+      // Projects Skill
+      { id: 'lp-proj-1', title: 'Full Stack Development', description: 'Build full-stack applications with React, Node.js, and modern databases.', completed: 70, category: 'PROJECT', subTopic: 'Web Dev' },
+      { id: 'lp-proj-2', title: 'Code Review & QA', description: 'Project milestones and code review guidelines from mentors.', completed: 55, category: 'PROJECT', subTopic: 'Web Dev' },
+      { id: 'lp-proj-3', title: 'Independent Feature', description: 'Code challenges to verify your ability to implement features independently.', completed: 68, category: 'PROJECT', subTopic: 'Web Dev' },
     ],
     assessments: [
-      // Aptitude & Logic (3 cards)
-      { id: 'a-quant', title: 'Quantitative Diagnostic', type: 'APTITUDE', subTopic: 'Quantitative', questions: 5, durationMins: 20, difficulty: 'Medium', status: 'ACTIVE' },
-      { id: 'a-faculty-assigned', title: 'Faculty Assigned Evaluation', type: 'APTITUDE', subTopic: 'Quantitative', questions: 10, durationMins: 30, difficulty: 'Medium', status: 'ACTIVE' },
-      { id: 'a-weekly-test', title: 'Weekly Progress Test', type: 'APTITUDE', subTopic: 'Quantitative', questions: 8, durationMins: 25, difficulty: 'Easy', status: 'ACTIVE' },
+      // Aptitude & Logic
+      { id: 'a-quant', title: 'Quant Diagnostic', type: 'APTITUDE', subTopic: 'Quantitative', questions: 5, durationMins: 20, difficulty: 'Medium', status: 'ACTIVE' },
+      { id: 'a-faculty-assigned', title: 'Faculty Eval: Quant', type: 'APTITUDE', subTopic: 'Quantitative', questions: 10, durationMins: 30, difficulty: 'Medium', status: 'ACTIVE' },
+      { id: 'a-weekly-test', title: 'Weekly Quant Test', type: 'APTITUDE', subTopic: 'Quantitative', questions: 8, durationMins: 25, difficulty: 'Easy', status: 'ACTIVE' },
       
-      // Technical Essentials (3 cards)
-      { id: 'a-tech-1', title: 'Technical Fundamentals Test', type: 'TECHNICAL', subTopic: 'Operating Systems', questions: 10, durationMins: 25, difficulty: 'Medium', status: 'ACTIVE' },
-      { id: 'a-tech-2', title: 'Faculty Technical Assessment', type: 'TECHNICAL', subTopic: 'Operating Systems', questions: 12, durationMins: 35, difficulty: 'Hard', status: 'ACTIVE' },
-      { id: 'a-tech-3', title: 'Technical Practice Quiz', type: 'TECHNICAL', subTopic: 'Operating Systems', questions: 8, durationMins: 20, difficulty: 'Easy', status: 'ACTIVE' },
+      // Technical Essentials
+      { id: 'a-tech-1', title: 'OS Diagnostic', type: 'TECHNICAL', subTopic: 'Operating Systems', questions: 10, durationMins: 25, difficulty: 'Medium', status: 'ACTIVE' },
+      { id: 'a-tech-2', title: 'Faculty Eval: OS', type: 'TECHNICAL', subTopic: 'Operating Systems', questions: 12, durationMins: 35, difficulty: 'Hard', status: 'ACTIVE' },
+      { id: 'a-tech-3', title: 'Weekly OS Test', type: 'TECHNICAL', subTopic: 'Operating Systems', questions: 8, durationMins: 20, difficulty: 'Easy', status: 'ACTIVE' },
       
-      // Coding & Tech (3 cards)
-      { id: 'a-code-1', title: 'Algorithm Challenge', type: 'CODING', subTopic: 'Algorithms', questions: 3, durationMins: 90, difficulty: 'Hard', status: 'ACTIVE' },
-      { id: 'a-code-2', title: 'Faculty Coding Assignment', type: 'CODING', subTopic: 'Algorithms', questions: 2, durationMins: 60, difficulty: 'Medium', status: 'ACTIVE' },
-      { id: 'a-code-3', title: 'Coding Practice Set', type: 'CODING', subTopic: 'Algorithms', questions: 5, durationMins: 45, difficulty: 'Easy', status: 'ACTIVE' },
+      // Coding & Tech
+      { id: 'a-code-1', title: 'Algo Diagnostic', type: 'CODING', subTopic: 'Algorithms', questions: 3, durationMins: 90, difficulty: 'Hard', status: 'ACTIVE' },
+      { id: 'a-code-2', title: 'Faculty Eval: Algo', type: 'CODING', subTopic: 'Algorithms', questions: 2, durationMins: 60, difficulty: 'Medium', status: 'ACTIVE' },
+      { id: 'a-code-3', title: 'Weekly Algo Test', type: 'CODING', subTopic: 'Algorithms', questions: 5, durationMins: 45, difficulty: 'Easy', status: 'ACTIVE' },
       
-      // Psychometric Skill (3 cards)
-      { id: 'a-psy-1', title: 'Workplace Ethics Review', type: 'PSYCHOMETRIC', subTopic: 'Professional Integrity', questions: 15, durationMins: 30, difficulty: 'Medium', status: 'ACTIVE' },
-      { id: 'a-psy-2', title: 'Faculty Behavior Assessment', type: 'PSYCHOMETRIC', subTopic: 'Professional Integrity', questions: 20, durationMins: 40, difficulty: 'Medium', status: 'ACTIVE' },
-      { id: 'a-psy-3', title: 'Personality Self-Test', type: 'PSYCHOMETRIC', subTopic: 'Professional Integrity', questions: 10, durationMins: 25, difficulty: 'Easy', status: 'ACTIVE' },
+      // Psychometric Skill
+      { id: 'a-psy-1', title: 'Behavioral Diagnostic', type: 'PSYCHOMETRIC', subTopic: 'Professional Integrity', questions: 15, durationMins: 30, difficulty: 'Medium', status: 'ACTIVE' },
+      { id: 'a-psy-2', title: 'Faculty Eval: Ethics', type: 'PSYCHOMETRIC', subTopic: 'Professional Integrity', questions: 20, durationMins: 40, difficulty: 'Medium', status: 'ACTIVE' },
+      { id: 'a-psy-3', title: 'Weekly Ethics Test', type: 'PSYCHOMETRIC', subTopic: 'Professional Integrity', questions: 10, durationMins: 25, difficulty: 'Easy', status: 'ACTIVE' },
       
-      // Domain Knowledge (3 cards)
-      { id: 'a-dom-1', title: 'Domain Expertise Test', type: 'DOMAIN', subTopic: 'Cloud Computing', questions: 10, durationMins: 30, difficulty: 'Hard', status: 'ACTIVE' },
-      { id: 'a-dom-2', title: 'Faculty Domain Assessment', type: 'DOMAIN', subTopic: 'Cloud Computing', questions: 12, durationMins: 35, difficulty: 'Medium', status: 'ACTIVE' },
-      { id: 'a-dom-3', title: 'Domain Practice Quiz', type: 'DOMAIN', subTopic: 'Cloud Computing', questions: 8, durationMins: 20, difficulty: 'Easy', status: 'ACTIVE' },
+      // Domain Knowledge
+      { id: 'a-dom-1', title: 'Cloud Diagnostic', type: 'DOMAIN', subTopic: 'Cloud Computing', questions: 10, durationMins: 30, difficulty: 'Hard', status: 'ACTIVE' },
+      { id: 'a-dom-2', title: 'Faculty Eval: Cloud', type: 'DOMAIN', subTopic: 'Cloud Computing', questions: 12, durationMins: 35, difficulty: 'Medium', status: 'ACTIVE' },
+      { id: 'a-dom-3', title: 'Weekly Cloud Test', type: 'DOMAIN', subTopic: 'Cloud Computing', questions: 8, durationMins: 20, difficulty: 'Easy', status: 'ACTIVE' },
       
-      // Communication Skill (3 cards)
-      { id: 'a-comm-1', title: 'LSRW Comprehensive Test', type: 'COMMUNICATION', subTopic: 'LSRW', questions: 20, durationMins: 50, difficulty: 'Medium', status: 'ACTIVE' },
-      { id: 'a-comm-2', title: 'Faculty Communication Evaluation', type: 'COMMUNICATION', subTopic: 'LSRW', questions: 15, durationMins: 40, difficulty: 'Medium', status: 'ACTIVE' },
-      { id: 'a-comm-3', title: 'Communication Skills Practice', type: 'COMMUNICATION', subTopic: 'LSRW', questions: 10, durationMins: 30, difficulty: 'Easy', status: 'ACTIVE' },
+      // Communication Skill
+      { id: 'a-comm-1', title: 'LSRW Diagnostic', type: 'COMMUNICATION', subTopic: 'LSRW', questions: 20, durationMins: 50, difficulty: 'Medium', status: 'ACTIVE' },
+      { id: 'a-comm-2', title: 'Faculty Eval: Comm', type: 'COMMUNICATION', subTopic: 'LSRW', questions: 15, durationMins: 40, difficulty: 'Medium', status: 'ACTIVE' },
+      { id: 'a-comm-3', title: 'Weekly Comm Test', type: 'COMMUNICATION', subTopic: 'LSRW', questions: 10, durationMins: 30, difficulty: 'Easy', status: 'ACTIVE' },
       
-      // Projects Skill (3 cards)
-      { id: 'a-proj-1', title: 'Project Implementation Test', type: 'PROJECT', subTopic: 'Web Dev', questions: 1, durationMins: 120, difficulty: 'Hard', status: 'ACTIVE' },
-      { id: 'a-proj-2', title: 'Faculty Project Review', type: 'PROJECT', subTopic: 'Web Dev', questions: 1, durationMins: 90, difficulty: 'Medium', status: 'ACTIVE' },
-      { id: 'a-proj-3', title: 'Project Practice Lab', type: 'PROJECT', subTopic: 'Web Dev', questions: 1, durationMins: 60, difficulty: 'Easy', status: 'ACTIVE' },
+      // Projects Skill
+      { id: 'a-proj-1', title: 'Project Diagnostic', type: 'PROJECT', subTopic: 'Web Dev', questions: 1, durationMins: 120, difficulty: 'Hard', status: 'ACTIVE' },
+      { id: 'a-proj-2', title: 'Faculty Eval: Web', type: 'PROJECT', subTopic: 'Web Dev', questions: 1, durationMins: 90, difficulty: 'Medium', status: 'ACTIVE' },
+      { id: 'a-proj-3', title: 'Weekly Project Test', type: 'PROJECT', subTopic: 'Web Dev', questions: 1, durationMins: 60, difficulty: 'Easy', status: 'ACTIVE' },
     ],
     readinessExam: {
       id: 're1',
-      title: 'GradUp+ Placement Readiness Simulation',
+      title: 'Grad360° January Readiness Exam - 1',
       type: 'SIMULATION',
       questions: 28,
       durationMins: 180,
@@ -599,40 +631,40 @@ export const getStudentDashboardData = async (studentId: string) => {
       description: 'The definitive end-to-end evaluation for engineering recruitment excellence.'
     },
     practiceSets: [
-      // Aptitude & Logic (3 cards)
-      { id: 'ps-quant', title: 'Time and Distance Drill', type: 'APTITUDE', subTopic: 'Quantitative', items: 30 },
-      { id: 'ps-faculty-practice', title: 'Faculty Practice Set', type: 'APTITUDE', subTopic: 'Quantitative', items: 25 },
-      { id: 'ps-weekly-drills', title: 'Weekly Skill Drills', type: 'APTITUDE', subTopic: 'Quantitative', items: 20 },
+      // Aptitude & Logic
+      { id: 'ps-quant', title: 'Distance & Time', type: 'APTITUDE', subTopic: 'Quantitative', items: 30 },
+      { id: 'ps-faculty-practice', title: 'Faculty Quant Set', type: 'APTITUDE', subTopic: 'Quantitative', items: 25 },
+      { id: 'ps-weekly-drills', title: 'Weekly Quant Drills', type: 'APTITUDE', subTopic: 'Quantitative', items: 20 },
       
-      // Technical Essentials (3 cards)
-      { id: 'ps-tech-1', title: 'Technical Concepts Practice', type: 'TECHNICAL', subTopic: 'Operating Systems', items: 35 },
-      { id: 'ps-tech-2', title: 'Faculty Tech Drills', type: 'TECHNICAL', subTopic: 'Operating Systems', items: 28 },
-      { id: 'ps-tech-3', title: 'Self-Study Tech Questions', type: 'TECHNICAL', subTopic: 'Operating Systems', items: 22 },
+      // Technical Essentials
+      { id: 'ps-tech-1', title: 'OS Concepts', type: 'TECHNICAL', subTopic: 'Operating Systems', items: 35 },
+      { id: 'ps-tech-2', title: 'Faculty OS Set', type: 'TECHNICAL', subTopic: 'Operating Systems', items: 28 },
+      { id: 'ps-tech-3', title: 'Weekly OS Drills', type: 'TECHNICAL', subTopic: 'Operating Systems', items: 22 },
       
-      // Coding & Tech (3 cards)
-      { id: 'ps-code-1', title: 'Daily Coding Algorithms', type: 'CODING', subTopic: 'Algorithms', items: 40 },
-      { id: 'ps-code-2', title: 'Faculty Coding Challenges', type: 'CODING', subTopic: 'Algorithms', items: 32 },
-      { id: 'ps-code-3', title: 'Problem Solving Practice', type: 'CODING', subTopic: 'Algorithms', items: 25 },
+      // Coding & Tech
+      { id: 'ps-code-1', title: 'Algo Practice', type: 'CODING', subTopic: 'Algorithms', items: 40 },
+      { id: 'ps-code-2', title: 'Faculty Algo Set', type: 'CODING', subTopic: 'Algorithms', items: 32 },
+      { id: 'ps-code-3', title: 'Weekly Algo Drills', type: 'CODING', subTopic: 'Algorithms', items: 25 },
       
-      // Psychometric Skill (3 cards)
+      // Psychometric Skill
       { id: 'ps-psy-1', title: 'Behavioral Scenarios', type: 'PSYCHOMETRIC', subTopic: 'Professional Integrity', items: 30 },
-      { id: 'ps-psy-2', title: 'Faculty Personality Tests', type: 'PSYCHOMETRIC', subTopic: 'Professional Integrity', items: 24 },
-      { id: 'ps-psy-3', title: 'Work Ethics Practice', type: 'PSYCHOMETRIC', subTopic: 'Professional Integrity', items: 18 },
+      { id: 'ps-psy-2', title: 'Faculty Ethics Set', type: 'PSYCHOMETRIC', subTopic: 'Professional Integrity', items: 24 },
+      { id: 'ps-psy-3', title: 'Weekly Ethics Drills', type: 'PSYCHOMETRIC', subTopic: 'Professional Integrity', items: 18 },
       
-      // Domain Knowledge (3 cards)
-      { id: 'ps-dom-1', title: 'Domain Knowledge Drills', type: 'DOMAIN', subTopic: 'Cloud Computing', items: 35 },
-      { id: 'ps-dom-2', title: 'Faculty Domain Practice', type: 'DOMAIN', subTopic: 'Cloud Computing', items: 28 },
-      { id: 'ps-dom-3', title: 'Industry Trends Quiz', type: 'DOMAIN', subTopic: 'Cloud Computing', items: 20 },
+      // Domain Knowledge
+      { id: 'ps-dom-1', title: 'Cloud Knowledge', type: 'DOMAIN', subTopic: 'Cloud Computing', items: 35 },
+      { id: 'ps-dom-2', title: 'Faculty Cloud Set', type: 'DOMAIN', subTopic: 'Cloud Computing', items: 28 },
+      { id: 'ps-dom-3', title: 'Weekly Cloud Drills', type: 'DOMAIN', subTopic: 'Cloud Computing', items: 20 },
       
-      // Communication Skill (3 cards)
-      { id: 'ps-comm-1', title: 'LSRW Practice Sessions', type: 'COMMUNICATION', subTopic: 'LSRW', items: 40 },
-      { id: 'ps-comm-2', title: 'Faculty Communication Drills', type: 'COMMUNICATION', subTopic: 'LSRW', items: 32 },
-      { id: 'ps-comm-3', title: 'Speaking & Writing Practice', type: 'COMMUNICATION', subTopic: 'LSRW', items: 25 },
+      // Communication Skill
+      { id: 'ps-comm-1', title: 'LSRW Practice', type: 'COMMUNICATION', subTopic: 'LSRW', items: 40 },
+      { id: 'ps-comm-2', title: 'Faculty Comm Set', type: 'COMMUNICATION', subTopic: 'LSRW', items: 32 },
+      { id: 'ps-comm-3', title: 'Weekly Comm Drills', type: 'COMMUNICATION', subTopic: 'LSRW', items: 25 },
       
-      // Projects Skill (3 cards)
-      { id: 'ps-proj-1', title: 'Project Development Tasks', type: 'PROJECT', subTopic: 'Web Dev', items: 15 },
-      { id: 'ps-proj-2', title: 'Faculty Project Assignments', type: 'PROJECT', subTopic: 'Web Dev', items: 12 },
-      { id: 'ps-proj-3', title: 'Portfolio Building Exercises', type: 'PROJECT', subTopic: 'Web Dev', items: 10 },
+      // Projects Skill
+      { id: 'ps-proj-1', title: 'Dev Practice', type: 'PROJECT', subTopic: 'Web Dev', items: 15 },
+      { id: 'ps-proj-2', title: 'Faculty Web Set', type: 'PROJECT', subTopic: 'Web Dev', items: 12 },
+      { id: 'ps-proj-3', title: 'Weekly Dev Drills', type: 'PROJECT', subTopic: 'Web Dev', items: 10 },
     ],
     history: [
       { id: 'h1', title: 'Logical Reasoning Mock', type: 'APTITUDE', score: 82, date: 'Oct 12, 2023' },
@@ -682,7 +714,19 @@ export const getCompanyDashboardData = async () => {
   await new Promise(resolve => setTimeout(resolve, 800));
   return { 
     candidates: STUDENTS, 
-    activeAssessments: [], 
+    activeAssessments: [
+      { 
+        id: 'a1', 
+        title: 'Frontend React Challenge', 
+        type: 'CODING', 
+        questions: 15, 
+        durationMins: 45, 
+        difficulty: 'Medium', 
+        status: 'ACTIVE', 
+        candidatesCount: 12, 
+        avgScore: 78 
+      }
+    ], 
     jobs: [
       {
         id: 'j1',
@@ -709,7 +753,20 @@ export const getCompanyDashboardData = async () => {
         postedDate: '5 DAYS AGO'
       }
     ], 
-    interviews: [] 
+    interviews: [
+      {
+        id: 'i1',
+        studentId: 's1',
+        studentName: 'Alex Johnson',
+        studentAvatar: 'https://picsum.photos/seed/s1/200',
+        jobTitle: 'Frontend Developer',
+        date: 'Oct 24, 2023',
+        time: '10:00 AM',
+        type: 'Technical',
+        status: 'Scheduled',
+        meetingLink: 'https://meet.google.com/abc-defg-hij'
+      }
+    ] 
   };
 };
 

@@ -66,11 +66,15 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLoginClick }) => {
                 Industry Standard Readiness
               </div>
               <h1 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tighter text-gray-900 mb-8 leading-[0.9]">
-                Architecting <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-500">Career Success.</span>
+                  Engineering<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-500"> Industry-Ready Talent.</span>
               </h1>
               <p className="max-w-2xl mx-auto lg:mx-0 text-xl text-gray-500 font-medium mb-12 leading-relaxed">
-                The definitive placement ecosystem for high-performing students. Automated skill checks, specialized domain labs, and real-time recruitment matching.
+
+
+A structured placement readiness system that verifies skills, evaluates behavioral safety, and aligns candidates with real-world hiring expectations.
+
+
               </p>
               <div className="flex flex-col sm:flex-row justify-center lg:justify-start items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-8">
                 <button
@@ -78,9 +82,6 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLoginClick }) => {
                   className="w-full sm:w-auto px-12 py-6 text-sm font-black text-white bg-primary-600 rounded-[32px] hover:bg-primary-700 transition-all shadow-2xl shadow-primary-600/30 flex items-center justify-center transform hover:-translate-y-1 uppercase tracking-widest"
                 >
                   Start Assessment <ArrowRight className="ml-3 w-5 h-5" />
-                </button>
-                <button className="w-full sm:w-auto px-12 py-6 text-sm font-black text-gray-700 bg-white border border-gray-200 rounded-[32px] hover:bg-gray-50 transition-all flex items-center justify-center hover:shadow-xl uppercase tracking-widest">
-                  Institutional Access
                 </button>
               </div>
             </div>

@@ -303,33 +303,50 @@ const CompanyDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
       <div className="space-y-8 animate-fadeIn font-inter">
           <div className="flex justify-between items-end">
               <div>
-                  <h2 className="text-4xl font-black text-gray-900 tracking-tighter flex items-center"><Zap className="w-10 h-10 mr-4 text-primary-600" /> Corporate Evaluations</h2>
-                  <p className="text-gray-500 mt-2 font-medium">Custom diagnostics for screening candidates.</p>
+                  <h2 className="text-4xl font-black text-gray-900 tracking-tighter flex items-center"><Zap className="w-10 h-10 mr-4 text-red-600" /> Assessment Hub</h2>
+                  <p className="text-gray-500 mt-2 font-medium">Create custom coding/logic tests and dispatch them to potential hires.</p>
               </div>
-              <button onClick={() => setIsAssessmentModalOpen(true)} className="bg-primary-600 text-white px-10 py-5 rounded-[32px] font-black flex items-center shadow-2xl hover:bg-primary-700 transition-all text-xs uppercase tracking-widest">
-                  <Plus className="w-5 h-5 mr-3" /> Create Evaluation
-              </button>
+              <div className="flex gap-4">
+                  <button className="bg-slate-900 text-white px-8 py-4 rounded-xl font-bold flex items-center shadow-lg hover:bg-black transition-all text-sm">
+                      <Send className="w-4 h-4 mr-2" /> Send to Candidates
+                  </button>
+                  <button onClick={() => setIsAssessmentModalOpen(true)} className="bg-red-600 text-white px-8 py-4 rounded-xl font-bold flex items-center shadow-lg hover:bg-red-700 transition-all text-sm">
+                      <Plus className="w-4 h-4 mr-2" /> Create Logic Test
+                  </button>
+              </div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="bg-white rounded-[32px] border border-gray-100 shadow-sm overflow-hidden">
+               <div className="grid grid-cols-12 gap-4 p-8 border-b border-gray-100 bg-gray-50/50 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">
+                   <div className="col-span-4">Test Profile</div>
+                   <div className="col-span-2 text-center">Category</div>
+                   <div className="col-span-2 text-center">Participants</div>
+                   <div className="col-span-2 text-center">Success Rate</div>
+                   <div className="col-span-2 text-right">Action</div>
+               </div>
+               
               {data && data.activeAssessments.map((a) => (
-                  <div key={a.id} className="bg-white p-10 rounded-[56px] border border-gray-100 shadow-sm flex flex-col hover:shadow-2xl transition-all duration-500">
-                      <div className="flex justify-between items-start mb-10">
-                          <span className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] ${a.status === 'ACTIVE' ? 'bg-green-50 text-green-700 border border-green-100' : 'bg-slate-50 text-slate-500'}`}>{a.status}</span>
+                  <div key={a.id} className="grid grid-cols-12 gap-4 p-8 items-center border-b border-gray-50 hover:bg-gray-50 transition-all">
+                      <div className="col-span-4">
+                          <h4 className="font-black text-xl text-gray-900 tracking-tight">{a.title}</h4>
+                          <div className="flex items-center gap-2 mt-1">
+                              <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">{a.questions} Items • {a.durationMins}M</span>
+                          </div>
                       </div>
-                      <h4 className="font-black text-2xl text-gray-900 mb-3 tracking-tighter">{a.title}</h4>
-                      <p className="text-xs text-gray-400 font-black uppercase tracking-[0.2em] mb-12">{a.type} • {a.difficulty}</p>
-                      
-                      <div className="mt-auto pt-10 border-t border-gray-50 space-y-5">
-                          <div className="flex items-center justify-between">
-                              <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Candidate Flow</p>
-                              <p className="text-base font-black text-gray-900">{a.candidatesCount} Tested</p>
-                          </div>
-                          <div className="flex items-center justify-between">
-                              <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Average Score</p>
-                              <p className="text-base font-black text-primary-600">{a.avgScore}%</p>
-                          </div>
-                          <button className="w-full py-4 bg-slate-50 text-primary-600 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-primary-600 hover:text-white transition-all shadow-sm">View Insights</button>
+                      <div className="col-span-2 flex justify-center">
+                          <span className="px-3 py-1.5 bg-slate-100 text-slate-600 text-[10px] font-black uppercase tracking-wider rounded-lg border border-slate-200">{a.type}</span>
+                      </div>
+                      <div className="col-span-2 text-center font-bold text-gray-900">{a.candidatesCount} students</div>
+                      <div className="col-span-2 flex items-center gap-3 justify-center">
+                           <div className="h-2 w-24 bg-gray-100 rounded-full overflow-hidden">
+                               <div className="h-full bg-green-500 rounded-full" style={{ width: `${a.avgScore}%` }} />
+                           </div>
+                           <span className="text-sm font-black text-green-600">{a.avgScore}%</span>
+                      </div>
+                      <div className="col-span-2 flex justify-end">
+                           <button className="text-[10px] font-black text-red-600 hover:text-red-700 uppercase tracking-widest flex items-center gap-1 hover:underline">
+                               Detailed Audit <ChevronRight className="w-3 h-3" />
+                           </button>
                       </div>
                   </div>
               ))}
@@ -341,53 +358,51 @@ const CompanyDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
       <div className="space-y-8 animate-fadeIn font-inter">
           <div className="flex justify-between items-end">
               <div>
-                  <h2 className="text-4xl font-black text-gray-900 tracking-tighter flex items-center"><Calendar className="w-10 h-10 mr-4 text-primary-600" /> Interview Scheduler</h2>
-                  <p className="text-gray-500 mt-2 font-medium">Coordinate and manage technical/HR screening rounds.</p>
+                  <h2 className="text-4xl font-black text-gray-900 tracking-tighter flex items-center"><Calendar className="w-10 h-10 mr-4 text-red-600" /> Scheduled Interviews</h2>
+                  <p className="text-gray-500 mt-2 font-medium">Coordinate live video rounds and submit real-time feedback scores.</p>
               </div>
-              <button onClick={() => setIsInterviewModalOpen(true)} className="bg-primary-600 text-white px-10 py-5 rounded-[32px] font-black flex items-center shadow-2xl hover:bg-primary-700 transition-all text-xs uppercase tracking-widest">
-                  <Plus className="w-5 h-5 mr-3" /> Schedule Session
+              <button onClick={() => setIsInterviewModalOpen(true)} className="bg-slate-900 text-white px-8 py-4 rounded-xl font-bold flex items-center shadow-lg hover:bg-black transition-all text-sm">
+                  <Calendar className="w-4 h-4 mr-2" /> New Live Round
               </button>
           </div>
 
-          <div className="bg-white rounded-[64px] border border-gray-100 shadow-sm overflow-hidden">
-              <table className="w-full text-left">
-                  <thead className="bg-slate-50 border-b border-gray-100">
-                      <tr>
-                          <th className="px-12 py-8 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Candidate</th>
-                          <th className="px-12 py-8 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Specification</th>
-                          <th className="px-12 py-8 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Schedule</th>
-                          <th className="px-12 py-8 text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] text-right">Action</th>
-                      </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-100">
-                      {data && data.interviews.map((i) => (
-                          <tr key={i.id} className="hover:bg-slate-50 transition-colors">
-                              <td className="px-12 py-8">
-                                  <div className="flex items-center gap-5">
-                                      <img src={i.studentAvatar} className="w-12 h-12 rounded-2xl border-2 border-white shadow-sm object-cover" alt={i.studentName} />
-                                      <p className="font-black text-gray-900 text-lg">{i.studentName}</p>
-                                  </div>
-                              </td>
-                              <td className="px-12 py-8">
-                                  <p className="text-sm font-black text-gray-900 leading-none">{i.jobTitle}</p>
-                                  <p className="text-[10px] text-gray-400 font-black uppercase tracking-widest mt-2">{i.type} Round</p>
-                              </td>
-                              <td className="px-12 py-8">
-                                  <div className="flex items-center gap-3 text-gray-500 font-bold text-sm">
-                                      <Calendar className="w-4 h-4 text-primary-600" /> {i.date} • {i.time}
-                                  </div>
-                              </td>
-                              <td className="px-12 py-8 text-right">
-                                  {i.status === 'Completed' ? (
-                                      <span className="px-5 py-2 bg-green-50 text-green-700 text-[10px] font-black uppercase tracking-widest rounded-2xl border border-green-100">Results Recorded</span>
-                                  ) : (
-                                      <button onClick={() => { setSelectedInterview(i); setIsFeedbackModalOpen(true); }} className="px-6 py-3 bg-primary-600 text-white text-[10px] font-black uppercase tracking-[0.2em] rounded-2xl hover:bg-primary-700 transition-all shadow-lg shadow-primary-600/10">Submit Evaluation</button>
-                                  )}
-                              </td>
-                          </tr>
-                      ))}
-                  </tbody>
-              </table>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {data && data.interviews.map((i) => (
+                  <div key={i.id} className="bg-white p-8 rounded-[40px] border border-gray-100 shadow-sm hover:shadow-2xl transition-all group relative overflow-hidden">
+                       <div className="flex justify-between items-start mb-8">
+                            <span className="px-4 py-1.5 bg-blue-50 text-blue-600 rounded-lg text-[10px] font-black uppercase tracking-widest border border-blue-100">Scheduled</span>
+                            <button className="text-gray-300 hover:text-gray-500"><MoreVertical className="w-5 h-5" /></button>
+                       </div>
+                       
+                       <div className="flex items-center gap-5 mb-8">
+                            <img src={i.studentAvatar} className="w-16 h-16 rounded-2xl object-cover shadow-sm border border-gray-100" alt={i.studentName} />
+                            <div>
+                                <h3 className="text-xl font-black text-gray-900 tracking-tight">{i.studentName}</h3>
+                                <p className="text-[10px] font-black text-gray-400 uppercase tracking-wider mt-1">SDE-1</p>
+                            </div>
+                       </div>
+                       
+                       <div className="space-y-3 mb-8">
+                           <div className="flex items-center gap-3 text-sm font-bold text-gray-500">
+                               <Calendar className="w-4 h-4 text-red-500" />
+                               <span>{i.date} @ {i.time}</span>
+                           </div>
+                           <div className="flex items-center gap-3 text-sm font-bold text-gray-500">
+                               <Video className="w-4 h-4 text-red-500" />
+                               <span className="uppercase">{i.type} Round</span>
+                           </div>
+                       </div>
+
+                       <div className="flex gap-3 mt-auto">
+                            <button className="flex-1 py-3 bg-red-600 text-white rounded-xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-red-700 transition-all shadow-lg hover:shadow-red-600/20">
+                                Launch Meet
+                            </button>
+                            <button onClick={() => { setSelectedInterview(i); setIsFeedbackModalOpen(true); }} className="flex-1 py-3 bg-slate-50 text-slate-900 rounded-xl font-black text-[10px] uppercase tracking-[0.2em] hover:bg-slate-100 transition-all border border-slate-100">
+                                Score
+                            </button>
+                       </div>
+                  </div>
+              ))}
           </div>
       </div>
   );
@@ -491,7 +506,8 @@ const CompanyDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
                   </div>
               </div>
           )}
-      </div>
+     </div>
+
   );
 };
 

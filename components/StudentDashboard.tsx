@@ -275,133 +275,94 @@ const StudentDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
                 </div>
             </section>
 
-            {/* Visual Intelligence Section */}
+            {/* Skill Analysis Spectrum Section */}
             <div className="space-y-8">
-                <div className="flex justify-between items-end">
-                    <div>
-                        <h2 className="text-4xl font-black text-slate-900 tracking-tighter">Visual Intelligence</h2>
-                        <p className="text-slate-500 font-medium mt-2">Analytics and insights dashboard for data-driven decisions.</p>
+                <div className="bg-white rounded-[48px] p-12 border border-slate-100 shadow-sm">
+                    <div className="flex items-center gap-3 mb-2">
+                        <BarChart3 className="w-6 h-6 text-primary-600" />
+                        <h2 className="text-3xl font-black text-slate-900 tracking-tighter">Skill Analysis Spectrum</h2>
                     </div>
-                    <button className="bg-slate-900 text-white px-6 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-primary-600 transition-colors flex items-center gap-2">
-                        <ArrowRight className="w-4 h-4" /> Export Report
-                    </button>
-                </div>
+                    <p className="text-slate-400 text-sm uppercase tracking-[0.2em] font-bold mb-12">Comprehensive Readiness Breakdown</p>
 
-                {/* Top Row Stats */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-slate-950 rounded-[32px] p-8 text-white relative overflow-hidden group">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full blur-[50px] -mr-10 -mt-10"></div>
-                        <TrendingUp className="w-8 h-8 mb-6 text-white/80" />
-                        <h3 className="text-5xl font-black mb-2 tracking-tighter">82%</h3>
-                        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60">Average Performance</p>
-                    </div>
-
-                    <div className="bg-primary-600 rounded-[32px] p-8 text-white relative overflow-hidden group shadow-xl shadow-primary-600/20">
-                        <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-[50px] -mr-10 -mt-10"></div>
-                        <Activity className="w-8 h-8 mb-6 text-white/80" />
-                        <h3 className="text-5xl font-black mb-2 tracking-tighter">94%</h3>
-                        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-white/60">Engagement Rate</p>
-                    </div>
-
-                    <div className="bg-white rounded-[32px] p-8 border border-slate-100 relative overflow-hidden group shadow-sm">
-                        <Target className="w-8 h-8 mb-6 text-slate-900" />
-                        <h3 className="text-5xl font-black mb-2 tracking-tighter text-slate-900">76%</h3>
-                        <p className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">Placement Target</p>
-                    </div>
-                </div>
-
-                {/* Middle Row */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {/* Skill Distribution */}
-                    <div className="bg-white rounded-[40px] p-10 border border-slate-100 shadow-sm">
-                        <div className="flex justify-between items-center mb-8">
-                            <h3 className="text-xl font-black text-slate-900 tracking-tight">Skill Distribution</h3>
-                            <BarChart3 className="w-5 h-5 text-slate-300" />
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
+                        {/* Radar Chart */}
+                        <div className="lg:col-span-1 flex items-center justify-center">
+                            <div className="relative w-full max-w-[320px] aspect-square">
+                                <ResponsiveContainer width="100%" height="100%">
+                                    <RadarChart data={[
+                                        { subject: 'Aptitude', score: user.skills.aptitude },
+                                        { subject: 'Coding', score: user.skills.coding },
+                                        { subject: 'Communication', score: user.skills.communication },
+                                        { subject: 'Domain', score: user.skills.domain },
+                                        { subject: 'Projects', score: user.skills.project },
+                                        { subject: 'Technical', score: user.skills.technical },
+                                    ]}>
+                                        <PolarGrid stroke="#e2e8f0" />
+                                        <PolarAngleAxis 
+                                            dataKey="subject" 
+                                            tick={{ fill: '#94a3b8', fontSize: 12, fontWeight: 600 }}
+                                        />
+                                        <PolarRadiusAxis angle={90} domain={[0, 100]} tick={false} />
+                                        <Radar 
+                                            name="Skills" 
+                                            dataKey="score" 
+                                            stroke="#dc2626" 
+                                            fill="#dc2626" 
+                                            fillOpacity={0.15}
+                                            strokeWidth={3}
+                                        />
+                                    </RadarChart>
+                                </ResponsiveContainer>
+                            </div>
                         </div>
-                        <div className="space-y-6">
-                            {[
-                                { label: 'Aptitude', value: 85 },
-                                { label: 'Coding', value: 72 },
-                                { label: 'Communication', value: 90 },
-                                { label: 'Technical', value: 78 },
-                                { label: 'Domain', value: 68 }
-                            ].map((skill) => (
-                                <div key={skill.label}>
-                                    <div className="flex justify-between text-sm font-black text-slate-700 mb-2">
-                                        <span>{skill.label}</span>
-                                        <span>{skill.value}%</span>
+
+                        {/* Mastery Indicators */}
+                        <div className="lg:col-span-1 space-y-6">
+                            <div className="flex items-center gap-3 mb-6">
+                                <div className="w-3 h-3 rounded-full bg-primary-600"></div>
+                                <p className="text-slate-300 text-xs uppercase tracking-[0.2em] font-black">Current Score</p>
+                            </div>
+                            <p className="text-slate-200 text-xs uppercase tracking-[0.2em] font-black mb-6">Mastery Indicators</p>
+                            
+                            <div className="space-y-5">
+                                {[
+                                    { label: 'APTITUDE', sublabel: 'Mastery Level', value: user.skills.aptitude },
+                                    { label: 'CODING', sublabel: 'Mastery Level', value: user.skills.coding },
+                                    { label: 'COMMUNICATION', sublabel: 'Mastery Level', value: user.skills.communication },
+                                    { label: 'DOMAIN', sublabel: 'Mastery Level', value: user.skills.domain },
+                                    { label: 'PROJECTS', sublabel: 'Mastery Level', value: user.skills.project },
+                                    { label: 'TECHNICAL', sublabel: 'Mastery Level', value: user.skills.technical },
+                                ].map((skill) => (
+                                    <div key={skill.label} className="flex items-center justify-between py-3 border-l-4 border-slate-100 pl-4 hover:border-primary-600 transition-all">
+                                        <div>
+                                            <p className="text-sm font-black text-slate-900 tracking-tight">{skill.label}</p>
+                                            <p className="text-[9px] text-slate-400 uppercase tracking-widest font-bold">{skill.sublabel}</p>
+                                        </div>
+                                        <span className="text-2xl font-black text-slate-900 tracking-tighter">{skill.value}%</span>
                                     </div>
-                                    <div className="h-2 bg-slate-50 rounded-full overflow-hidden">
-                                        <div 
-                                            className="h-full bg-primary-600 rounded-full transition-all duration-1000"
-                                            style={{ width: `${skill.value}%` }}
-                                        ></div>
-                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Career Ready Card */}
+                        <div className="lg:col-span-1 bg-slate-50 rounded-[40px] p-10 flex flex-col items-center text-center">
+                            <div className="bg-slate-900 p-6 rounded-[28px] mb-6">
+                                <UserCheck className="w-10 h-10 text-white" />
+                            </div>
+                            <p className="text-slate-400 text-[10px] uppercase tracking-[0.2em] font-black mb-3">Behavioral Profile</p>
+                            <h3 className="text-4xl font-black text-slate-900 tracking-tighter mb-6">Career Ready</h3>
+                            <p className="text-slate-500 italic text-sm mb-8 leading-relaxed">
+                                "Highly aligned with modern workplace values and professional expectations."
+                            </p>
+                            <div className="w-full">
+                                <div className="flex justify-between items-center mb-3">
+                                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Alignment Score</span>
+                                    <span className="text-2xl font-black text-primary-600 tracking-tighter">96%</span>
                                 </div>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Performance Trends */}
-                    <div className="bg-white rounded-[40px] p-10 border border-slate-100 shadow-sm">
-                        <div className="flex justify-between items-center mb-8">
-                            <h3 className="text-xl font-black text-slate-900 tracking-tight">Performance Trends</h3>
-                            <Clock className="w-5 h-5 text-slate-300" />
-                        </div>
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="bg-slate-950 p-6 rounded-[24px] text-white">
-                                <CheckCircle2 className="w-6 h-6 mb-4 text-white/50" />
-                                <h4 className="text-3xl font-black tracking-tighter">45</h4>
-                                <p className="text-[9px] font-bold uppercase tracking-widest text-white/50 mt-1">Excellent</p>
+                                <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
+                                    <div className="h-full bg-primary-600 rounded-full" style={{ width: '96%' }}></div>
+                                </div>
                             </div>
-                            <div className="bg-slate-100 p-6 rounded-[24px]">
-                                <TrendingUp className="w-6 h-6 mb-4 text-slate-400" />
-                                <h4 className="text-3xl font-black text-slate-900 tracking-tighter">78</h4>
-                                <p className="text-[9px] font-bold uppercase tracking-widest text-slate-400 mt-1">Good</p>
-                            </div>
-                            <div className="bg-slate-50 p-6 rounded-[24px]">
-                                <Activity className="w-6 h-6 mb-4 text-slate-400" />
-                                <h4 className="text-3xl font-black text-slate-900 tracking-tighter">32</h4>
-                                <p className="text-[9px] font-bold uppercase tracking-widest text-slate-400 mt-1">Average</p>
-                            </div>
-                            <div className="bg-red-50 p-6 rounded-[24px]">
-                                <AlertCircle className="w-6 h-6 mb-4 text-primary-500" />
-                                <h4 className="text-3xl font-black text-primary-600 tracking-tighter">18</h4>
-                                <p className="text-[9px] font-bold uppercase tracking-widest text-primary-400 mt-1">Needs Focus</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Bottom Stats */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="bg-white p-6 rounded-[32px] border border-slate-100 shadow-sm flex items-center gap-6">
-                        <div className="bg-slate-950 p-4 rounded-2xl text-white">
-                            <BookOpen className="w-6 h-6" />
-                        </div>
-                        <div>
-                            <h4 className="text-3xl font-black text-slate-900 tracking-tighter">1,240</h4>
-                            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Assessments Taken</p>
-                        </div>
-                    </div>
-                    
-                    <div className="bg-white p-6 rounded-[32px] border border-slate-100 shadow-sm flex items-center gap-6">
-                        <div className="bg-red-50 p-4 rounded-2xl text-primary-600">
-                            <Award className="w-6 h-6" />
-                        </div>
-                        <div>
-                            <h4 className="text-3xl font-black text-slate-900 tracking-tighter">892</h4>
-                            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Certifications</p>
-                        </div>
-                    </div>
-
-                    <div className="bg-white p-6 rounded-[32px] border border-slate-100 shadow-sm flex items-center gap-6">
-                        <div className="bg-slate-100 p-4 rounded-2xl text-slate-600">
-                            <Clock className="w-6 h-6" />
-                        </div>
-                        <div>
-                            <h4 className="text-3xl font-black text-slate-900 tracking-tighter">3,456</h4>
-                            <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400">Study Hours</p>
                         </div>
                     </div>
                 </div>

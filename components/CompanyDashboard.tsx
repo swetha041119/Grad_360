@@ -418,86 +418,154 @@ const CompanyDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
           {/* Candidate Profile Modal */}
           {selectedCandidate && (
               <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-md">
-                  <div className="bg-white rounded-[40px] max-w-3xl w-full shadow-2xl max-h-[90vh] flex flex-col overflow-hidden">
-                      <div className="flex justify-between items-start p-10 pb-6">
-                          <div className="flex items-center gap-6">
-                              <img src={selectedCandidate.avatar} className="w-24 h-24 rounded-[28px] border-4 border-slate-50 object-cover shadow-sm" alt={selectedCandidate.name} />
+                  <div className="bg-white rounded-[40px] max-w-6xl w-full shadow-2xl flex flex-col overflow-hidden">
+                      <div className="flex justify-between items-start p-8 pb-4">
+                          <div className="flex items-center gap-4">
+                              <img src={selectedCandidate.avatar} className="w-20 h-20 rounded-[24px] border-4 border-slate-50 object-cover shadow-sm" alt={selectedCandidate.name} />
                               <div>
-                                  <h3 className="text-3xl font-black text-slate-900 tracking-tight">{selectedCandidate.name}</h3>
-                                  <p className="text-primary-600 font-black uppercase tracking-[0.3em] text-[10px] mt-2">{selectedCandidate.targetRole}</p>
+                                  <h3 className="text-2xl font-black text-slate-900 tracking-tight">{selectedCandidate.name}</h3>
+                                  <p className="text-primary-600 font-black uppercase tracking-[0.3em] text-[9px] mt-1">{selectedCandidate.targetRole}</p>
                               </div>
                           </div>
-                          <button onClick={() => setSelectedCandidate(null)} className="p-2 text-gray-300 hover:text-gray-500 transition-colors"><X className="w-7 h-7" /></button>
+                          <button onClick={() => setSelectedCandidate(null)} className="p-2 text-gray-300 hover:text-gray-500 transition-colors"><X className="w-6 h-6" /></button>
                       </div>
 
-                      <div className="px-10 pb-10 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent hover:scrollbar-thumb-gray-400">
-                      {/* Readiness Spectrum */}
-                      <div className="bg-gradient-to-br from-gray-50 to-white rounded-[28px] p-6 mb-6">
-                          <div className="flex items-center gap-2 mb-4">
+                      <div className="px-8 pb-8">
+                      
+                      {/* Skill Analysis Spectrum Section */}
+                      <div className="bg-white rounded-[28px] p-6 mb-4 border border-slate-100">
+                          <div className="flex items-center gap-2 mb-1">
                               <TrendingUp className="w-4 h-4 text-primary-600" />
-                              <h4 className="text-lg font-black text-slate-900 tracking-tight">Readiness Spectrum</h4>
+                              <h4 className="text-lg font-black text-slate-900 tracking-tighter">Skill Analysis Spectrum</h4>
                           </div>
-                          <div className="relative w-full max-w-xs mx-auto" style={{ aspectRatio: '1' }}>
-                              <svg viewBox="0 0 400 400" className="w-full h-full">
-                                  {/* Pentagon grid levels */}
-                                  {[1, 0.75, 0.5, 0.25].map((scale, idx) => {
-                                      const points = [
-                                          [200, 60], [330, 155], [290, 320], [110, 320], [70, 155]
-                                      ].map(([x, y]) => {
-                                          const dx = x - 200;
-                                          const dy = y - 200;
-                                          return [200 + dx * scale, 200 + dy * scale];
-                                      });
-                                      return (
+                          <p className="text-slate-400 text-[9px] uppercase tracking-[0.2em] font-bold mb-5">Comprehensive Readiness Breakdown</p>
+
+                          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+                              {/* Radar Chart */}
+                              <div className="lg:col-span-1 flex items-center justify-center">
+                                  <div className="relative w-full max-w-[220px] aspect-square">
+                                      <svg viewBox="0 0 400 400" className="w-full h-full">
+                                          {/* Hexagon grid levels */}
+                                          {[1, 0.75, 0.5, 0.25].map((scale, idx) => {
+                                              const angles = [0, 60, 120, 180, 240, 300].map(a => (a * Math.PI) / 180);
+                                              const radius = 140;
+                                              const points = angles.map(angle => [
+                                                  200 + radius * scale * Math.sin(angle),
+                                                  200 - radius * scale * Math.cos(angle)
+                                              ]);
+                                              return (
+                                                  <polygon
+                                                      key={idx}
+                                                      points={points.map(p => p.join(',')).join(' ')}
+                                                      fill="none"
+                                                      stroke="#e2e8f0"
+                                                      strokeWidth="1.5"
+                                                  />
+                                              );
+                                          })}
+                                          
+                                          {/* Axes from center */}
+                                          {[0, 60, 120, 180, 240, 300].map((angle, idx) => {
+                                              const rad = (angle * Math.PI) / 180;
+                                              const radius = 140;
+                                              return (
+                                                  <line 
+                                                      key={idx} 
+                                                      x1="200" 
+                                                      y1="200" 
+                                                      x2={200 + radius * Math.sin(rad)} 
+                                                      y2={200 - radius * Math.cos(rad)} 
+                                                      stroke="#e2e8f0" 
+                                                      strokeWidth="1.5"
+                                                  />
+                                              );
+                                          })}
+                                          
+                                          {/* Data hexagon */}
                                           <polygon
-                                              key={idx}
-                                              points={points.map(p => p.join(',')).join(' ')}
-                                              fill="none"
-                                              stroke="#e5e7eb"
-                                              strokeWidth="1.5"
+                                              points={[
+                                                  { angle: 0, value: selectedCandidate.skills.aptitude },
+                                                  { angle: 60, value: selectedCandidate.skills.coding },
+                                                  { angle: 120, value: selectedCandidate.skills.communication },
+                                                  { angle: 180, value: selectedCandidate.skills.domain },
+                                                  { angle: 240, value: selectedCandidate.skills.project },
+                                                  { angle: 300, value: selectedCandidate.skills.technical }
+                                              ].map(({ angle, value }) => {
+                                                  const rad = (angle * Math.PI) / 180;
+                                                  const radius = 140 * (value / 100);
+                                                  return `${200 + radius * Math.sin(rad)},${200 - radius * Math.cos(rad)}`;
+                                              }).join(' ')}
+                                              fill="rgba(220, 38, 38, 0.1)"
+                                              stroke="#dc2626"
+                                              strokeWidth="3"
+                                              strokeLinejoin="round"
                                           />
-                                      );
-                                  })}
+                                          
+                                          {/* Labels */}
+                                          <text x="200" y="45" textAnchor="middle" className="fill-gray-600 text-xs font-semibold">Aptitude</text>
+                                          <text x="320" y="125" textAnchor="start" className="fill-gray-600 text-xs font-semibold">Coding</text>
+                                          <text x="320" y="280" textAnchor="start" className="fill-gray-600 text-xs font-semibold">Communication</text>
+                                          <text x="200" y="360" textAnchor="middle" className="fill-gray-600 text-xs font-semibold">Domain</text>
+                                          <text x="80" y="280" textAnchor="end" className="fill-gray-600 text-xs font-semibold">Projects</text>
+                                          <text x="80" y="125" textAnchor="end" className="fill-gray-600 text-xs font-semibold">Technical</text>
+                                      </svg>
+                                  </div>
+                              </div>
+
+                              {/* Mastery Indicators */}
+                              <div className="lg:col-span-1 space-y-2">
+                                  <div className="flex items-center gap-2 mb-2">
+                                      <div className="w-2 h-2 rounded-full bg-primary-600"></div>
+                                      <p className="text-slate-400 text-[9px] uppercase tracking-[0.2em] font-black">Current Score</p>
+                                  </div>
+                                  <p className="text-slate-300 text-[9px] uppercase tracking-[0.2em] font-black mb-2">Mastery Indicators</p>
                                   
-                                  {/* Axes from center */}
-                                  {[
-                                      [200, 200, 200, 60],
-                                      [200, 200, 330, 155],
-                                      [200, 200, 290, 320],
-                                      [200, 200, 110, 320],
-                                      [200, 200, 70, 155]
-                                  ].map((line, idx) => (
-                                      <line key={idx} x1={line[0]} y1={line[1]} x2={line[2]} y2={line[3]} stroke="#e5e7eb" strokeWidth="1.5"/>
-                                  ))}
-                                  
-                                  {/* Data polygon */}
-                                  <polygon
-                                      points={[
-                                          [200, 60 + (140 * (1 - selectedCandidate.skills.aptitude / 100))],
-                                          [200 + (130 * selectedCandidate.skills.coding / 100), 155],
-                                          [200 + (90 * selectedCandidate.skills.communication / 100), 320],
-                                          [110 + (90 * 0.72), 320],
-                                          [70 + (130 * 0.68), 155]
-                                      ].map(p => p.join(',')).join(' ')}
-                                      fill="rgba(220, 38, 38, 0.08)"
-                                      stroke="#dc2626"
-                                      strokeWidth="3"
-                                      strokeLinejoin="round"
-                                  />
-                                  
-                                  {/* Labels */}
-                                  <text x="200" y="45" textAnchor="middle" className="fill-gray-600 text-sm font-semibold">Aptitude</text>
-                                  <text x="350" y="160" textAnchor="start" className="fill-gray-600 text-sm font-semibold">Coding</text>
-                                  <text x="305" y="345" textAnchor="middle" className="fill-gray-600 text-sm font-semibold">Communication</text>
-                                  <text x="95" y="345" textAnchor="middle" className="fill-gray-600 text-sm font-semibold">Projects</text>
-                                  <text x="50" y="160" textAnchor="end" className="fill-gray-600 text-sm font-semibold">Technical</text>
-                              </svg>
+                                  <div className="space-y-2">
+                                      {[
+                                          { label: 'APTITUDE', sublabel: 'Mastery Level', value: selectedCandidate.skills.aptitude },
+                                          { label: 'CODING', sublabel: 'Mastery Level', value: selectedCandidate.skills.coding },
+                                          { label: 'COMMUNICATION', sublabel: 'Mastery Level', value: selectedCandidate.skills.communication },
+                                          { label: 'DOMAIN', sublabel: 'Mastery Level', value: selectedCandidate.skills.domain },
+                                          { label: 'PROJECTS', sublabel: 'Mastery Level', value: selectedCandidate.skills.project },
+                                          { label: 'TECHNICAL', sublabel: 'Mastery Level', value: selectedCandidate.skills.technical },
+                                      ].map((skill) => (
+                                          <div key={skill.label} className="flex items-center justify-between py-1.5 border-l-2 border-slate-100 pl-2 hover:border-primary-600 transition-all">
+                                              <div>
+                                                  <p className="text-[10px] font-black text-slate-900 tracking-tight">{skill.label}</p>
+                                                  <p className="text-[7px] text-slate-400 uppercase tracking-widest font-bold">{skill.sublabel}</p>
+                                              </div>
+                                              <span className="text-lg font-black text-slate-900 tracking-tighter">{skill.value}%</span>
+                                          </div>
+                                      ))}
+                                  </div>
+                              </div>
+
+                              {/* Career Ready Card */}
+                              <div className="lg:col-span-1 bg-slate-50 rounded-[28px] p-6 flex flex-col items-center text-center">
+                                  <div className="bg-slate-900 p-4 rounded-[20px] mb-3">
+                                      <UserIcon className="w-7 h-7 text-white" />
+                                  </div>
+                                  <p className="text-slate-400 text-[8px] uppercase tracking-[0.2em] font-black mb-1">Behavioral Profile</p>
+                                  <h3 className="text-2xl font-black text-slate-900 tracking-tighter mb-3">Career Ready</h3>
+                                  <p className="text-slate-500 italic text-[10px] mb-4 leading-relaxed">
+                                      "Highly aligned with modern workplace values and professional expectations."
+                                  </p>
+                                  <div className="w-full">
+                                      <div className="flex justify-between items-center mb-1.5">
+                                          <span className="text-[8px] font-black text-slate-400 uppercase tracking-widest">Alignment Score</span>
+                                          <span className="text-lg font-black text-primary-600 tracking-tighter">96%</span>
+                                      </div>
+                                      <div className="h-1.5 bg-slate-200 rounded-full overflow-hidden">
+                                          <div className="h-full bg-primary-600 rounded-full" style={{ width: '96%' }}></div>
+                                      </div>
+                                  </div>
+                              </div>
                           </div>
                       </div>
 
                       <div className="flex gap-3">
                           <button onClick={() => { setSendTarget({...sendTarget, studentId: selectedCandidate.id}); setIsSendAssessmentModalOpen(true); }} className="flex-1 py-3.5 bg-primary-600 text-white rounded-[20px] font-black uppercase text-xs tracking-[0.2em] shadow-lg hover:bg-primary-700 transition-all">Send Assessment</button>
-                          <button onClick={() => { setNewInterview({...newInterview, studentId: selectedCandidate.id}); setIsInterviewModalOpen(true); }} className="flex-1 py-3.5 bg-slate-900 text-white rounded-[20px] font-black uppercase text-xs tracking-[0.2em] shadow-lg hover:bg-black transition-all">Schedule Prep</button>
+                          <button onClick={() => { setNewInterview({...newInterview, studentId: selectedCandidate.id}); setIsInterviewModalOpen(true); }} className="flex-1 py-3.5 bg-slate-900 text-white rounded-[20px] font-black uppercase text-xs tracking-[0.2em] shadow-lg hover:bg-black transition-all">Schedule Interview</button>
                           <button className="px-5 py-3.5 bg-white border-2 border-slate-200 text-slate-700 rounded-[20px] font-black uppercase text-xs tracking-[0.2em] hover:bg-slate-50 transition-all flex items-center gap-2">
                               <Download className="w-4 h-4" /> Resume
                           </button>

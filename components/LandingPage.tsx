@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { GraduationCap, ArrowRight, Users, Building2, Briefcase, CheckCircle2, TrendingUp, Code2, BrainCircuit, Rocket, LayoutDashboard, ChevronRight, Menu, X, Award, Star } from 'lucide-react';
+import loginImage from '../login img.jpeg';
 
 interface LandingPageProps {
   onLoginClick: () => void;
@@ -91,7 +92,7 @@ A structured placement readiness system that verifies skills, evaluates behavior
               <div className="relative z-10 w-full max-w-lg">
                 <div className="relative rounded-[64px] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.2)] overflow-hidden border-[16px] border-white transform rotate-3 hover:rotate-0 transition-all duration-1000">
                   <img
-                    src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                    src={loginImage}
                     alt="Collaborative Success"
                     className="w-full h-auto object-cover"
                   />

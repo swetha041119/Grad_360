@@ -49,7 +49,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, isLoading, onBack }) => {
             <div className="grid grid-cols-3 gap-3 mb-10">
                 {[
                     { id: 'STUDENT', label: 'Student', icon: Users },
-                    { id: 'FACULTY', label: 'Faculty', icon: GraduationCap },
+                    { id: 'FACULTY', label: 'Institution', icon: GraduationCap },
                     { id: 'COMPANY', label: 'Recruiter', icon: Briefcase },
                 ].map((role) => (
                     <button 

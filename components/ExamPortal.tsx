@@ -750,7 +750,7 @@ const ExamPortal: React.FC<Props> = ({ assessment, onClose }) => {
                         </h1>
                         <div className="bg-white/5 border border-white/10 p-6 rounded-[40px] text-left mb-8 shadow-2xl backdrop-blur-xl">
                             <h4 className="text-[9px] font-black text-primary-400 uppercase tracking-[0.4em] mb-4 flex items-center gap-2"><ClipboardList className="w-4 h-4" /> Operational Guidelines</h4>
-                            <div className="space-y-3">{activePhase.guidelines.map((line, i) => (<div key={i} className="flex items-start gap-4"><CheckCircle2 className="w-5 h-5 text-primary-500 shrink-0 mt-0.5" /><p className="text-gray-300 text-sm font-medium leading-relaxed italic">"{line}"</p></div>))}</div>
+                            <div className="space-y-3">{activePhase.guidelines.map((line, i) => (<div key={i} className="flex items-start gap-4"><CheckCircle2 className="w-5 h-5 text-primary-500 shrink-0 mt-0.5" /><p className="text-gray-300 text-sm font-medium leading-relaxed italic">{line}</p></div>))}</div>
                         </div>
                         <button onClick={() => setStatus('ACTIVE')} className="px-16 py-5 bg-white text-slate-950 rounded-[32px] font-black text-xs uppercase tracking-[0.4em] shadow-2xl hover:bg-primary-600 hover:text-white transition-all active:scale-95">Continue</button>
                     </div>

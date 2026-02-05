@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Faculty, Student, Assessment, Announcement } from '../types';
 import { getFacultyDashboardData, createAssessment } from '../services/mockData';
 import { 
@@ -27,6 +28,21 @@ const FacultyDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
   const [newAssessment, setNewAssessment] = useState({ title: '', type: 'APTITUDE', questions: 20, durationMins: 45, batch: 'All Batches', difficulty: 'Medium' });
   const [showTopCandidates, setShowTopCandidates] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState<Student | null>(null);
+  const [clickedVertex, setClickedVertex] = useState<string | null>(null);
+  const [isModalAnimating, setIsModalAnimating] = useState(false);
+
+  // Handle modal open with animation
+  const openStudentModal = (student: Student) => {
+    setIsModalAnimating(true);
+    setSelectedStudent(student);
+    setClickedVertex(null);
+  };
+
+  // Handle modal close
+  const closeStudentModal = () => {
+    setIsModalAnimating(false);
+    setTimeout(() => setSelectedStudent(null), 300);
+  };
 
   useEffect(() => {
     getFacultyDashboardData().then(setData);
@@ -51,7 +67,7 @@ const FacultyDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
     <div className="space-y-6 animate-fadeIn">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
-                <h1 className="text-4xl font-black text-gray-900 tracking-tighter">Faculty Institution</h1>
+                <h1 className="text-4xl font-black text-gray-900 tracking-tighter">Institution</h1>
             </div>
             <div className="flex gap-3">
                 <button className="bg-slate-900 text-white px-6 py-3 rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg hover:bg-slate-800 transition-all">New Session</button>
@@ -389,7 +405,7 @@ const FacultyDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
                                 </div>
                             </td>
                             <td className="px-5 py-4">
-                                <button onClick={() => setSelectedStudent(s)} className="text-primary-600 font-black text-xs uppercase tracking-wider hover:underline flex items-center gap-1.5">
+                                <button onClick={() => openStudentModal(s)} className="text-primary-600 font-black text-xs uppercase tracking-wider hover:underline flex items-center gap-1.5">
                                     View Full Profiles <ChevronRight className="w-3.5 h-3.5" />
                                 </button>
                             </td>
@@ -774,143 +790,294 @@ const FacultyDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
     </div>
   );
 
-    return (
-      <>
-        <div className="space-y-8 animate-fadeIn">
-            {activeTab === 'dashboard' && renderDashboard()}
-            {activeTab === 'assessments' && renderAssessments()}
-            {activeTab === 'students' && renderStudents()}
-            {activeTab === 'jobs' && renderJobsShortlist()}
-            {activeTab === 'intelligence' && renderVisualIntelligence()}
-        </div>
+  return (
+      <div className="space-y-8 animate-fadeIn">
+          {activeTab === 'dashboard' && renderDashboard()}
+          {activeTab === 'assessments' && renderAssessments()}
+          {activeTab === 'students' && renderStudents()}
+          {activeTab === 'jobs' && renderJobsShortlist()}
+          {activeTab === 'intelligence' && renderVisualIntelligence()}
 
-        {selectedStudent && (
-          <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4 backdrop-blur-md animate-fadeIn">
-              <div className="bg-white rounded-[32px] p-6 max-w-4xl w-full shadow-2xl relative">
-                  <button 
-                      onClick={() => setSelectedStudent(null)}
-                      className="absolute top-6 right-6 text-gray-400 hover:text-gray-600 transition-colors"
-                  >
-                      <X className="w-6 h-6" />
-                  </button>
+          {activeTab === 'students' && selectedStudent && createPortal(
+            <div className="fixed top-0 left-0 right-0 bottom-0 bg-black/60 z-[100] flex items-center justify-center p-4 backdrop-blur-md animate-fadeIn" style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh' }}>
+                <style>{`
+                  @keyframes flowerBloom {
+                    0% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+                    50% { transform: scale(1.05) rotate(2deg); opacity: 1; }
+                    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+                  }
+                  @keyframes flowerClose {
+                    0% { transform: scale(1) rotate(0deg); opacity: 1; }
+                    100% { transform: scale(0.3) rotate(-10deg); opacity: 0; }
+                  }
+                  .flower-bloom { animation: flowerBloom 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+                  .flower-close { animation: flowerClose 0.3s ease-in forwards; }
+                  .spectrum-vertex { cursor: pointer; }
+                `}</style>
+                <div className={`bg-white rounded-[32px] max-w-4xl w-full shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto ${isModalAnimating ? 'flower-bloom' : 'flower-close'}`}>
+                    {/* Header */}
+                    <div className="flex justify-between items-center p-6 pb-4 border-b border-slate-100">
+                        <div className="flex items-center gap-4">
+                            <img src={selectedStudent.avatar} alt={selectedStudent.name} className="w-14 h-14 rounded-2xl border-2 border-slate-50 object-cover shadow-sm" />
+                            <div>
+                                <h3 className="text-xl font-black text-gray-900 tracking-tight">{selectedStudent.name}</h3>
+                                <p className="text-primary-600 font-black uppercase tracking-[0.2em] text-[9px] mt-0.5">Full Stack Developer</p>
+                            </div>
+                        </div>
+                        <button onClick={closeStudentModal} className="p-2 text-gray-400 hover:text-gray-600 hover:bg-slate-100 rounded-xl transition-all">
+                            <X className="w-5 h-5" />
+                        </button>
+                    </div>
 
-                  <div className="flex items-center gap-4 mb-5">
-                      <img src={selectedStudent.avatar} alt={selectedStudent.name} className="w-16 h-16 rounded-2xl object-cover shadow-lg" />
-                      <div>
-                          <h3 className="text-2xl font-black text-gray-900 tracking-tighter">{selectedStudent.name}</h3>
-                          <p className="text-red-500 font-bold text-[10px] uppercase tracking-[0.2em] mt-1">Full Stack Developer</p>
-                      </div>
-                  </div>
+                    <div className="p-6">
+                        {/* Two Column Layout: Radar Chart + Resume */}
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+                            {/* Radar Chart Section - Interactive SVG */}
+                            <div className="bg-slate-50/80 rounded-[20px] p-4">
+                                <div className="flex items-center gap-2 mb-3">
+                                    <TrendingUp className="w-4 h-4 text-primary-600" />
+                                    <h4 className="text-sm font-black text-slate-900 tracking-tight">Readiness Spectrum</h4>
+                                    <span className="text-[8px] text-gray-400 ml-auto">(Click vertices to view %)</span>
+                                </div>
+                                <div className="flex items-center justify-center h-48">
+                                    <div className="relative w-full max-w-[200px] aspect-square">
+                                        <svg viewBox="0 0 400 400" className="w-full h-full">
+                                            {[1, 0.75, 0.5, 0.25].map((scale, idx) => {
+                                                const angles = [0, 60, 120, 180, 240, 300].map(a => (a * Math.PI) / 180);
+                                                const radius = 140;
+                                                const points = angles.map(angle => [
+                                                    200 + radius * scale * Math.sin(angle),
+                                                    200 - radius * scale * Math.cos(angle)
+                                                ]);
+                                                return (
+                                                    <polygon key={idx} points={points.map(p => p.join(',')).join(' ')} fill="none" stroke="#e2e8f0" strokeWidth="1.5" />
+                                                );
+                                            })}
+                                            {[0, 60, 120, 180, 240, 300].map((angle, idx) => {
+                                                const rad = (angle * Math.PI) / 180;
+                                                return <line key={idx} x1="200" y1="200" x2={200 + 140 * Math.sin(rad)} y2={200 - 140 * Math.cos(rad)} stroke="#e2e8f0" strokeWidth="1.5" />;
+                                            })}
+                                            <polygon
+                                                points={[
+                                                    { angle: 0, value: selectedStudent.skills.aptitude },
+                                                    { angle: 60, value: selectedStudent.skills.technical || 75 },
+                                                    { angle: 120, value: selectedStudent.skills.coding },
+                                                    { angle: 180, value: selectedStudent.skills.communication },
+                                                    { angle: 240, value: selectedStudent.skills.project || 80 },
+                                                    { angle: 300, value: selectedStudent.skills.domain || 85 }
+                                                ].map(({ angle, value }) => {
+                                                    const rad = (angle * Math.PI) / 180;
+                                                    const r = 140 * (value / 100);
+                                                    return `${200 + r * Math.sin(rad)},${200 - r * Math.cos(rad)}`;
+                                                }).join(' ')}
+                                                fill="rgba(220, 38, 38, 0.15)" stroke="#dc2626" strokeWidth="2.5" strokeLinejoin="round"
+                                            />
+                                            {/* Clickable Vertex Points with Percentages */}
+                                            {[
+                                                { angle: 0, value: selectedStudent.skills.aptitude, label: 'Aptitude', labelX: 200, labelY: 50 },
+                                                { angle: 60, value: selectedStudent.skills.technical || 75, label: 'Technical', labelX: 315, labelY: 130 },
+                                                { angle: 120, value: selectedStudent.skills.coding, label: 'Coding', labelX: 315, labelY: 275 },
+                                                { angle: 180, value: selectedStudent.skills.communication, label: 'Comm', labelX: 200, labelY: 355 },
+                                                { angle: 240, value: selectedStudent.skills.project || 80, label: 'Projects', labelX: 85, labelY: 275 },
+                                                { angle: 300, value: selectedStudent.skills.domain || 85, label: 'Domain', labelX: 85, labelY: 130 }
+                                            ].map(({ angle, value, label, labelX, labelY }) => {
+                                                const rad = (angle * Math.PI) / 180;
+                                                const r = 140 * (value / 100);
+                                                const x = 200 + r * Math.sin(rad);
+                                                const y = 200 - r * Math.cos(rad);
+                                                const isClicked = clickedVertex === label;
+                                                return (
+                                                    <g key={label}>
+                                                        {/* Label */}
+                                                        <text 
+                                                            x={labelX} 
+                                                            y={labelY} 
+                                                            textAnchor={labelX < 200 ? 'end' : labelX > 200 ? 'start' : 'middle'} 
+                                                            className="fill-gray-500 text-[11px] font-bold cursor-pointer hover:fill-primary-600"
+                                                            onClick={() => setClickedVertex(isClicked ? null : label)}
+                                                        >
+                                                            {label}
+                                                        </text>
+                                                        {/* Clickable Vertex Circle */}
+                                                        <circle
+                                                            cx={x}
+                                                            cy={y}
+                                                            r={isClicked ? 12 : 8}
+                                                            fill={isClicked ? '#dc2626' : '#fef2f2'}
+                                                            stroke="#dc2626"
+                                                            strokeWidth="2"
+                                                            className="spectrum-vertex"
+                                                            onClick={() => setClickedVertex(isClicked ? null : label)}
+                                                        />
+                                                        {/* Percentage Tooltip on Click */}
+                                                        {isClicked && (
+                                                            <g>
+                                                                <rect 
+                                                                    x={x - 25} 
+                                                                    y={y - 35} 
+                                                                    width="50" 
+                                                                    height="24" 
+                                                                    rx="8" 
+                                                                    fill="#1e293b" 
+                                                                />
+                                                                <polygon 
+                                                                    points={`${x - 6},${y - 11} ${x + 6},${y - 11} ${x},${y - 5}`} 
+                                                                    fill="#1e293b" 
+                                                                />
+                                                                <text 
+                                                                    x={x} 
+                                                                    y={y - 18} 
+                                                                    textAnchor="middle" 
+                                                                    className="fill-white text-[13px] font-black"
+                                                                >
+                                                                    {value}%
+                                                                </text>
+                                                            </g>
+                                                        )}
+                                                    </g>
+                                                );
+                                            })}
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
 
-                  <div className="bg-slate-50/50 rounded-[28px] p-6 mb-5 border border-slate-100">
-                      <div className="flex items-center gap-2 mb-2">
-                           <TrendingUp className="w-4 h-4 text-red-500" />
-                           <h4 className="font-black text-gray-900 text-base tracking-tight">Readiness Spectrum</h4>
-                      </div>
-                      
-                      <div className="flex flex-col xl:flex-row items-center gap-6">
-                          <div className="flex-1 w-full h-52 flex items-center justify-center -ml-4">
-                              <ResponsiveContainer width="100%" height="100%">
-                                      <RadarChart cx="50%" cy="50%" outerRadius="70%" data={[
-                                          { subject: 'Aptitude', A: selectedStudent.skills.aptitude, fullMark: 100 },
-                                          { subject: 'Technical', A: selectedStudent.skills.technical || 75, fullMark: 100 }, 
-                                          { subject: 'Coding', A: selectedStudent.skills.coding, fullMark: 100 },
-                                          { subject: 'Communication', A: selectedStudent.skills.communication, fullMark: 100 },
-                                          { subject: 'Projects', A: selectedStudent.skills.project || 80, fullMark: 100 },
-                                          { subject: 'Domain', A: selectedStudent.skills.domain || 85, fullMark: 100 },
-                                          { subject: 'Psychometric', A: selectedStudent.skills.psychometric || 88, fullMark: 100 },
-                                      ]}>
-                                      <PolarGrid stroke="#e2e8f0" />
-                                      <PolarAngleAxis dataKey="subject" tick={{ fill: '#64748b', fontSize: 10, fontWeight: 'bold' }} />
-                                      <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
-                                      <Radar
-                                          name="Student"
-                                          dataKey="A"
-                                          stroke="#dc2626"
-                                          strokeWidth={2}
-                                          fill="#fef2f2"
-                                          fillOpacity={0.6}
-                                      />
-                                  </RadarChart>
-                              </ResponsiveContainer>
-                          </div>
+                            {/* Resume Document Preview */}
+                            <div className="bg-white rounded-[20px] border-2 border-slate-200 shadow-sm overflow-hidden">
+                                <div className="bg-slate-800 px-4 py-2.5 flex items-center justify-between">
+                                    <div className="flex items-center gap-2">
+                                        <FileText className="w-4 h-4 text-white/80" />
+                                        <span className="text-[10px] font-bold text-white/90 uppercase tracking-wider">{selectedStudent.name.split(' ')[0]}_Resume.pdf</span>
+                                    </div>
+                                    <button className="text-[9px] font-bold text-primary-400 uppercase tracking-wider hover:text-primary-300 flex items-center gap-1">
+                                        <Eye className="w-3 h-3" /> Open
+                                    </button>
+                                </div>
+                                <div className="p-4 bg-white space-y-3">
+                                    {/* Resume Header */}
+                                    <div className="flex items-start gap-3 pb-3 border-b border-slate-100">
+                                        <img src={selectedStudent.avatar} className="w-12 h-12 rounded-lg object-cover border border-slate-200" alt="" />
+                                        <div className="flex-1">
+                                            <h5 className="text-base font-black text-slate-900">{selectedStudent.name}</h5>
+                                            <p className="text-[10px] text-primary-600 font-bold">{selectedStudent.department}</p>
+                                            <p className="text-[9px] text-slate-400 mt-0.5">📧 {selectedStudent.name.toLowerCase().replace(' ', '.')}@email.com</p>
+                                        </div>
+                                    </div>
+                                    {/* Resume Sections */}
+                                    <div>
+                                        <p className="text-[9px] font-black text-slate-900 uppercase tracking-wider mb-1 flex items-center gap-1">🎓 Education</p>
+                                        <p className="text-[10px] text-slate-600 font-medium pl-4">{selectedStudent.department}</p>
+                                        <p className="text-[9px] text-slate-400 pl-4">CGPA: 8.5 | 2022 - 2026</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-[9px] font-black text-slate-900 uppercase tracking-wider mb-1 flex items-center gap-1">💼 Experience</p>
+                                        <p className="text-[10px] text-slate-600 font-medium pl-4">Software Engineering Intern - TechCorp</p>
+                                        <p className="text-[9px] text-slate-400 pl-4">Built REST APIs, React dashboards | 6 months</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-[9px] font-black text-slate-900 uppercase tracking-wider mb-1 flex items-center gap-1">⚡ Skills</p>
+                                        <div className="flex flex-wrap gap-1 pl-4">
+                                            {['React', 'Node.js', 'Python', 'TypeScript', 'MongoDB', 'AWS'].map((s) => (
+                                                <span key={s} className="px-1.5 py-0.5 bg-slate-100 text-slate-600 text-[8px] font-bold rounded">{s}</span>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                          <div className="flex-1 w-full space-y-2">
-                              <p className="text-[9px] font-black text-gray-300 uppercase tracking-[0.2em] mb-2">Mastery Indicators</p>
-                              {[
-                                  { skill: 'Aptitude', value: selectedStudent.skills.aptitude },
-                                  { skill: 'Coding', value: selectedStudent.skills.coding },
-                                  { skill: 'Communication', value: selectedStudent.skills.communication },
-                                  { skill: 'Domain', value: selectedStudent.skills.domain || 88 },
-                                  { skill: 'Projects', value: selectedStudent.skills.project || 80 },
-                                  { skill: 'Technical', value: selectedStudent.skills.technical || 82 },
-                                  { skill: 'Psychometric', value: selectedStudent.skills.psychometric || 88 },
-                              ].map((item) => (
-                                  <div key={item.skill} className="flex items-center justify-between p-2.5 bg-white rounded-xl shadow-sm border border-gray-100/50 hover:border-gray-200 transition-all group">
-                                      <div className="flex items-center gap-3">
-                                          <div className="w-1 h-6 bg-gray-100 rounded-full group-hover:bg-red-500 transition-colors" />
-                                          <div>
-                                              <h4 className="text-[10px] font-black text-gray-900 uppercase tracking-tight">{item.skill}</h4>
-                                              <p className="text-[8px] font-bold text-gray-400 uppercase tracking-wider">Mastery Level</p>
-                                          </div>
-                                      </div>
-                                      <span className="text-lg font-black text-gray-900 tracking-tighter">{item.value}%</span>
-                                  </div>
-                              ))}
-                          </div>
-                      </div>
-                  </div>
+                        {/* Skill Score Cards - 2 Rows of 3 */}
+                        <div className="grid grid-cols-3 gap-2 mb-4">
+                            {[
+                                { label: 'APTITUDE', value: selectedStudent.skills.aptitude, lightBg: 'bg-blue-50', textColor: 'text-blue-600' },
+                                { label: 'CODING', value: selectedStudent.skills.coding, lightBg: 'bg-green-50', textColor: 'text-green-600' },
+                                { label: 'COMMUNICATION', value: selectedStudent.skills.communication, lightBg: 'bg-purple-50', textColor: 'text-purple-600' },
+                                { label: 'DOMAIN', value: selectedStudent.skills.domain || 88, lightBg: 'bg-orange-50', textColor: 'text-orange-600' },
+                                { label: 'PROJECTS', value: selectedStudent.skills.project || 80, lightBg: 'bg-pink-50', textColor: 'text-pink-600' },
+                                { label: 'TECHNICAL', value: selectedStudent.skills.technical || 82, lightBg: 'bg-cyan-50', textColor: 'text-cyan-600' },
+                            ].map((skill) => (
+                                <div key={skill.label} className={`${skill.lightBg} rounded-xl p-3 flex items-center justify-between`}>
+                                    <div>
+                                        <p className={`text-[9px] font-black ${skill.textColor} tracking-tight`}>{skill.label}</p>
+                                        <p className="text-[7px] text-slate-400 uppercase font-bold">Mastery</p>
+                                    </div>
+                                    <span className="text-base font-black text-slate-900">{skill.value}%</span>
+                                </div>
+                            ))}
+                        </div>
 
-                  <div className="flex gap-4">
-                      <button className="flex-1 py-3 bg-red-600 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-red-700 transition-all shadow-lg hover:shadow-xl">
-                          Send Assessment
-                      </button>
-                      <button className="flex-1 py-3 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-slate-800 transition-all shadow-lg">
-                          Schedule Prep
-                      </button>
-                      <button className="px-6 py-3 bg-white text-gray-900 border-2 border-gray-200 rounded-2xl font-black text-xs uppercase tracking-widest hover:bg-gray-50 transition-all flex items-center gap-2">
-                          <Download className="w-4 h-4" /> Resume
-                      </button>
-                  </div>
-              </div>
-          </div>
-        )}
+                        {/* Job Ready Card */}
+                        <div className="bg-slate-900 rounded-2xl p-4 flex items-center justify-between mb-4">
+                            <div className="flex items-center gap-3">
+                                <div className="bg-white/10 p-2.5 rounded-xl">
+                                    <GraduationCap className="w-5 h-5 text-white" />
+                                </div>
+                                <div>
+                                    <p className="text-slate-400 text-[8px] uppercase tracking-[0.15em] font-bold">Behavioral Profile</p>
+                                    <h3 className="text-lg font-black text-white tracking-tight">Job Ready</h3>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <p className="text-slate-500 italic text-[9px] max-w-[150px] hidden md:block">"Highly aligned with modern workplace values."</p>
+                                <div className="text-right">
+                                    <p className="text-[7px] font-bold text-slate-400 uppercase">Alignment</p>
+                                    <p className="text-xl font-black text-primary-400">96%</p>
+                                </div>
+                            </div>
+                        </div>
 
-        {isAssessmentModalOpen && (
-             <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4 backdrop-blur-md">
-                 <div className="bg-white rounded-[40px] p-12 max-w-lg w-full shadow-2xl">
-                     <h3 className="text-3xl font-black text-gray-900 tracking-tighter mb-8">Deploy Test</h3>
-                     <form onSubmit={handleCreateAssessment} className="space-y-6">
-                         <div>
-                             <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Title</label>
-                             <input type="text" value={newAssessment.title} onChange={e => setNewAssessment({...newAssessment, title: e.target.value})} className="w-full p-4 border border-gray-200 rounded-2xl bg-slate-50 font-bold outline-none" required />
-                         </div>
-                         <div className="grid grid-cols-2 gap-6">
-                             <div>
-                                 <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Category</label>
-                                 <select value={newAssessment.type} onChange={e => setNewAssessment({...newAssessment, type: e.target.value})} className="w-full p-4 border border-gray-200 rounded-2xl bg-slate-50 font-bold outline-none">
-                                     <option value="APTITUDE">Aptitude</option>
-                                     <option value="CODING">Coding</option>
-                                     <option value="TECHNICAL">Technical Core</option>
-                                 </select>
-                             </div>
-                             <div>
-                                 <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Level</label>
-                                 <select value={newAssessment.difficulty} onChange={e => setNewAssessment({...newAssessment, difficulty: e.target.value})} className="w-full p-4 border border-gray-200 rounded-2xl bg-slate-50 font-bold outline-none">
-                                     <option>Easy</option>
-                                     <option>Medium</option>
-                                     <option>Hard</option>
-                                 </select>
-                             </div>
-                         </div>
-                         <button type="submit" className="w-full py-5 bg-primary-600 text-white rounded-3xl font-black shadow-2xl hover:bg-primary-700 transition-all text-xs uppercase tracking-widest">Publish Diagnostic</button>
-                         <button type="button" onClick={() => setIsAssessmentModalOpen(false)} className="w-full py-5 bg-slate-100 text-gray-500 rounded-3xl font-black text-xs uppercase tracking-widest mt-2">Cancel</button>
-                     </form>
-                 </div>
-             </div>
-        )}
-      </>
-    );
+                        {/* Action Buttons */}
+                        <div className="flex gap-3">
+                            <button className="flex-1 py-3 bg-primary-600 text-white rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-primary-700 transition-all shadow-lg">
+                                Send Assessment
+                            </button>
+                            <button className="flex-1 py-3 bg-slate-900 text-white rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-slate-800 transition-all shadow-lg">
+                                Schedule Prep
+                            </button>
+                            <button className="px-4 py-3 bg-white text-gray-900 border-2 border-gray-200 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-gray-50 transition-all flex items-center gap-2">
+                                <Download className="w-4 h-4" /> Resume
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>, document.body
+          )}
+
+          {isAssessmentModalOpen && (
+               <div className="fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4 backdrop-blur-md">
+                   <div className="bg-white rounded-[40px] p-12 max-w-lg w-full shadow-2xl">
+                       <h3 className="text-3xl font-black text-gray-900 tracking-tighter mb-8">Deploy Test</h3>
+                       <form onSubmit={handleCreateAssessment} className="space-y-6">
+                           <div>
+                               <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Title</label>
+                               <input type="text" value={newAssessment.title} onChange={e => setNewAssessment({...newAssessment, title: e.target.value})} className="w-full p-4 border border-gray-200 rounded-2xl bg-slate-50 font-bold outline-none" required />
+                           </div>
+                           <div className="grid grid-cols-2 gap-6">
+                               <div>
+                                   <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Category</label>
+                                   <select value={newAssessment.type} onChange={e => setNewAssessment({...newAssessment, type: e.target.value})} className="w-full p-4 border border-gray-200 rounded-2xl bg-slate-50 font-bold outline-none">
+                                       <option value="APTITUDE">Aptitude</option>
+                                       <option value="CODING">Coding</option>
+                                       <option value="TECHNICAL">Technical Core</option>
+                                   </select>
+                               </div>
+                               <div>
+                                   <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Level</label>
+                                   <select value={newAssessment.difficulty} onChange={e => setNewAssessment({...newAssessment, difficulty: e.target.value})} className="w-full p-4 border border-gray-200 rounded-2xl bg-slate-50 font-bold outline-none">
+                                       <option>Easy</option>
+                                       <option>Medium</option>
+                                       <option>Hard</option>
+                                   </select>
+                               </div>
+                           </div>
+                           <button type="submit" className="w-full py-5 bg-primary-600 text-white rounded-3xl font-black shadow-2xl hover:bg-primary-700 transition-all text-xs uppercase tracking-widest">Publish Diagnostic</button>
+                           <button type="button" onClick={() => setIsAssessmentModalOpen(false)} className="w-full py-5 bg-slate-100 text-gray-500 rounded-3xl font-black text-xs uppercase tracking-widest mt-2">Cancel</button>
+                       </form>
+                   </div>
+               </div>
+          )}
+      </div>
+  );
 };
 
 export default FacultyDashboard;

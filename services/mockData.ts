@@ -229,7 +229,49 @@ export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
     options: [{ text: 'Formal and serious', isCorrect: false }, { text: 'Friendly and encouraging', isCorrect: true }, { text: 'Stern and critical', isCorrect: false }, { text: 'Neutral and detached', isCorrect: false }]
   },
 
-  // Reading (5)
+  // Speaking (5) - Moved before Reading for LSRW order
+  {
+    id: 'comm-s1',
+    category: 'COMMUNICATION',
+    lsrwType: 'SPEAKING',
+    subTopic: 'Speaking',
+    difficulty: 'Hard',
+    text: 'Describe your biggest professional achievement and what you learned from it.',
+  },
+  {
+    id: 'comm-s2',
+    category: 'COMMUNICATION',
+    lsrwType: 'SPEAKING',
+    subTopic: 'Speaking',
+    difficulty: 'Medium',
+    text: 'Explain how you handle conflicts or disagreements in a team setting.',
+  },
+  {
+    id: 'comm-s3',
+    category: 'COMMUNICATION',
+    lsrwType: 'SPEAKING',
+    subTopic: 'Speaking',
+    difficulty: 'Easy',
+    text: 'Introduce yourself and talk about your strengths for 60 seconds.',
+  },
+  {
+    id: 'comm-s4',
+    category: 'COMMUNICATION',
+    lsrwType: 'SPEAKING',
+    subTopic: 'Speaking',
+    difficulty: 'Hard',
+    text: 'Present a solution to improve workplace communication in your organization.',
+  },
+  {
+    id: 'comm-s5',
+    category: 'COMMUNICATION',
+    lsrwType: 'SPEAKING',
+    subTopic: 'Speaking',
+    difficulty: 'Medium',
+    text: 'Discuss why continuous learning is important in today\'s workplace.',
+  },
+
+  // Reading (5) - Moved after Speaking for LSRW order
   {
     id: 'comm-r1',
     category: 'COMMUNICATION',
@@ -279,48 +321,6 @@ export const DEMO_COMMUNICATION_QUESTIONS: Question[] = [
     paragraph: 'Goal setting is an important tool for success in any area of life. It helps you focus your efforts, measure your progress, and stay motivated. Clear and achievable goals provide direction and purpose.',
     text: 'What is a benefit of setting goals?',
     options: [{ text: 'Creating confusion', isCorrect: false }, { text: 'Providing direction and focus', isCorrect: true }, { text: 'Avoiding responsibility', isCorrect: false }, { text: 'Limiting opportunities', isCorrect: false }]
-  },
-
-  // Speaking (5)
-  {
-    id: 'comm-s1',
-    category: 'COMMUNICATION',
-    lsrwType: 'SPEAKING',
-    subTopic: 'Speaking',
-    difficulty: 'Hard',
-    text: 'Describe your biggest professional achievement and what you learned from it.',
-  },
-  {
-    id: 'comm-s2',
-    category: 'COMMUNICATION',
-    lsrwType: 'SPEAKING',
-    subTopic: 'Speaking',
-    difficulty: 'Medium',
-    text: 'Explain how you handle conflicts or disagreements in a team setting.',
-  },
-  {
-    id: 'comm-s3',
-    category: 'COMMUNICATION',
-    lsrwType: 'SPEAKING',
-    subTopic: 'Speaking',
-    difficulty: 'Easy',
-    text: 'Introduce yourself and talk about your strengths for 60 seconds.',
-  },
-  {
-    id: 'comm-s4',
-    category: 'COMMUNICATION',
-    lsrwType: 'SPEAKING',
-    subTopic: 'Speaking',
-    difficulty: 'Hard',
-    text: 'Present a solution to improve workplace communication in your organization.',
-  },
-  {
-    id: 'comm-s5',
-    category: 'COMMUNICATION',
-    lsrwType: 'SPEAKING',
-    subTopic: 'Speaking',
-    difficulty: 'Medium',
-    text: 'Discuss why continuous learning is important in today\'s workplace.',
   },
 
   // Writing (5)

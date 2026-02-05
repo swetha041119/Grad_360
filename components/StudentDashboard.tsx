@@ -36,6 +36,11 @@ const StudentDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
     const [activeAptitudeSub, setActiveAptitudeSub] = useState<AptitudeSub>('Quantitative');
     const [quoteIdx] = useState(() => Math.floor(Math.random() * MOTIVATIONAL_QUOTES.length));
 
+    // State for scroll animation - must be before early return to maintain hooks order
+    // Initialize to true to ensure content is visible even if observer doesn't fire
+    const [isSpectrumVisible, setIsSpectrumVisible] = useState(true);
+    const spectrumRef = React.useRef<HTMLDivElement>(null);
+
     useEffect(() => {
         getStudentDashboardData(user.id).then((res) => {
             const foundationalAnalytics = res.analytics.filter((a: any) =>
@@ -44,6 +49,26 @@ const StudentDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
             setData({ ...res, analytics: foundationalAnalytics });
         });
     }, [user.id]);
+
+    // Intersection Observer for flower opening animation - must be before early return
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setIsSpectrumVisible(true);
+                    }
+                });
+            },
+            { threshold: 0.3 }
+        );
+
+        if (spectrumRef.current) {
+            observer.observe(spectrumRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
 
     if (!data) return <div className="p-10 text-center text-primary-600 animate-pulse font-black uppercase tracking-widest">Accessing Portal...</div>;
 
@@ -175,6 +200,23 @@ const StudentDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
         );
     };
 
+    // Custom tooltip for radar chart
+    const CustomRadarTooltip = ({ active, payload }: any) => {
+        if (active && payload && payload.length) {
+            return (
+                <div className="bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-2xl border border-slate-700">
+                    <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">
+                        {payload[0].payload.subject}
+                    </p>
+                    <p className="text-2xl font-black tracking-tighter">
+                        {payload[0].value}<span className="text-primary-500 text-sm ml-1">%</span>
+                    </p>
+                </div>
+            );
+        }
+        return null;
+    };
+
     const renderDashboard = () => (
         <div className="space-y-8 animate-fadeIn pb-16 font-inter">
             <style dangerouslySetInnerHTML={{
@@ -188,6 +230,38 @@ const StudentDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
                 background: linear-gradient(-45deg, #fff, #fef2f2, #fff5f5, #fff);
                 background-size: 400% 400%;
                 animation: flowGradient 15s ease infinite;
+            }
+            @keyframes flowerBloom {
+                0% {
+                    transform: scale(0) rotate(-180deg);
+                    opacity: 0;
+                }
+                50% {
+                    transform: scale(1.1) rotate(10deg);
+                    opacity: 0.8;
+                }
+                100% {
+                    transform: scale(1) rotate(0deg);
+                    opacity: 1;
+                }
+            }
+            @keyframes radarPulse {
+                0%, 100% {
+                    filter: drop-shadow(0 0 8px rgba(220, 38, 38, 0.3));
+                }
+                50% {
+                    filter: drop-shadow(0 0 20px rgba(220, 38, 38, 0.5));
+                }
+            }
+            .spectrum-bloom {
+                animation: flowerBloom 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            }
+            .spectrum-pulse {
+                animation: radarPulse 3s ease-in-out infinite;
+            }
+            .spectrum-hidden {
+                transform: scale(0) rotate(-180deg);
+                opacity: 0;
             }
         ` }} />
 
@@ -276,7 +350,7 @@ const StudentDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
             </section>
 
             {/* Skill Analysis Spectrum Section */}
-            <div className="space-y-8">
+            <div className="space-y-8" ref={spectrumRef}>
                 <div className="bg-white rounded-[48px] p-12 border border-slate-100 shadow-sm">
                     <div className="flex items-center gap-3 mb-2">
                         <BarChart3 className="w-6 h-6 text-primary-600" />
@@ -285,9 +359,9 @@ const StudentDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
                     <p className="text-slate-400 text-sm uppercase tracking-[0.2em] font-bold mb-12">Comprehensive Readiness Breakdown</p>
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
-                        {/* Radar Chart */}
+                        {/* Radar Chart with Flower Opening Animation */}
                         <div className="lg:col-span-1 flex items-center justify-center">
-                            <div className="relative w-full max-w-[320px] aspect-square">
+                            <div className={`relative w-full max-w-[320px] aspect-square ${isSpectrumVisible ? 'spectrum-bloom spectrum-pulse' : 'spectrum-hidden'}`}>
                                 <ResponsiveContainer width="100%" height="100%">
                                     <RadarChart data={[
                                         { subject: 'Aptitude', score: user.skills.aptitude },
@@ -303,6 +377,7 @@ const StudentDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
                                             tick={{ fill: '#94a3b8', fontSize: 12, fontWeight: 600 }}
                                         />
                                         <PolarRadiusAxis angle={90} domain={[0, 100]} tick={false} />
+                                        <Tooltip content={<CustomRadarTooltip />} />
                                         <Radar 
                                             name="Skills" 
                                             dataKey="score" 
@@ -310,6 +385,20 @@ const StudentDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
                                             fill="#dc2626" 
                                             fillOpacity={0.15}
                                             strokeWidth={3}
+                                            dot={{ 
+                                                r: 6, 
+                                                fill: '#dc2626', 
+                                                stroke: '#fff', 
+                                                strokeWidth: 2,
+                                                cursor: 'pointer'
+                                            }}
+                                            activeDot={{
+                                                r: 10,
+                                                fill: '#dc2626',
+                                                stroke: '#fff',
+                                                strokeWidth: 3,
+                                                cursor: 'pointer'
+                                            }}
                                         />
                                     </RadarChart>
                                 </ResponsiveContainer>
@@ -332,8 +421,16 @@ const StudentDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
                                     { label: 'DOMAIN', sublabel: 'Mastery Level', value: user.skills.domain },
                                     { label: 'PROJECTS', sublabel: 'Mastery Level', value: user.skills.project },
                                     { label: 'TECHNICAL', sublabel: 'Mastery Level', value: user.skills.technical },
-                                ].map((skill) => (
-                                    <div key={skill.label} className="flex items-center justify-between py-3 border-l-4 border-slate-100 pl-4 hover:border-primary-600 transition-all">
+                                ].map((skill, index) => (
+                                    <div 
+                                        key={skill.label} 
+                                        className="flex items-center justify-between py-3 border-l-4 border-slate-100 pl-4 hover:border-primary-600 transition-all"
+                                        style={{
+                                            opacity: isSpectrumVisible ? 1 : 0,
+                                            transform: isSpectrumVisible ? 'translateX(0)' : 'translateX(-20px)',
+                                            transition: `all 0.5s ease ${index * 0.1}s`
+                                        }}
+                                    >
                                         <div>
                                             <p className="text-sm font-black text-slate-900 tracking-tight">{skill.label}</p>
                                             <p className="text-[9px] text-slate-400 uppercase tracking-widest font-bold">{skill.sublabel}</p>
@@ -345,12 +442,19 @@ const StudentDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
                         </div>
 
                         {/* Career Ready Card */}
-                        <div className="lg:col-span-1 bg-slate-50 rounded-[40px] p-10 flex flex-col items-center text-center">
+                        <div 
+                            className="lg:col-span-1 bg-slate-50 rounded-[40px] p-10 flex flex-col items-center text-center"
+                            style={{
+                                opacity: isSpectrumVisible ? 1 : 0,
+                                transform: isSpectrumVisible ? 'scale(1)' : 'scale(0.8)',
+                                transition: 'all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s'
+                            }}
+                        >
                             <div className="bg-slate-900 p-6 rounded-[28px] mb-6">
                                 <UserCheck className="w-10 h-10 text-white" />
                             </div>
                             <p className="text-slate-400 text-[10px] uppercase tracking-[0.2em] font-black mb-3">Behavioral Profile</p>
-                            <h3 className="text-4xl font-black text-slate-900 tracking-tighter mb-6">Career Ready</h3>
+                            <h3 className="text-4xl font-black text-slate-900 tracking-tighter mb-6">Job Ready</h3>
                             <p className="text-slate-500 italic text-sm mb-8 leading-relaxed">
                                 "Highly aligned with modern workplace values and professional expectations."
                             </p>
@@ -360,7 +464,10 @@ const StudentDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
                                     <span className="text-2xl font-black text-primary-600 tracking-tighter">96%</span>
                                 </div>
                                 <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
-                                    <div className="h-full bg-primary-600 rounded-full" style={{ width: '96%' }}></div>
+                                    <div 
+                                        className="h-full bg-primary-600 rounded-full transition-all duration-1000 ease-out"
+                                        style={{ width: isSpectrumVisible ? '96%' : '0%' }}
+                                    ></div>
                                 </div>
                             </div>
                         </div>

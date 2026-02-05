@@ -158,7 +158,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLoginClick }) => {
                         <CheckCircle2 className="w-4 h-4 lg:w-6 lg:h-6 text-green-600" />
                       </div>
                       <div>
-                        <p className="text-[8px] lg:text-[9px] text-gray-400 font-bold uppercase tracking-[0.2em]">Verified Skills</p>
+                        <p className="text-[8px] lg:text-[9px] text-gray-400 font-bold uppercase tracking-[0.2em]">Verified Jobs</p>
                         <div className="flex items-baseline gap-1">
                           <p className="text-lg lg:text-2xl font-black text-gray-900 tracking-tighter">2.5K</p>
                           <span className="text-[10px] lg:text-xs font-bold text-green-600">+</span>

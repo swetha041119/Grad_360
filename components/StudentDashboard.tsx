@@ -349,6 +349,82 @@ const StudentDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
                 </div>
             </section>
 
+            {/* PRI Placement Readiness Section */}
+            <section className="space-y-6 relative">
+                <div className="flex items-center justify-between relative z-10">
+                    <div className="flex items-center gap-3">
+                        <Award className="w-6 h-6 text-primary-600" />
+                        <h2 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tighter">PRI Placement Readiness Score</h2>
+                    </div>
+                </div>
+
+                <div className="grid lg:grid-cols-3 gap-6">
+                    {/* Overall Readiness Score - Large Card */}
+                    <div className="lg:col-span-2 bg-gradient-to-br from-slate-900 via-slate-800 to-black rounded-[48px] p-12 shadow-2xl relative overflow-hidden flex items-center">
+                        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary-600/10 rounded-full blur-[120px] -mr-32 -mt-32 pointer-events-none"></div>
+                        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-white/5 rounded-full blur-[80px] -ml-20 -mb-20 pointer-events-none"></div>
+
+                        <div className="relative z-10 w-full">
+                            <div className="flex items-start justify-between mb-8">
+                                <div>
+                                    <p className="text-white/60 text-[10px] font-black uppercase tracking-[0.3em] mb-3">Overall Placement Readiness Index</p>
+                                    <h3 className="text-6xl md:text-7xl font-black text-white tracking-tighter leading-none mb-2">
+                                        {user.overallScore}<span className="text-3xl text-primary-400 ml-2">%</span>
+                                    </h3>
+                                    <p className="text-white/80 font-medium text-sm italic mt-4">Based on comprehensive skill assessment across all domains</p>
+                                </div>
+                                <div className="bg-white/10 backdrop-blur-xl p-4 rounded-2xl border border-white/20">
+                                    <Star className="w-8 h-8 text-primary-400" fill="currentColor" />
+                                </div>
+                            </div>
+
+                            {/* Progress Bar */}
+                            <div className="space-y-3">
+                                <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-white/60">
+                                    <span>Readiness Progress</span>
+                                    <span>{user.overallScore}% Complete</span>
+                                </div>
+                                <div className="h-3 bg-white/10 rounded-full overflow-hidden backdrop-blur-sm border border-white/20">
+                                    <div
+                                        className="h-full bg-gradient-to-r from-primary-600 to-primary-500 rounded-full shadow-[0_0_20px_rgba(220,38,38,0.5)] transition-all duration-1000"
+                                        style={{ width: `${user.overallScore}%` }}
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Placement Readiness Status Card */}
+                    <div className="bg-white rounded-[48px] p-12 shadow-xl border-2 border-slate-100 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-primary-50 rounded-full blur-3xl -mr-16 -mt-16 opacity-60"></div>
+
+                        <div className="relative z-10 w-full">
+                            <div className={`w-24 h-24 mx-auto rounded-full flex items-center justify-center mb-6 ${user.overallScore >= 80 ? 'bg-green-100' :
+                                user.overallScore >= 65 ? 'bg-yellow-100' :
+                                    'bg-primary-100'
+                                }`}>
+                                {user.overallScore >= 80 ? (
+                                    <CheckCircle2 className="w-12 h-12 text-green-600" />
+                                ) : user.overallScore >= 65 ? (
+                                    <Activity className="w-12 h-12 text-yellow-600" />
+                                ) : (
+                                    <AlertCircle className="w-12 h-12 text-primary-600" />
+                                )}
+                            </div>
+                            <p className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Placement Status</p>
+                            <h3 className={`text-4xl font-black tracking-tighter ${user.overallScore >= 80 ? 'text-green-600' :
+                                user.overallScore >= 65 ? 'text-yellow-600' :
+                                    'text-primary-600'
+                                }`}>
+                                {user.overallScore >= 80 ? 'Ready' :
+                                    user.overallScore >= 65 ? 'Almost Ready' :
+                                        'Need More Practice'}
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* Skill Analysis Spectrum Section */}
             <div className="space-y-8" ref={spectrumRef}>
                 <div className="bg-white rounded-[48px] p-12 border border-slate-100 shadow-sm">
@@ -372,23 +448,23 @@ const StudentDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
                                         { subject: 'Technical', score: user.skills.technical },
                                     ]}>
                                         <PolarGrid stroke="#e2e8f0" />
-                                        <PolarAngleAxis 
-                                            dataKey="subject" 
+                                        <PolarAngleAxis
+                                            dataKey="subject"
                                             tick={{ fill: '#94a3b8', fontSize: 12, fontWeight: 600 }}
                                         />
                                         <PolarRadiusAxis angle={90} domain={[0, 100]} tick={false} />
                                         <Tooltip content={<CustomRadarTooltip />} />
-                                        <Radar 
-                                            name="Skills" 
-                                            dataKey="score" 
-                                            stroke="#dc2626" 
-                                            fill="#dc2626" 
+                                        <Radar
+                                            name="Skills"
+                                            dataKey="score"
+                                            stroke="#dc2626"
+                                            fill="#dc2626"
                                             fillOpacity={0.15}
                                             strokeWidth={3}
-                                            dot={{ 
-                                                r: 6, 
-                                                fill: '#dc2626', 
-                                                stroke: '#fff', 
+                                            dot={{
+                                                r: 6,
+                                                fill: '#dc2626',
+                                                stroke: '#fff',
                                                 strokeWidth: 2,
                                                 cursor: 'pointer'
                                             }}
@@ -412,7 +488,7 @@ const StudentDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
                                 <p className="text-slate-300 text-xs uppercase tracking-[0.2em] font-black">Current Score</p>
                             </div>
                             <p className="text-slate-200 text-xs uppercase tracking-[0.2em] font-black mb-6">Mastery Indicators</p>
-                            
+
                             <div className="space-y-5">
                                 {[
                                     { label: 'APTITUDE', sublabel: 'Mastery Level', value: user.skills.aptitude },
@@ -422,8 +498,8 @@ const StudentDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
                                     { label: 'PROJECTS', sublabel: 'Mastery Level', value: user.skills.project },
                                     { label: 'TECHNICAL', sublabel: 'Mastery Level', value: user.skills.technical },
                                 ].map((skill, index) => (
-                                    <div 
-                                        key={skill.label} 
+                                    <div
+                                        key={skill.label}
                                         className="flex items-center justify-between py-3 border-l-4 border-slate-100 pl-4 hover:border-primary-600 transition-all"
                                         style={{
                                             opacity: isSpectrumVisible ? 1 : 0,
@@ -442,7 +518,7 @@ const StudentDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
                         </div>
 
                         {/* Career Ready Card */}
-                        <div 
+                        <div
                             className="lg:col-span-1 bg-slate-50 rounded-[40px] p-10 flex flex-col items-center text-center"
                             style={{
                                 opacity: isSpectrumVisible ? 1 : 0,
@@ -454,22 +530,8 @@ const StudentDashboard: React.FC<Props> = ({ user, activeTab, setActiveTab }) =>
                                 <UserCheck className="w-10 h-10 text-white" />
                             </div>
                             <p className="text-slate-400 text-[10px] uppercase tracking-[0.2em] font-black mb-3">Behavioral Profile</p>
-                            <h3 className="text-4xl font-black text-slate-900 tracking-tighter mb-6">Job Ready</h3>
-                            <p className="text-slate-500 italic text-sm mb-8 leading-relaxed">
-                                "Highly aligned with modern workplace values and professional expectations."
-                            </p>
-                            <div className="w-full">
-                                <div className="flex justify-between items-center mb-3">
-                                    <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Alignment Score</span>
-                                    <span className="text-2xl font-black text-primary-600 tracking-tighter">96%</span>
-                                </div>
-                                <div className="h-2 bg-slate-200 rounded-full overflow-hidden">
-                                    <div 
-                                        className="h-full bg-primary-600 rounded-full transition-all duration-1000 ease-out"
-                                        style={{ width: isSpectrumVisible ? '96%' : '0%' }}
-                                    ></div>
-                                </div>
-                            </div>
+<h3 className="text-4xl font-black text-emerald-500 tracking-tighter mb-6">PASS</h3>
+                            
                         </div>
                     </div>
                 </div>

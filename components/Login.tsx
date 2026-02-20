@@ -26,7 +26,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, isLoading, onBack }) => {
   };
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center p-4 font-inter">
+    <div className="min-h-screen relative bg-white flex items-center justify-center p-4 font-inter">
       <div className="bg-white rounded-[48px] shadow-2xl w-full max-w-md overflow-hidden flex flex-col relative border border-gray-100 p-12">
         <button 
           onClick={onBack}
@@ -50,7 +50,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, isLoading, onBack }) => {
                 {[
                     { id: 'STUDENT', label: 'Student', icon: Users },
                     { id: 'FACULTY', label: 'Institution', icon: GraduationCap },
-                    { id: 'COMPANY', label: 'Recruiter', icon: Briefcase },
+                    { id: 'COMPANY', label: 'Company', icon: Briefcase },
                 ].map((role) => (
                     <button 
                         key={role.id}
@@ -92,6 +92,9 @@ const Login: React.FC<LoginProps> = ({ onLogin, isLoading, onBack }) => {
                 </button>
             </form>
         </div>
+      </div>
+      <div className="absolute bottom-0 left-0 w-full bg-gray-200 text-black py-3 text-center text-sm font-medium z-10">
+        This is a demo application for presentation purposes.
       </div>
     </div>
   );

@@ -196,6 +196,11 @@ const LandingPage: React.FC<LandingPageProps> = ({ onLoginClick }) => {
           </div>
         </div>
       </footer>
+
+      {/* Demo Banner */}
+      <div className="w-full bg-gray-200 text-black py-3 text-center text-sm font-medium">
+        This is a demo application for presentation purposes.
+      </div>
     </div>
   );
 };
